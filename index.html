@@ -1,0 +1,1161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gutli Mission OS — India's Mango Revolution</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,700;0,900;1,300;1,700&family=Instrument+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --night:#0F0A04;--soil:#1A0F06;--bark:#2C1A0A;
+  --mango:#F5A623;--mango2:#FDD06A;--mango3:#FFF3D0;
+  --leaf:#2D6A3F;--leaf2:#4A9E61;--leaf3:#B8F0C8;
+  --cream:#FDF8EE;--sand:#D4B896;--dust:#8C7355;
+  --white:#FFFEF9;--glass:rgba(255,255,255,.05);--gb:rgba(255,255,255,.08);
+  --red:#C84040;--gold:#C8920A;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--night);color:var(--cream);font-family:'Instrument Sans',sans-serif;overflow-x:hidden;cursor:none;}
+.cur{width:14px;height:14px;background:var(--mango);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:99999;transform:translate(-50%,-50%);transition:width .18s,height .18s;mix-blend-mode:difference;}
+.cur.h{width:36px;height:36px;}
+body::after{content:'';position:fixed;inset:0;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='.04'/%3E%3C/svg%3E");pointer-events:none;z-index:9990;opacity:.5;}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:0 52px;height:64px;display:flex;align-items:center;justify-content:space-between;background:rgba(15,10,4,.92);backdrop-filter:blur(24px);border-bottom:1px solid var(--gb);}
+.nlogo{font-family:'Fraunces',serif;font-size:19px;font-weight:700;display:flex;align-items:center;gap:9px;letter-spacing:-.01em;}
+.nlogo em{font-style:italic;color:var(--mango);}
+.nav-links{display:flex;gap:4px;}
+.nl{padding:7px 14px;border-radius:6px;border:none;background:transparent;color:rgba(255,255,255,.42);font-family:'Instrument Sans',sans-serif;font-size:12px;font-weight:500;cursor:none;transition:.2s;letter-spacing:.02em;}
+.nl:hover,.nl.on{background:rgba(255,255,255,.07);color:var(--mango);}
+.nl.on{color:var(--mango);}
+.npill{background:var(--mango);color:var(--night);border:none;padding:8px 20px;border-radius:100px;font-family:'Instrument Sans',sans-serif;font-size:12px;font-weight:600;cursor:none;transition:.2s;}
+.npill:hover{background:var(--mango2);transform:translateY(-1px);}
+
+/* HERO */
+.hero{min-height:100vh;padding-top:64px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;position:relative;overflow:hidden;}
+.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 60%,rgba(245,166,35,.07) 0%,transparent 65%);pointer-events:none;}
+.hero-ring{position:absolute;border-radius:50%;border:1px solid rgba(245,166,35,.07);top:50%;left:50%;transform:translate(-50%,-50%);animation:spin 40s linear infinite;}
+.hero-ring:nth-child(2){width:600px;height:600px;}
+.hero-ring:nth-child(3){width:800px;height:800px;animation-duration:60s;animation-direction:reverse;}
+.hero-ring:nth-child(4){width:1000px;height:1000px;animation-duration:80s;}
+@keyframes spin{to{transform:translate(-50%,-50%) rotate(360deg)}}
+.live-badge{display:inline-flex;align-items:center;gap:7px;background:rgba(245,166,35,.1);border:1px solid rgba(245,166,35,.22);border-radius:100px;padding:5px 14px;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--mango);letter-spacing:.1em;text-transform:uppercase;margin-bottom:28px;animation:fu .8s ease both;}
+.ldot{width:6px;height:6px;background:#4ade80;border-radius:50%;animation:lp 1.5s infinite;}
+@keyframes lp{0%,100%{box-shadow:0 0 0 0 rgba(74,222,128,.5)}50%{box-shadow:0 0 0 5px rgba(74,222,128,0)}}
+.hero h1{font-family:'Fraunces',serif;font-size:clamp(52px,7vw,110px);font-weight:900;line-height:.9;letter-spacing:-.03em;color:var(--white);animation:fu .8s .1s ease both;max-width:900px;}
+.hero h1 em{font-style:italic;color:var(--mango);display:block;}
+.hero-sub{font-size:18px;line-height:1.7;color:var(--sand);max-width:560px;margin:28px auto 0;font-weight:300;animation:fu .8s .2s ease both;}
+.hero-stats{display:flex;gap:0;margin:52px auto 0;animation:fu .8s .3s ease both;border:1px solid var(--gb);border-radius:16px;overflow:hidden;background:var(--glass);}
+.hstat{padding:24px 36px;text-align:center;border-right:1px solid var(--gb);}
+.hstat:last-child{border-right:none;}
+.hstat-n{font-family:'Fraunces',serif;font-size:38px;font-weight:900;color:var(--mango);line-height:1;}
+.hstat-l{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--dust);text-transform:uppercase;letter-spacing:.1em;margin-top:4px;}
+.hero-cta{display:flex;gap:12px;margin-top:36px;justify-content:center;animation:fu .8s .4s ease both;}
+.btn{padding:13px 28px;border-radius:8px;font-family:'Instrument Sans',sans-serif;font-size:13px;font-weight:600;cursor:none;transition:.2s;border:none;letter-spacing:.01em;}
+.bm{background:var(--mango);color:var(--night);}.bm:hover{background:var(--mango2);transform:translateY(-2px);box-shadow:0 8px 28px rgba(245,166,35,.3);}
+.bg{background:transparent;color:var(--cream);border:1px solid var(--gb);}.bg:hover{border-color:rgba(255,255,255,.3);color:var(--white);}
+@keyframes fu{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+
+/* SCROLL ARROW */
+.scroll-hint{position:absolute;bottom:36px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:6px;animation:bounce 2s ease-in-out infinite;}
+.scroll-hint span{font-family:'JetBrains Mono',monospace;font-size:9px;color:rgba(255,255,255,.25);letter-spacing:.1em;text-transform:uppercase;}
+.arrow{width:1px;height:36px;background:linear-gradient(to bottom,transparent,rgba(255,255,255,.2));margin:0 auto;}
+@keyframes bounce{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(8px)}}
+
+/* SECTION */
+.sec{padding:100px 60px;position:relative;}
+.sec.alt{background:rgba(255,255,255,.018);border-top:1px solid var(--gb);border-bottom:1px solid var(--gb);}
+.stag{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--mango);text-transform:uppercase;letter-spacing:.14em;margin-bottom:14px;}
+.sh{font-family:'Fraunces',serif;font-size:clamp(36px,4.5vw,60px);font-weight:900;line-height:1;letter-spacing:-.02em;color:var(--white);}
+.sh em{font-style:italic;color:var(--mango);}
+.sbar{width:40px;height:3px;background:linear-gradient(90deg,var(--mango),var(--leaf2));border-radius:2px;margin:18px 0 0;}
+.rev{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease;}
+.rev.in{opacity:1;transform:translateY(0);}
+
+/* ===== MISSION STORY ===== */
+.story-grid{display:grid;grid-template-columns:1fr 1fr;gap:72px;margin-top:56px;align-items:start;}
+.story-text p{font-size:16px;line-height:1.85;color:var(--sand);font-weight:300;margin-bottom:20px;}
+.story-text p strong{color:var(--cream);font-weight:500;}
+.quote-card{background:rgba(245,166,35,.06);border-left:3px solid var(--mango);padding:24px 28px;border-radius:0 12px 12px 0;margin-top:24px;}
+.quote-text{font-family:'Fraunces',serif;font-size:20px;font-style:italic;color:var(--cream);line-height:1.5;}
+.quote-attr{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--mango);letter-spacing:.1em;margin-top:10px;text-transform:uppercase;}
+.fact-cards{display:flex;flex-direction:column;gap:14px;}
+.fact-card{background:var(--glass);border:1px solid var(--gb);border-radius:14px;padding:22px 24px;display:flex;gap:16px;align-items:flex-start;transition:.25s;}
+.fact-card:hover{background:rgba(255,255,255,.07);border-color:rgba(245,166,35,.2);}
+.fact-icon{font-size:28px;flex-shrink:0;}
+.fact-val{font-family:'Fraunces',serif;font-size:28px;font-weight:700;color:var(--mango);line-height:1;}
+.fact-label{font-size:12px;color:var(--sand);margin-top:3px;line-height:1.5;}
+
+/* ===== HOW IT WORKS ===== */
+.chain{display:grid;grid-template-columns:repeat(5,1fr);gap:0;margin-top:60px;position:relative;}
+.chain::before{content:'';position:absolute;top:46px;left:10%;right:10%;height:1px;background:linear-gradient(90deg,transparent,var(--mango) 25%,var(--leaf2) 75%,transparent);opacity:.2;}
+.cs{display:flex;flex-direction:column;align-items:center;text-align:center;padding:0 12px;}
+.cn{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--mango);opacity:.5;margin-bottom:6px;letter-spacing:.1em;}
+.ci{width:88px;height:88px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:32px;margin-bottom:22px;position:relative;z-index:2;transition:transform .3s,box-shadow .3s;}
+.cs:hover .ci{transform:translateY(-6px);}
+.ci.a{background:rgba(245,166,35,.1);border:1.5px solid rgba(245,166,35,.3);}
+.ci.b{background:rgba(45,106,63,.12);border:1.5px solid rgba(45,106,63,.35);}
+.ci.c{background:rgba(44,26,10,.4);border:1.5px solid rgba(200,130,80,.4);}
+.ct2{font-family:'Fraunces',serif;font-size:16px;font-weight:700;color:var(--white);margin-bottom:7px;}
+.cd{font-size:12px;color:var(--sand);line-height:1.65;}
+
+/* ===== ZONE ADVISOR ===== */
+.advisor-wrap{display:grid;grid-template-columns:420px 1fr;gap:48px;margin-top:56px;align-items:start;}
+.form-card{background:rgba(255,255,255,.04);border:1px solid var(--gb);border-radius:20px;padding:32px;position:sticky;top:80px;}
+.fc-title{font-family:'Fraunces',serif;font-size:22px;font-weight:700;margin-bottom:5px;}
+.fc-sub{font-size:12px;color:var(--dust);margin-bottom:26px;}
+.fi{margin-bottom:16px;}
+.fi label{display:block;font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--dust);letter-spacing:.09em;text-transform:uppercase;margin-bottom:7px;}
+.fi select,.fi input{width:100%;background:rgba(255,255,255,.06);border:1.5px solid rgba(255,255,255,.1);border-radius:8px;padding:11px 14px;color:var(--cream);font-family:'Instrument Sans',sans-serif;font-size:13px;outline:none;transition:.2s;cursor:none;appearance:none;}
+.fi select:focus,.fi input:focus{border-color:var(--mango);background:rgba(245,166,35,.06);}
+.fi select option{background:#1A0F06;color:var(--cream);}
+.fi-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.abtn{width:100%;background:var(--mango);color:var(--night);border:none;padding:13px;border-radius:8px;font-family:'Instrument Sans',sans-serif;font-size:14px;font-weight:700;cursor:none;transition:.2s;margin-top:6px;letter-spacing:.01em;}
+.abtn:hover{background:var(--mango2);transform:translateY(-1px);}
+.abtn:disabled{opacity:.45;pointer-events:none;}
+
+/* Result right side */
+.result-right{display:none;}
+.result-right.show{display:block;animation:fu .5s ease;}
+.zone-banner{display:flex;align-items:center;justify-content:space-between;padding:22px 28px;border-radius:14px;margin-bottom:28px;}
+.zb-excellent{background:rgba(74,158,97,.1);border:1.5px solid rgba(74,158,97,.3);}
+.zb-good{background:rgba(200,146,10,.08);border:1.5px solid rgba(200,146,10,.28);}
+.zb-marginal{background:rgba(245,166,35,.07);border:1.5px solid rgba(245,166,35,.25);}
+.zb-unsuitable{background:rgba(200,64,64,.08);border:1.5px solid rgba(200,64,64,.28);}
+.zb-left{display:flex;align-items:center;gap:14px;}
+.zb-emoji{font-size:36px;}
+.zb-name{font-family:'Fraunces',serif;font-size:24px;font-weight:700;}
+.zb-name.excellent{color:var(--leaf2);}
+.zb-name.good{color:var(--gold);}
+.zb-name.marginal{color:var(--mango);}
+.zb-name.unsuitable{color:var(--red);}
+.zb-sub{font-size:12px;color:var(--dust);margin-top:2px;}
+.zb-score{text-align:right;}
+.zb-pct{font-family:'Fraunces',serif;font-size:48px;font-weight:900;line-height:1;}
+.zb-pct.excellent{color:var(--leaf2);}
+.zb-pct.good{color:var(--gold);}
+.zb-pct.marginal{color:var(--mango);}
+.zb-pct.unsuitable{color:var(--red);}
+.zb-plabel{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--dust);letter-spacing:.09em;text-transform:uppercase;}
+.metrics4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:28px;}
+.mc{background:var(--glass);border:1px solid var(--gb);border-radius:10px;padding:16px;}
+.mc-lbl{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--dust);letter-spacing:.09em;text-transform:uppercase;margin-bottom:8px;}
+.mc-val{font-family:'Fraunces',serif;font-size:22px;font-weight:700;color:var(--cream);line-height:1;}
+.mc-unit{font-size:12px;color:var(--dust);}
+.mc-bar{background:rgba(255,255,255,.07);border-radius:100px;height:4px;margin-top:8px;overflow:hidden;}
+.mc-fill{height:100%;border-radius:100px;transition:width 1.2s ease;}
+.mcf-g{background:linear-gradient(90deg,var(--leaf),var(--leaf2));}
+.mcf-y{background:linear-gradient(90deg,var(--gold),#FFC107);}
+.mcf-r{background:linear-gradient(90deg,var(--red),#e57373);}
+.mc-note{font-size:10px;color:var(--dust);margin-top:5px;}
+.warn-card{background:rgba(200,64,64,.07);border:1.5px solid rgba(200,64,64,.25);border-radius:12px;padding:18px 20px;margin-bottom:20px;display:none;}
+.warn-card.show{display:block;}
+.warn-title{font-size:13px;font-weight:600;color:var(--red);margin-bottom:5px;}
+.warn-text{font-size:12px;color:var(--sand);line-height:1.7;}
+
+/* Variety grid */
+.res-sh{font-family:'Fraunces',serif;font-size:20px;font-weight:700;color:var(--white);margin-bottom:16px;display:flex;align-items:center;gap:10px;}
+.res-tag{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--dust);letter-spacing:.1em;text-transform:uppercase;}
+.vgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:28px;}
+.vc{background:var(--glass);border:1.5px solid var(--gb);border-radius:12px;padding:18px;transition:.25s;cursor:none;position:relative;overflow:hidden;}
+.vc:hover{transform:translateY(-3px);box-shadow:0 12px 32px rgba(0,0,0,.3);border-color:rgba(245,166,35,.25);}
+.vc.top{border-color:rgba(74,158,97,.4);background:rgba(74,158,97,.06);}
+.vc.top::before{content:'TOP';position:absolute;top:10px;right:10px;font-family:'JetBrains Mono',monospace;font-size:8px;color:var(--leaf2);background:rgba(74,158,97,.15);padding:2px 7px;border-radius:100px;}
+.vc.warn-v{opacity:.65;border-color:rgba(200,64,64,.25);}
+.ve{font-size:28px;margin-bottom:8px;}
+.vn{font-family:'Fraunces',serif;font-size:16px;font-weight:700;color:var(--white);margin-bottom:3px;}
+.vr{font-size:10px;color:var(--dust);margin-bottom:10px;}
+.vstats{display:flex;flex-direction:column;gap:5px;}
+.vsr{display:flex;justify-content:space-between;font-size:10px;}
+.vsk{color:var(--dust);}
+.vsv{font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:600;color:var(--cream);}
+.vsv.g{color:var(--leaf2);}
+.vsv.o{color:var(--mango);}
+.vsv.r{color:var(--red);}
+.suit-row{margin-top:10px;padding-top:10px;border-top:1px solid rgba(255,255,255,.06);}
+.suit-bar{background:rgba(255,255,255,.07);border-radius:100px;height:3px;margin-top:4px;overflow:hidden;}
+.suit-fill{height:100%;border-radius:100px;transition:width 1.4s ease;}
+
+/* Soil fixes */
+.fix-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:28px;}
+.fix-c{background:var(--glass);border:1px solid var(--gb);border-radius:10px;padding:16px;display:flex;gap:12px;}
+.fix-ico{font-size:20px;flex-shrink:0;margin-top:2px;}
+.fix-t{font-size:12px;font-weight:600;color:var(--white);margin-bottom:3px;}
+.fix-d{font-size:11px;color:var(--dust);line-height:1.55;}
+.fix-cost{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--mango);margin-top:5px;}
+
+/* Income calc */
+.income-card{background:var(--bark);border:1px solid rgba(255,255,255,.06);border-radius:14px;padding:26px;margin-bottom:28px;}
+.inc-title{font-family:'Fraunces',serif;font-size:18px;font-weight:700;color:var(--white);margin-bottom:18px;}
+.inc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;}
+.inc-item{}
+.inc-lbl{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--dust);letter-spacing:.09em;text-transform:uppercase;margin-bottom:6px;}
+.inc-val{font-family:'Fraunces',serif;font-size:26px;font-weight:900;color:var(--mango);line-height:1;}
+.inc-sub{font-size:10px;color:var(--dust);margin-top:3px;}
+.vs-row-calc{margin-top:18px;background:rgba(255,255,255,.04);border-radius:8px;padding:14px;display:flex;justify-content:space-between;align-items:center;}
+.vs-lbl{font-size:11px;color:var(--dust);}
+.vs-val2{font-family:'Fraunces',serif;font-size:20px;font-weight:700;color:var(--leaf2);}
+
+/* Timeline */
+.tl{display:grid;grid-template-columns:repeat(6,1fr);gap:0;margin-bottom:28px;position:relative;}
+.tl::before{content:'';position:absolute;top:24px;left:8%;right:4%;height:1px;background:linear-gradient(90deg,transparent,rgba(245,166,35,.25) 30%,rgba(74,158,97,.25) 80%,transparent);z-index:0;}
+.tls{display:flex;flex-direction:column;align-items:center;text-align:center;padding:0 4px;}
+.tl-yr{font-family:'JetBrains Mono',monospace;font-size:8px;color:var(--dust);letter-spacing:.08em;margin-bottom:7px;}
+.tl-dot{width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px;position:relative;z-index:2;margin-bottom:10px;}
+.tl-dot.done{background:rgba(74,158,97,.15);border:1.5px solid rgba(74,158,97,.4);}
+.tl-dot.active{background:rgba(245,166,35,.12);border:1.5px solid var(--mango);animation:glow 2s ease-in-out infinite;}
+.tl-dot.future{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);}
+@keyframes glow{0%,100%{box-shadow:0 0 0 0 rgba(245,166,35,.3)}50%{box-shadow:0 0 0 8px rgba(245,166,35,0)}}
+.tl-t{font-size:10px;font-weight:600;color:var(--cream);}
+.tl-d{font-size:9px;color:var(--dust);margin-top:2px;line-height:1.4;}
+.tl-inc{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--leaf2);margin-top:3px;}
+
+/* Compare table */
+.ctable{width:100%;border-collapse:collapse;font-size:11px;}
+.ctable th{font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:.09em;text-transform:uppercase;color:var(--dust);padding:10px 12px;text-align:left;border-bottom:1px solid var(--gb);}
+.ctable td{padding:11px 12px;border-bottom:1px solid rgba(255,255,255,.04);}
+.ctable tr:hover td{background:rgba(255,255,255,.025);}
+.ctable tr.best td{background:rgba(74,158,97,.06);}
+.chip{display:inline-block;padding:2px 8px;border-radius:100px;font-family:'JetBrains Mono',monospace;font-size:8px;font-weight:600;}
+.chip-e{background:rgba(74,158,97,.15);color:var(--leaf2);}
+.chip-g{background:rgba(200,146,10,.14);color:var(--gold);}
+.chip-m{background:rgba(245,166,35,.12);color:var(--mango);}
+.chip-n{background:rgba(200,64,64,.12);color:var(--red);}
+
+/* ===== PLATFORM SECTION (tabs) ===== */
+.tabs-wrap{margin-top:52px;}
+.tab-bar{display:flex;gap:3px;background:rgba(255,255,255,.04);border:1px solid var(--gb);border-radius:10px;padding:3px;width:fit-content;margin-bottom:36px;flex-wrap:wrap;}
+.tb{padding:9px 20px;border-radius:7px;border:none;font-family:'Instrument Sans',sans-serif;font-size:12px;font-weight:500;cursor:none;transition:.2s;color:rgba(255,255,255,.38);background:transparent;}
+.tb.on{background:var(--mango);color:var(--night);}
+.tp{display:none;}.tp.on{display:block;animation:fu .4s ease;}
+
+/* DONATE TAB */
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:36px;align-items:start;}
+.fcard2{background:var(--glass);border:1px solid var(--gb);border-radius:18px;padding:30px;}
+.fcard2 h3{font-family:'Fraunces',serif;font-size:20px;font-weight:700;color:var(--white);margin-bottom:5px;}
+.fcard2 p{font-size:12px;color:var(--dust);margin-bottom:22px;line-height:1.6;}
+.sbtn2{width:100%;background:var(--mango);color:var(--night);border:none;padding:12px;border-radius:7px;font-family:'Instrument Sans',sans-serif;font-size:13px;font-weight:700;cursor:none;transition:.2s;margin-top:6px;}
+.sbtn2:hover{background:var(--mango2);}
+.rc{display:none;background:rgba(74,158,97,.08);border:1px solid rgba(74,158,97,.25);border-radius:12px;padding:20px;margin-top:16px;}
+.rc.show{display:block;animation:fu .4s ease;}
+.rr{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.05);font-size:12px;}
+.rr:last-child{border:none;}
+.rk{color:var(--dust);}
+.rv{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--leaf2);}
+.dmap{background:rgba(74,158,97,.05);border:1px solid rgba(74,158,97,.15);border-radius:14px;padding:20px;min-height:250px;position:relative;overflow:hidden;}
+.dmtag{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--mango);letter-spacing:.1em;text-transform:uppercase;margin-bottom:14px;}
+.dp{position:absolute;display:flex;flex-direction:column;align-items:center;cursor:none;}
+.dd{width:10px;height:10px;border-radius:50%;animation:ping 2s ease-out infinite;}
+.dd.active{background:var(--leaf2);box-shadow:0 0 6px var(--leaf2);}
+.dd.bulk{background:var(--mango);box-shadow:0 0 6px var(--mango);}
+@keyframes ping{0%{box-shadow:0 0 0 0 rgba(245,166,35,.6)}70%{box-shadow:0 0 0 10px rgba(245,166,35,0)}100%{box-shadow:0 0 0 0 rgba(245,166,35,0)}}
+.dl{font-size:9px;color:var(--sand);margin-top:3px;white-space:nowrap;}
+.dp:hover .dl{color:var(--mango);}
+.dtt{display:none;position:absolute;bottom:22px;left:50%;transform:translateX(-50%);background:var(--bark);border:1px solid rgba(245,166,35,.25);border-radius:6px;padding:6px 10px;font-size:10px;color:var(--cream);white-space:nowrap;z-index:10;}
+.dp:hover .dtt{display:block;}
+.courier-box{background:rgba(245,166,35,.05);border:1px solid rgba(245,166,35,.15);border-radius:10px;padding:16px;margin-top:14px;font-size:12px;color:var(--sand);line-height:1.75;}
+
+/* FARMER REG */
+.rsteps{display:flex;gap:5px;margin-bottom:24px;}
+.rsi{flex:1;height:3px;border-radius:2px;background:rgba(255,255,255,.1);transition:background .3s;}
+.rsi.done{background:var(--mango);}
+.rsi.active{background:var(--leaf2);}
+.sp{display:none;animation:fu .4s ease;}
+.sp.on{display:block;}
+.sp-title{font-family:'Fraunces',serif;font-size:22px;font-weight:700;color:var(--white);margin-bottom:4px;}
+.sp-sub{font-size:12px;color:var(--dust);margin-bottom:20px;}
+.back-btn{background:rgba(255,255,255,.07);color:var(--cream);border:none;padding:11px 18px;border-radius:7px;font-size:13px;font-weight:500;cursor:none;transition:.2s;flex:0 0 auto;}
+.back-btn:hover{background:rgba(255,255,255,.12);}
+.aresult{display:none;background:rgba(74,158,97,.07);border:1px solid rgba(74,158,97,.22);border-radius:12px;padding:20px;margin-top:16px;}
+.aresult.show{display:block;animation:fu .4s ease;}
+.smeter{background:rgba(255,255,255,.07);border-radius:100px;height:5px;margin:5px 0 3px;overflow:hidden;}
+.smf{height:100%;border-radius:100px;transition:width 1s ease;}
+.smf.g{background:linear-gradient(90deg,var(--leaf),var(--leaf2));}
+.smf.y{background:linear-gradient(90deg,var(--gold),#FFC107);}
+.vc2{display:flex;gap:12px;align-items:flex-start;background:rgba(245,166,35,.06);border:1px solid rgba(245,166,35,.2);border-radius:10px;padding:14px 16px;margin-top:12px;}
+.vc2-name{font-family:'Fraunces',serif;font-size:17px;font-weight:700;color:var(--white);}
+.vc2-meta{font-size:11px;color:var(--dust);margin-top:2px;}
+.vc2-badge{background:rgba(74,158,97,.2);color:var(--leaf2);padding:2px 8px;border-radius:100px;font-size:9px;font-family:'JetBrains Mono',monospace;display:inline-block;margin-top:5px;}
+.reg-info-box{background:var(--glass);border:1px solid var(--gb);border-radius:16px;padding:24px;}
+.rib-title{font-size:13px;font-weight:600;color:var(--white);margin-bottom:14px;}
+.rib-item{display:flex;gap:12px;align-items:flex-start;margin-bottom:14px;}
+.rib-icon{width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0;}
+
+/* WHATSAPP */
+.wa-wrap{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;}
+.wad{background:#0D0D0D;border-radius:40px;padding:14px;border:4px solid rgba(255,255,255,.07);box-shadow:0 32px 64px rgba(0,0,0,.6);max-width:290px;margin:0 auto;}
+.was{background:#ECE5DD;border-radius:28px;overflow:hidden;}
+.watop{background:#128C7E;padding:12px 15px;display:flex;align-items:center;gap:8px;}
+.waav{width:32px;height:32px;background:var(--mango);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px;}
+.wana{font-size:13px;font-weight:600;color:#fff;}
+.waon{font-size:10px;color:rgba(255,255,255,.65);}
+.wams{padding:12px;display:flex;flex-direction:column;gap:7px;height:320px;overflow-y:auto;scroll-behavior:smooth;}
+.wams::-webkit-scrollbar{display:none;}
+.wab{max-width:85%;padding:8px 11px;border-radius:10px;font-size:11px;line-height:1.5;font-family:'Instrument Sans',sans-serif;color:#1a1a1a;box-shadow:0 1px 2px rgba(0,0,0,.08);}
+.wab.bot{background:#fff;align-self:flex-start;border-radius:0 10px 10px 10px;}
+.wab.usr{background:#DCF8C6;align-self:flex-end;border-radius:10px 0 10px 10px;}
+.wts{font-size:9px;color:rgba(0,0,0,.35);text-align:right;margin-top:2px;}
+.tyd{display:flex;gap:3px;align-items:center;padding:3px 0;}
+.tyd span{width:5px;height:5px;background:#aaa;border-radius:50%;animation:td .9s ease-in-out infinite;}
+.tyd span:nth-child(2){animation-delay:.2s}
+.tyd span:nth-child(3){animation-delay:.4s}
+@keyframes td{0%,80%,100%{transform:scale(.6);opacity:.4}40%{transform:scale(1);opacity:1}}
+.waib{background:#f0f0f0;padding:8px 11px;display:flex;align-items:center;gap:6px;}
+.wai{flex:1;background:#fff;border:none;border-radius:20px;padding:7px 12px;font-size:11px;outline:none;font-family:'Instrument Sans',sans-serif;color:#1a1a1a;cursor:text;}
+.was2{width:30px;height:30px;background:#128C7E;border:none;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:none;font-size:12px;transition:.2s;}
+.was2:hover{background:#075E54;}
+.chips2{display:flex;gap:6px;flex-wrap:wrap;}
+.chip2{background:rgba(245,166,35,.1);border:1px solid rgba(245,166,35,.25);border-radius:100px;padding:6px 12px;font-size:11px;color:var(--mango);cursor:none;transition:.2s;}
+.chip2:hover{background:rgba(245,166,35,.2);}
+.lang-pills{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:16px;}
+.lp2{background:rgba(74,158,97,.1);border:1px solid rgba(74,158,97,.25);border-radius:100px;padding:5px 13px;font-size:11px;color:var(--leaf2);}
+
+/* TRACKER */
+.tracker-wrap{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start;}
+.trin{width:100%;background:rgba(255,255,255,.05);border:1.5px solid rgba(255,255,255,.1);border-radius:8px;padding:11px 14px;color:var(--cream);font-family:'JetBrains Mono',monospace;font-size:12px;outline:none;transition:.2s;cursor:text;margin-bottom:8px;}
+.trin:focus{border-color:var(--mango);}
+.trb{background:var(--mango);color:var(--night);border:none;padding:11px 24px;border-radius:8px;font-weight:700;font-size:13px;cursor:none;transition:.2s;}
+.trb:hover{background:var(--mango2);}
+.jtl{display:none;margin-top:22px;}
+.jtl.show{display:block;animation:fu .5s ease;}
+.jhdr{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--mango);letter-spacing:.1em;margin-bottom:14px;}
+.js{display:flex;gap:14px;align-items:flex-start;padding:13px 0;border-bottom:1px solid rgba(255,255,255,.05);}
+.ji{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0;}
+.ji.done{background:rgba(74,158,97,.15);border:1.5px solid rgba(74,158,97,.35);}
+.ji.active{background:rgba(245,166,35,.12);border:1.5px solid var(--mango);animation:glow 2s infinite;}
+.ji.pending{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);opacity:.35;}
+.jt{font-size:13px;font-weight:600;color:var(--white);margin-bottom:2px;display:flex;align-items:center;gap:8px;}
+.jst{font-size:8px;padding:2px 6px;border-radius:100px;font-family:'JetBrains Mono',monospace;}
+.jst.done{background:rgba(74,158,97,.18);color:var(--leaf2);}
+.jst.active{background:rgba(245,166,35,.12);color:var(--mango);}
+.jst.pending{background:rgba(255,255,255,.05);color:rgba(255,255,255,.25);}
+.jsub{font-size:11px;color:var(--dust);}
+.jd{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--mango);margin-top:3px;}
+
+/* PHOTO */
+.uz{border:2px dashed rgba(245,166,35,.2);border-radius:14px;padding:32px;text-align:center;transition:.3s;cursor:none;}
+.uz:hover,.uz.dv{border-color:rgba(245,166,35,.5);background:rgba(245,166,35,.03);}
+.ar{display:none;}
+.ar.show{display:block;animation:fu .5s ease;}
+.hbw{margin:11px 0;}
+.hbl{display:flex;justify-content:space-between;font-size:11px;color:var(--dust);margin-bottom:4px;}
+.hbr{background:rgba(255,255,255,.07);border-radius:100px;height:4px;overflow:hidden;}
+.hbf{height:100%;border-radius:100px;transition:width 1.2s ease;}
+.hbf.g{background:linear-gradient(90deg,var(--leaf),var(--leaf2));}
+.hbf.y{background:linear-gradient(90deg,var(--gold),#FFC107);}
+
+/* CSR */
+.csr-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;}
+.rcard{background:var(--glass);border:1px solid var(--gb);border-radius:16px;overflow:hidden;}
+.rh{background:rgba(74,158,97,.1);border-bottom:1px solid rgba(74,158,97,.18);padding:16px 24px;display:flex;justify-content:space-between;align-items:center;}
+.rht{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--leaf2);letter-spacing:.1em;}
+.rbg{background:rgba(245,166,35,.12);border:1px solid rgba(245,166,35,.22);color:var(--mango);font-size:8px;font-family:'JetBrains Mono',monospace;padding:2px 8px;border-radius:100px;}
+.rb{padding:22px 24px;}
+.rrw{display:flex;justify-content:space-between;align-items:center;padding:9px 0;border-bottom:1px solid rgba(255,255,255,.04);}
+.rrw:last-child{border:none;}
+.rk2{font-size:12px;color:var(--dust);}
+.rv2{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--leaf2);font-weight:600;}
+.clogos{display:flex;flex-wrap:wrap;gap:8px;margin-top:24px;}
+.cch{background:var(--glass);border:1px solid var(--gb);border-radius:8px;padding:10px 16px;font-size:11px;color:rgba(255,255,255,.35);transition:.2s;display:flex;align-items:center;gap:6px;}
+.cch:hover{border-color:rgba(245,166,35,.25);color:var(--mango);}
+.csr-why{background:rgba(245,166,35,.04);border:1px solid rgba(245,166,35,.15);border-radius:12px;padding:18px;margin-top:16px;font-size:11px;color:var(--dust);line-height:1.85;}
+.dbt{width:100%;background:rgba(74,158,97,.1);border:1px solid rgba(74,158,97,.25);color:var(--leaf2);padding:11px;border-radius:7px;font-size:12px;font-weight:600;cursor:none;transition:.2s;margin-top:12px;}
+.dbt:hover{background:rgba(74,158,97,.2);}
+
+/* FINAL */
+.final{padding:120px 60px;text-align:center;position:relative;overflow:hidden;}
+.final-glow{position:absolute;inset:0;background:radial-gradient(ellipse 70% 50% at 50% 80%,rgba(245,166,35,.05) 0%,transparent 65%);pointer-events:none;}
+.final h2{font-family:'Fraunces',serif;font-size:clamp(44px,6vw,80px);font-weight:900;line-height:.95;letter-spacing:-.02em;color:var(--white);max-width:680px;margin:0 auto 20px;}
+.final h2 em{font-style:italic;color:var(--mango);}
+.final p{font-size:17px;color:var(--sand);max-width:460px;margin:0 auto 40px;line-height:1.75;font-weight:300;}
+.contact-card{display:inline-flex;gap:36px;background:var(--glass);border:1px solid var(--gb);border-radius:16px;padding:24px 40px;margin-top:48px;}
+.cc-item{text-align:left;}
+.cc-label{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--dust);letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px;}
+.cc-val{font-size:15px;font-weight:500;color:var(--cream);}
+.built{margin-top:60px;font-family:'JetBrains Mono',monospace;font-size:10px;color:rgba(255,255,255,.18);letter-spacing:.07em;}
+.built span{color:var(--mango);}
+::-webkit-scrollbar{width:3px;}
+::-webkit-scrollbar-thumb{background:rgba(245,166,35,.25);border-radius:2px;}
+</style>
+</head>
+<body>
+<div class="cur" id="cur"></div>
+
+<!-- NAV -->
+<nav>
+  <div class="nlogo">🥭 Gutli <em>Mission OS</em></div>
+  <div class="nav-links">
+    <button class="nl on" onclick="scrollTo('mission')">Mission</button>
+    <button class="nl" onclick="scrollTo('how')">How It Works</button>
+    <button class="nl" onclick="scrollTo('zone')">Zone Advisor</button>
+    <button class="nl" onclick="scrollTo('platform')">Platform</button>
+    <button class="nl" onclick="scrollTo('tracker')">Seed Tracker</button>
+    <button class="nl" onclick="scrollTo('csr')">CSR</button>
+  </div>
+  <button class="npill" onclick="scrollTo('platform')">Try Demo →</button>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="hero-bg"></div>
+  <div class="hero-ring"></div>
+  <div class="hero-ring"></div>
+  <div class="hero-ring"></div>
+
+  <div class="live-badge"><span class="ldot"></span>Live — India's Mango Revolution</div>
+  <h1>One Seed.<br><em>800,000 Trees.</em><br>Zero Budget.</h1>
+  <p class="hero-sub">Jasmeet Singh Arora — Gutliman of India — built a movement that changed 5,000 farming families. This platform is the technology backbone his mission deserves.</p>
+
+  <div class="hero-stats">
+    <div class="hstat"><div class="hstat-n" id="h1">0</div><div class="hstat-l">Trees Grafted</div></div>
+    <div class="hstat"><div class="hstat-n" id="h2">0</div><div class="hstat-l">Families Helped</div></div>
+    <div class="hstat"><div class="hstat-n" id="h3">0</div><div class="hstat-l">Seeds Collected</div></div>
+    <div class="hstat"><div class="hstat-n" id="h4">0</div><div class="hstat-l">Tons CO₂ Offset</div></div>
+  </div>
+
+  <div class="hero-cta">
+    <button class="btn bm" onclick="scrollTo('zone')">🗺️ Find My Mango Zone</button>
+    <button class="btn bg" onclick="scrollTo('platform')">Explore the Platform</button>
+  </div>
+
+  <div class="scroll-hint">
+    <span>Scroll to explore</span>
+    <div class="arrow"></div>
+  </div>
+</section>
+
+<!-- MISSION STORY -->
+<section class="sec rev" id="mission">
+  <div class="stag">// The Story</div>
+  <h2 class="sh">Who is<br><em>Gutli Man?</em></h2>
+  <div class="sbar"></div>
+  <div class="story-grid">
+    <div class="story-text">
+      <p><strong>Jasmeet Singh Arora, 53, from Kolkata.</strong> Not a farmer. Not a botanist. Just a man who couldn't sleep after watching Bengal's ancient mango orchards disappear — and the farmers who depended on them earn ₹2,000 for an entire season's work.</p>
+      <p>In 2017, he had one idea: <strong>plant mango trees using discarded seeds.</strong> Mango trees don't just give fruit — they store one ton of CO₂ in a lifetime, shelter birds, restore ecosystems, and live for 100 years. One grafted tree earns a farmer ₹300–400 every year. That's 15x more than paddy. <strong>For 40 years.</strong></p>
+      <p>The breakthrough was <strong>grafting</strong> — taking a scion branch from a proven fruiting tree and joining it to a new seedling. What normally takes 15 years to fruit now takes 3. Of every 1,000 seeds collected, Jasmeet's lab nurtures 100 survivors, grafts them over 6 months, and hands each sapling to a farmer who <strong>owns it forever.</strong></p>
+      <p>In May 2023, he posted one video asking for one seed. It went viral. Since then: <strong>2.1 million seeds collected. 800,000 trees distributed. 5,000+ families in Sundarbans, Bankura, Purulia and Jharkhand with a new income stream</strong> — at zero government cost.</p>
+      <div class="quote-card">
+        <div class="quote-text">"If every Indian gives just one mango pit, we can plant 200 million trees in a single season — more than the entire population of Australia."</div>
+        <div class="quote-attr">— Jasmeet Singh Arora · Gutliman of India</div>
+      </div>
+    </div>
+    <div class="fact-cards">
+      <div class="fact-card"><div class="fact-icon">🌳</div><div><div class="fact-val">1 Ton</div><div class="fact-label">CO₂ absorbed by one mango tree in its lifetime — equal to your car's yearly emissions</div></div></div>
+      <div class="fact-card"><div class="fact-icon">💰</div><div><div class="fact-val">15x</div><div class="fact-label">More income from one mango tree vs a whole paddy season (₹300–400/yr vs ₹2,000/season)</div></div></div>
+      <div class="fact-card"><div class="fact-icon">⏱️</div><div><div class="fact-val">3 Years</div><div class="fact-label">Grafting compresses 15 years into 3. First fruit in Year 3, commercial yield by Year 5</div></div></div>
+      <div class="fact-card"><div class="fact-icon">🌱</div><div><div class="fact-val">94%</div><div class="fact-label">Tree survival rate — because farmers OWN the tree. Ethiopia planted 600M trees with 50% death rate. Ownership changes everything.</div></div></div>
+      <div class="fact-card"><div class="fact-icon">🥭</div><div><div class="fact-val">₹0</div><div class="fact-label">Cost to the farmer. The seed is from your bin. The sapling is from the Mission. The future is theirs.</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="sec alt rev" id="how">
+  <div class="stag">// The Chain</div>
+  <h2 class="sh">From Your Gutli<br>to a <em>Farmer's Future</em></h2>
+  <div class="sbar"></div>
+  <div class="chain">
+    <div class="cs"><div class="cn">STEP 01</div><div class="ci a">🥭</div><div class="ct2">You Donate</div><div class="cd">Eat a mango, don't throw the seed. Drop it at a collection point, or courier to Kolkata. Takes 30 seconds.</div></div>
+    <div class="cs"><div class="cn">STEP 02</div><div class="ci b">🤖</div><div class="ct2">AI Selects Best</div><div class="cd">1,000 seeds arrive. AI quality scan identifies the strongest 100. The rest compost back to soil.</div></div>
+    <div class="cs"><div class="cn">STEP 03</div><div class="ci c">✂️</div><div class="ct2">Jasmeet Grafts</div><div class="cd">6-month nursery. Proven scion grafted to young rootstock. Local variety matched to the farmer's district.</div></div>
+    <div class="cs"><div class="cn">STEP 04</div><div class="ci a">🌱</div><div class="ct2">Farmer Owns It</div><div class="cd">The tree is the farmer's property — not a loan, not charity. No Monsanto. No licence. No expiry. Ever.</div></div>
+    <div class="cs"><div class="cn">STEP 05</div><div class="ci b">📊</div><div class="ct2">Platform Tracks</div><div class="cd">WhatsApp photo monthly. AI confirms health. Survival rate, CO₂, income — all verified for CSR funders.</div></div>
+  </div>
+</section>
+
+<!-- ZONE ADVISOR -->
+<section class="sec rev" id="zone">
+  <div class="stag">// AI Soil + Climate Intelligence</div>
+  <h2 class="sh">Find the Right Mango<br>for <em>Your Land</em></h2>
+  <div class="sbar"></div>
+  <p style="color:var(--dust);font-size:14px;margin-top:16px;max-width:520px;line-height:1.75;">Enter your district, soil, and water. Get a full scientific breakdown — which variety fits you, what to fix before planting, when you'll earn, and how much. Honest answers, even if the answer is "don't plant mango here."</p>
+
+  <div class="advisor-wrap">
+    <!-- FORM -->
+    <div class="form-card">
+      <div class="fc-title">Analyse My Zone</div>
+      <div class="fc-sub">10 seconds · No sign-up · Honest result</div>
+      <div class="fi">
+        <label>State / Region</label>
+        <select id="zstate">
+          <option value="">Select state...</option>
+          <optgroup label="— Punjab Belt —">
+            <option value="punjab-sub">Punjab — Sub-montane (Hoshiarpur, Gurdaspur, Roopnagar)</option>
+            <option value="punjab-central">Punjab — Central Plains (Ludhiana, Patiala, Sangrur)</option>
+            <option value="haryana">Haryana (Hisar, Sirsa, Fatehabad)</option>
+          </optgroup>
+          <optgroup label="— Rajasthan —">
+            <option value="ganganagar">Sri Ganganagar / Hanumangarh</option>
+            <option value="raj-east">Rajasthan East (Kota, Bundi, Jhalawar)</option>
+          </optgroup>
+          <optgroup label="— UP / Bihar —">
+            <option value="up-west">UP West (Saharanpur, Meerut)</option>
+            <option value="up-east">UP East (Lucknow, Varanasi, Gorakhpur)</option>
+            <option value="bihar">Bihar (Muzaffarpur, Darbhanga, Bhagalpur)</option>
+          </optgroup>
+          <optgroup label="— Bengal / East India —">
+            <option value="wb-south">West Bengal South (Bankura, Purulia, Midnapore)</option>
+            <option value="wb-north">West Bengal North (Malda, Murshidabad)</option>
+            <option value="jharkhand">Jharkhand</option>
+          </optgroup>
+          <optgroup label="— Maharashtra / Gujarat —">
+            <option value="konkan">Konkan (Ratnagiri, Sindhudurg)</option>
+            <option value="vidarbha">Vidarbha (Nagpur, Amravati)</option>
+            <option value="gujarat">Gujarat (Junagadh, Surat, Valsad)</option>
+          </optgroup>
+          <optgroup label="— South India —">
+            <option value="andhra">Andhra Pradesh (Krishna-Godavari Belt)</option>
+            <option value="telangana">Telangana</option>
+            <option value="karnataka">Karnataka (Kolar, Chikkaballapur)</option>
+            <option value="tamil-nadu">Tamil Nadu (Salem, Krishnagiri)</option>
+          </optgroup>
+        </select>
+      </div>
+      <div class="fi-row">
+        <div class="fi"><label>Soil pH</label>
+          <select id="zph">
+            <option value="acidic">5.5–6.5 (acidic)</option>
+            <option value="ideal" selected>6.5–7.0 (ideal)</option>
+            <option value="neutral">7.0–7.5 (neutral)</option>
+            <option value="alkaline">7.5–8.0 (alkaline)</option>
+            <option value="high">8.0+ (high alkaline)</option>
+          </select>
+        </div>
+        <div class="fi"><label>Water Source</label>
+          <select id="zwater">
+            <option value="canal">Canal</option>
+            <option value="borewell">Borewell</option>
+            <option value="drip">Drip system</option>
+            <option value="rain">Rainfed</option>
+          </select>
+        </div>
+      </div>
+      <div class="fi-row">
+        <div class="fi"><label>Land (acres)</label><input type="number" id="zacres" value="2" min="0.5" step="0.5"/></div>
+        <div class="fi"><label>Current Crop</label>
+          <select id="zcrop">
+            <option value="cotton">Cotton (GMO)</option>
+            <option value="paddy">Paddy / Rice</option>
+            <option value="wheat">Wheat</option>
+            <option value="fallow">Fallow</option>
+          </select>
+        </div>
+      </div>
+      <button class="abtn" id="zbtn" onclick="runZone()">🔍 Analyse My Zone →</button>
+    </div>
+
+    <!-- RESULT -->
+    <div class="result-right" id="zresult">
+      <div class="warn-card" id="zwarn"><div class="warn-title" id="zwarn-t"></div><div class="warn-text" id="zwarn-d"></div></div>
+      <div class="zone-banner" id="zbanner">
+        <div class="zb-left"><div class="zb-emoji" id="zbemoji">🌟</div><div><div class="zb-name" id="zbname">—</div><div class="zb-sub" id="zbsub">—</div></div></div>
+        <div class="zb-score"><div class="zb-pct" id="zbpct">—</div><div class="zb-plabel">Suitability</div></div>
+      </div>
+      <div class="metrics4">
+        <div class="mc"><div class="mc-lbl">Soil pH</div><div class="mc-val" id="mph">—</div><div class="mc-bar"><div class="mc-fill" id="mphb" style="width:0"></div></div><div class="mc-note" id="mphn">—</div></div>
+        <div class="mc"><div class="mc-lbl">Climate</div><div class="mc-val" id="mcl">—<span class="mc-unit">%</span></div><div class="mc-bar"><div class="mc-fill" id="mclb" style="width:0"></div></div><div class="mc-note" id="mcln">—</div></div>
+        <div class="mc"><div class="mc-lbl">Water</div><div class="mc-val" id="mwt">—<span class="mc-unit">%</span></div><div class="mc-bar"><div class="mc-fill" id="mwtb" style="width:0"></div></div><div class="mc-note" id="mwtn">—</div></div>
+        <div class="mc"><div class="mc-lbl">Avg Temp</div><div class="mc-val" id="mtp">—<span class="mc-unit">°C</span></div><div class="mc-bar"><div class="mc-fill" id="mtpb" style="width:0"></div></div><div class="mc-note" id="mtpn">—</div></div>
+      </div>
+      <div class="res-sh">Recommended Varieties <span class="res-tag">// ranked for your zone</span></div>
+      <div class="vgrid" id="zvgrid"></div>
+      <div class="res-sh" style="margin-top:4px;">Soil Preparation <span class="res-tag">// before planting</span></div>
+      <div class="fix-grid" id="zfixes"></div>
+      <div class="income-card">
+        <div class="inc-title">💰 Your Income Projection</div>
+        <div class="inc-grid" id="zinc"></div>
+        <div class="vs-row-calc" id="zvs"></div>
+      </div>
+      <div class="res-sh">Growth Timeline <span class="res-tag">// year by year</span></div>
+      <div class="tl" id="ztl"></div>
+      <div class="res-sh" style="margin-top:4px;">Full Variety Comparison</div>
+      <table class="ctable"><thead><tr><th>Variety</th><th>Suitability</th><th>First Fruit</th><th>Yield</th><th>Price</th><th>Export</th><th>Notes</th></tr></thead><tbody id="ztable"></tbody></table>
+    </div>
+  </div>
+</section>
+
+<!-- PLATFORM -->
+<section class="sec alt rev" id="platform">
+  <div class="stag">// Interactive Platform</div>
+  <h2 class="sh">Try It.<br><em>Right Now.</em></h2>
+  <div class="sbar"></div>
+  <div class="tabs-wrap">
+    <div class="tab-bar">
+      <button class="tb on" onclick="swt('donate',this)">🥭 Donate Seed</button>
+      <button class="tb" onclick="swt('reg',this)">🌾 Farmer Register</button>
+      <button class="tb" onclick="swt('wa',this)">💬 WhatsApp Bot</button>
+      <button class="tb" onclick="swt('photo',this)">📷 Tree Health</button>
+    </div>
+
+    <!-- DONATE -->
+    <div class="tp on" id="tp-donate">
+      <div class="two-col">
+        <div class="fcard2">
+          <h3>Donate Your Gutli</h3>
+          <p>Tell us your state and seed count. We'll show the nearest drop point and how many trees your seeds will become.</p>
+          <div class="fi"><label>Your State</label>
+            <select id="dstate">
+              <option value="">Select state...</option>
+              <option value="WB">West Bengal</option><option value="PB">Punjab</option><option value="MH">Maharashtra</option><option value="UP">Uttar Pradesh</option><option value="DL">Delhi / NCR</option><option value="KA">Karnataka</option><option value="TN">Tamil Nadu</option><option value="JH">Jharkhand</option><option value="BR">Bihar</option><option value="GJ">Gujarat</option>
+            </select>
+          </div>
+          <div class="fi"><label>Your City</label><input type="text" id="dcity" placeholder="e.g. Hoshiarpur"/></div>
+          <div class="fi"><label>Seed Count</label>
+            <select id="dseed">
+              <option value="1">1–5 seeds</option><option value="2">6–20 seeds</option><option value="8">21–50 seeds</option><option value="18">50+ seeds (bulk)</option>
+            </select>
+          </div>
+          <div class="fi"><label>Your Name (optional)</label><input type="text" placeholder="Shows on mission map"/></div>
+          <button class="sbtn2" onclick="showDonor()">Find Nearest Drop Point →</button>
+          <div class="rc" id="drc">
+            <div style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--leaf2);letter-spacing:.1em;text-transform:uppercase;margin-bottom:10px;">✅ Drop Point Found</div>
+            <div style="font-family:'Fraunces',serif;font-size:17px;color:var(--white);margin-bottom:12px;" id="dname">—</div>
+            <div class="rr"><span class="rk">Distance</span><span class="rv" id="ddist">—</span></div>
+            <div class="rr"><span class="rk">Address</span><span class="rv" id="daddr">—</span></div>
+            <div class="rr"><span class="rk">Open hours</span><span class="rv">Mon–Sat 9am–6pm</span></div>
+            <div class="rr"><span class="rk">Your seeds become</span><span class="rv" id="dtrees">—</span></div>
+            <div class="rr"><span class="rk">Tracking ID issued</span><span class="rv" id="dtid">—</span></div>
+          </div>
+        </div>
+        <div>
+          <div class="dmap">
+            <div class="dmtag">// Live Drop Points — India</div>
+            <div class="dp" style="top:26%;left:52%;"><div class="dd active"></div><div class="dl">Kolkata HQ</div><div class="dtt">Eden House · Main Lab · All days</div></div>
+            <div class="dp" style="top:50%;left:27%;"><div class="dd bulk"></div><div class="dl">Howrah Hub</div><div class="dtt">Station area · 5kg+ bulk</div></div>
+            <div class="dp" style="top:16%;left:30%;"><div class="dd active"></div><div class="dl">Bankura</div><div class="dtt">KVK Bankura · Daily</div></div>
+            <div class="dp" style="top:62%;left:62%;"><div class="dd bulk"></div><div class="dl">Purulia</div><div class="dtt">Farmer Collective</div></div>
+            <div class="dp" style="top:38%;left:72%;"><div class="dd active"></div><div class="dl">Sundarbans</div><div class="dtt">Delta Zone · Active</div></div>
+            <div class="dp" style="top:10%;left:18%;"><div class="dd active"></div><div class="dl">Chandigarh</div><div class="dtt">Punjab Agricultural Link</div></div>
+            <div class="dp" style="top:72%;left:40%;"><div class="dd bulk"></div><div class="dl">Mumbai</div><div class="dtt">Dadar · Bulk only</div></div>
+            <div class="dp" style="top:20%;left:55%;"><div class="dd active"></div><div class="dl">Delhi NCR</div><div class="dtt">Lodhi Garden Community</div></div>
+          </div>
+          <div class="courier-box">
+            📦 <strong style="color:var(--cream);">Courier Direct to Jasmeet</strong><br>
+            Jasmeet Singh Arora · C/O Eden House<br>17/1 Lansdowne Terrace, Manhorpukur Road<br>Kolkata — 700026<br>
+            📞 09831459390 / 08420890852<br>
+            <span style="font-size:10px;opacity:.5;margin-top:4px;display:block;">Paper bag only · Label "Mango Seeds" · Any courier works</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FARMER REG -->
+    <div class="tp" id="tp-reg">
+      <div class="two-col">
+        <div class="fcard2" style="padding-top:24px;">
+          <div class="rsteps">
+            <div class="rsi active" id="rs1"></div>
+            <div class="rsi" id="rs2"></div>
+            <div class="rsi" id="rs3"></div>
+          </div>
+          <div class="sp on" id="sp1">
+            <div class="sp-title">Your Land</div>
+            <div class="sp-sub">Step 1 of 3 — Location & basics</div>
+            <div class="fi"><label>Your Name</label><input type="text" id="fn" placeholder="Balwinder Singh"/></div>
+            <div class="fi"><label>District</label>
+              <select id="fdistrict">
+                <option value="">Select district...</option>
+                <option value="hoshiarpur">Hoshiarpur, Punjab</option>
+                <option value="gurdaspur">Gurdaspur, Punjab</option>
+                <option value="patiala">Patiala, Punjab</option>
+                <option value="ludhiana">Ludhiana, Punjab</option>
+                <option value="bankura">Bankura, West Bengal</option>
+                <option value="purulia">Purulia, West Bengal</option>
+                <option value="malda">Malda, West Bengal</option>
+                <option value="kolkata">Kolkata, West Bengal</option>
+                <option value="dhanbad">Dhanbad, Jharkhand</option>
+              </select>
+            </div>
+            <div class="fi-row">
+              <div class="fi"><label>Land (acres)</label><input type="number" id="facres" value="2" min="0.5" step="0.5"/></div>
+              <div class="fi"><label>Current Crop</label>
+                <select id="fcrop">
+                  <option value="cotton">Cotton (GMO)</option>
+                  <option value="paddy">Paddy</option>
+                  <option value="wheat">Wheat</option>
+                  <option value="fallow">Fallow</option>
+                </select>
+              </div>
+            </div>
+            <button class="sbtn2" onclick="gs(2)">Next →</button>
+          </div>
+          <div class="sp" id="sp2">
+            <div class="sp-title">Soil & Water</div>
+            <div class="sp-sub">Step 2 of 3 — For variety matching</div>
+            <div class="fi"><label>Water Source</label>
+              <select id="fwater">
+                <option value="canal">Canal</option><option value="borewell">Borewell</option><option value="drip">Drip</option><option value="rain">Rainfed</option>
+              </select>
+            </div>
+            <div class="fi"><label>Soil pH (approx)</label>
+              <select id="fph">
+                <option value="ideal">6.0–7.0 — ideal</option>
+                <option value="ok">7.0–7.5 — acceptable</option>
+                <option value="marginal">7.5–8.0 — marginal</option>
+                <option value="bad">Above 8.0 — difficult</option>
+                <option value="unknown">I don't know</option>
+              </select>
+            </div>
+            <div class="fi"><label>Experience with trees?</label>
+              <select id="fexp">
+                <option value="none">None — first time</option>
+                <option value="some">Some — grew other fruit</option>
+                <option value="yes">Yes — existing orchard</option>
+              </select>
+            </div>
+            <div style="display:flex;gap:8px;">
+              <button class="back-btn" onclick="gs(1)">← Back</button>
+              <button class="sbtn2" onclick="gs(3)">Analyse My Land →</button>
+            </div>
+          </div>
+          <div class="sp" id="sp3">
+            <div class="sp-title">Your AI Result</div>
+            <div class="sp-sub">Personalised for your land</div>
+            <div id="freg-out"></div>
+          </div>
+        </div>
+        <div class="reg-info-box">
+          <div class="rib-title">Why the ownership model works</div>
+          <div class="rib-item"><div class="rib-icon" style="background:rgba(245,166,35,.1);">🌍</div><div><div style="font-size:13px;font-weight:600;color:var(--white);margin-bottom:3px;">Ethiopia planted 600M trees</div><div style="font-size:11px;color:var(--dust);line-height:1.6;">Survival rate: 50%. Because nobody owned them. Nobody cared.</div></div></div>
+          <div class="rib-item"><div class="rib-icon" style="background:rgba(200,64,64,.1);">🇨🇳</div><div><div style="font-size:13px;font-weight:600;color:var(--white);margin-bottom:3px;">China's Great Green Wall</div><div style="font-size:11px;color:var(--dust);line-height:1.6;">Failure rate: 85%. State-planted trees with no local ecosystem match.</div></div></div>
+          <div class="rib-item"><div class="rib-icon" style="background:rgba(74,158,97,.1);">🥭</div><div><div style="font-size:13px;font-weight:600;color:var(--white);margin-bottom:3px;">Gutli Mission</div><div style="font-size:11px;color:var(--dust);line-height:1.6;">Survival rate: 94%. Farmer owns it. Local variety matched. No Monsanto. No licence.</div></div></div>
+          <div style="margin-top:20px;background:rgba(245,166,35,.06);border:1px solid rgba(245,166,35,.15);border-radius:10px;padding:14px;font-size:11px;color:var(--dust);line-height:1.8;">
+            ✅ You keep the tree forever<br>
+            ✅ No annual seed cost (unlike GMO cotton)<br>
+            ✅ ₹300–400 income per tree per year for 40 years<br>
+            ✅ Carbon credits potential from 2026<br>
+            ✅ Your children inherit a producing orchard
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- WHATSAPP -->
+    <div class="tp" id="tp-wa">
+      <div class="wa-wrap">
+        <div>
+          <div class="stag" style="margin-bottom:10px;">// Farmer Interface</div>
+          <h3 style="font-family:'Fraunces',serif;font-size:28px;font-weight:900;color:var(--white);margin-bottom:10px;line-height:1;">Works on Any Phone.<br><em style="color:var(--mango);font-style:italic;">No App Needed.</em></h3>
+          <p style="font-size:13px;color:var(--dust);line-height:1.8;max-width:380px;margin-bottom:18px;">Farmers already have WhatsApp. The entire platform runs as an intelligent bot — register land, track trees, get soil advice, report problems. All in local language.</p>
+          <div class="lang-pills">
+            <div class="lp2">✓ Hindi</div><div class="lp2">✓ Punjabi</div><div class="lp2">✓ Bengali</div><div class="lp2">✓ Odia</div><div class="lp2">✓ Marathi</div>
+          </div>
+          <div style="font-size:12px;color:var(--dust);margin-bottom:10px;">Try quick replies:</div>
+          <div class="chips2">
+            <div class="chip2" onclick="sc('Register my land')">Register land 🌾</div>
+            <div class="chip2" onclick="sc('My tree has yellow leaves')">Yellow leaves 🍂</div>
+            <div class="chip2" onclick="sc('When will I get fruit?')">When fruit? 🥭</div>
+            <div class="chip2" onclick="sc('I am from Hoshiarpur Punjab')">From Punjab</div>
+            <div class="chip2" onclick="sc('Mujhe Punjabi mein batao')">ਪੰਜਾਬੀ ਵਿੱਚ 🙏</div>
+            <div class="chip2" onclick="sc('How to donate seeds?')">Donate seeds 📦</div>
+            <div class="chip2" onclick="sc('Soil advice for mango')">Soil advice 🌱</div>
+            <div class="chip2" onclick="sc('GMO cotton alternative')">Ditch GMO 🚫</div>
+          </div>
+        </div>
+        <div class="wad">
+          <div class="was">
+            <div class="watop"><div class="waav">🥭</div><div><div class="wana">Gutli Mission Bot</div><div class="waon" id="wst">🟢 Online · AI Powered</div></div></div>
+            <div class="wams" id="wms">
+              <div class="wab bot">🙏 Namaste! Gutli Mission mein aapka swagat hai.<br><br>1️⃣ Register land<br>2️⃣ Track trees<br>3️⃣ Soil advice<br>4️⃣ Donate seeds<br>5️⃣ GMO cotton alternative<div class="wts">Just now</div></div>
+            </div>
+            <div class="waib">
+              <input class="wai" id="wai" placeholder="Type a message..." onkeydown="if(event.key==='Enter')sw()"/>
+              <button class="was2" onclick="sw()">➤</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PHOTO HEALTH -->
+    <div class="tp" id="tp-photo">
+      <div class="two-col">
+        <div>
+          <h3 style="font-family:'Fraunces',serif;font-size:20px;font-weight:700;color:var(--white);margin-bottom:6px;">Tree Health Scanner</h3>
+          <p style="font-size:12px;color:var(--dust);margin-bottom:18px;line-height:1.65;">Farmer photos their tree monthly on WhatsApp. AI analyses leaf colour, canopy density, pest signs — replies in 30 seconds in local language.</p>
+          <div class="uz" id="uz" onclick="document.getElementById('ufi').click()">
+            <input type="file" id="ufi" accept="image/*" style="display:none" onchange="ap(event)"/>
+            <div style="font-size:36px;margin-bottom:10px;">📷</div>
+            <div style="font-size:14px;font-weight:500;color:var(--white);margin-bottom:4px;">Upload Tree Photo</div>
+            <div style="font-size:11px;color:var(--dust);">Click or drag & drop · JPG / PNG</div>
+          </div>
+          <div class="ar" id="aphoto-out">
+            <div style="background:var(--glass);border:1px solid var(--gb);border-radius:12px;padding:20px;margin-top:16px;">
+              <div style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--mango);letter-spacing:.1em;margin-bottom:12px;text-transform:uppercase;">// AI Analysis — <span id="adate"></span></div>
+              <div id="aimg" style="border-radius:8px;overflow:hidden;margin-bottom:12px;max-height:130px;display:flex;align-items:center;background:rgba(255,255,255,.03);"></div>
+              <div class="hbw"><div class="hbl"><span>Overall Health</span><span id="hp" style="color:var(--leaf2);">—</span></div><div class="hbr"><div class="hbf g" id="hb" style="width:0"></div></div></div>
+              <div class="hbw"><div class="hbl"><span>Leaf Quality</span><span id="lp" style="color:var(--mango);">—</span></div><div class="hbr"><div class="hbf y" id="lb" style="width:0"></div></div></div>
+              <div class="hbw"><div class="hbl"><span>Canopy Density</span><span id="cp" style="color:var(--leaf2);">—</span></div><div class="hbr"><div class="hbf g" id="cb" style="width:0"></div></div></div>
+              <div id="verdict" style="margin-top:12px;background:rgba(74,158,97,.08);border:1px solid rgba(74,158,97,.2);border-radius:8px;padding:12px;font-size:12px;color:var(--cream);line-height:1.65;"></div>
+            </div>
+          </div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:14px;">
+          <div style="background:var(--glass);border:1px solid var(--gb);border-radius:12px;padding:20px;">
+            <div style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--mango);letter-spacing:.1em;margin-bottom:12px;text-transform:uppercase;">// Farmer #F-2847 · Monthly Report</div>
+            <div class="rr"><span class="rk">Trees Registered</span><span class="rv">12</span></div>
+            <div class="rr"><span class="rk">Photos This Month</span><span class="rv">11/12</span></div>
+            <div class="rr"><span class="rk">Avg Health Score</span><span class="rv">88%</span></div>
+            <div class="rr"><span class="rk">Trees Flagged</span><span class="rv" style="color:var(--red);">1 ⚠️</span></div>
+            <div class="rr"><span class="rk">Next Check Due</span><span class="rv">Jul 1, 2025</span></div>
+          </div>
+          <div style="background:rgba(245,166,35,.04);border:1px solid rgba(245,166,35,.15);border-radius:12px;padding:20px;">
+            <div style="font-size:12px;font-weight:600;color:var(--white);margin-bottom:9px;">📲 How farmers use this</div>
+            <div style="font-size:11px;color:var(--dust);line-height:1.85;">
+              1. Bot sends photo reminder on 1st each month<br>
+              2. Farmer photos each tree, sends via WhatsApp<br>
+              3. AI scans, replies with health score in 30 seconds<br>
+              4. If flagged — treatment advice in local language<br>
+              5. All data syncs to Jasmeet's dashboard + CSR reports
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SEED TRACKER -->
+<section class="sec rev" id="tracker">
+  <div class="stag">// Seed Journey</div>
+  <h2 class="sh">Track Your Seed<br><em>Every Step.</em></h2>
+  <div class="sbar"></div>
+  <p style="color:var(--dust);font-size:14px;margin-top:16px;margin-bottom:36px;max-width:500px;line-height:1.75;">Every donated seed gets a unique ID the moment it's registered. From your hand to a farmer's land — you can watch every step of the journey in real time.</p>
+  <div class="tracker-wrap">
+    <div>
+      <input class="trin" id="tcode" placeholder="Enter Seed ID — e.g. GM-2024-48291"/>
+      <div style="display:flex;gap:10px;">
+        <button class="trb" onclick="trk()">Track →</button>
+        <button class="trb" style="background:rgba(255,255,255,.07);color:var(--cream);" onclick="document.getElementById('tcode').value='GM-2024-48291';trk()">Try Demo 1</button>
+        <button class="trb" style="background:rgba(255,255,255,.07);color:var(--cream);" onclick="document.getElementById('tcode').value='GM-2024-12847';trk()">Try Demo 2</button>
+      </div>
+      <div class="jtl" id="jtl">
+        <div class="jhdr" id="jhdr"></div>
+        <div id="jsteps"></div>
+      </div>
+    </div>
+    <div style="background:var(--glass);border:1px solid var(--gb);border-radius:18px;padding:28px;">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--mango);letter-spacing:.1em;margin-bottom:18px;text-transform:uppercase;">// Every Seed ID Reveals</div>
+      <div style="display:flex;flex-direction:column;gap:12px;">
+        <div style="display:flex;gap:10px;"><div style="font-size:16px;">🥭</div><div style="font-size:12px;color:var(--dust);line-height:1.6;"><strong style="color:var(--cream);">Donor origin</strong> — who gave it, which city, date received</div></div>
+        <div style="display:flex;gap:10px;"><div style="font-size:16px;">🧪</div><div style="font-size:12px;color:var(--dust);line-height:1.6;"><strong style="color:var(--cream);">Lab processing</strong> — germination date, variety matched, graft date</div></div>
+        <div style="display:flex;gap:10px;"><div style="font-size:16px;">🌱</div><div style="font-size:12px;color:var(--dust);line-height:1.6;"><strong style="color:var(--cream);">Farmer details</strong> — name, district, land size, registration date</div></div>
+        <div style="display:flex;gap:10px;"><div style="font-size:16px;">📊</div><div style="font-size:12px;color:var(--dust);line-height:1.6;"><strong style="color:var(--cream);">Live tree health</strong> — monthly photo scores, current status, alerts</div></div>
+        <div style="display:flex;gap:10px;"><div style="font-size:16px;">💚</div><div style="font-size:12px;color:var(--dust);line-height:1.6;"><strong style="color:var(--cream);">Carbon tracking</strong> — CO₂ absorbed to date, 40-year lifetime projection</div></div>
+        <div style="display:flex;gap:10px;"><div style="font-size:16px;">💰</div><div style="font-size:12px;color:var(--dust);line-height:1.6;"><strong style="color:var(--cream);">Income generated</strong> — estimated farmer earnings from this tree</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CSR -->
+<section class="sec alt rev" id="csr">
+  <div class="stag">// Corporate Funding Layer</div>
+  <h2 class="sh">Verified Impact.<br><em>Instant Funding.</em></h2>
+  <div class="sbar"></div>
+  <p style="color:var(--dust);font-size:14px;margin-top:16px;max-width:520px;line-height:1.75;">India's CSR mandate requires ₹25,000 crore in annual corporate spending. Most goes unverified. We auto-generate real-time reports — trees, carbon, farmer income — no consultants, no delays.</p>
+  <div class="csr-grid" style="margin-top:40px;">
+    <div>
+      <div class="rcard">
+        <div class="rh"><div class="rht">// Impact Report · Q4 2024</div><div class="rbg">VERIFIED ✓</div></div>
+        <div class="rb">
+          <div class="rrw"><span class="rk2">Trees Planted (Verified)</span><span class="rv2">12,400</span></div>
+          <div class="rrw"><span class="rk2">CO₂ Offset (Tonnes)</span><span class="rv2">12.4T</span></div>
+          <div class="rrw"><span class="rk2">Farming Families Reached</span><span class="rv2">247</span></div>
+          <div class="rrw"><span class="rk2">Farmer Income Generated</span><span class="rv2">₹37.2L</span></div>
+          <div class="rrw"><span class="rk2">Tree Survival Rate</span><span class="rv2">94.3%</span></div>
+          <div class="rrw"><span class="rk2">Districts Covered</span><span class="rv2">14</span></div>
+          <div class="rrw"><span class="rk2">Photo Verification Rate</span><span class="rv2">91.8%</span></div>
+          <div class="rrw"><span class="rk2">Projected 10-yr Income</span><span class="rv2">₹14.8Cr</span></div>
+        </div>
+      </div>
+      <button class="dbt" onclick="alert('Live version: blockchain-timestamped PDF with GPS coordinates of each tree')">⬇ Download Verified PDF Report</button>
+    </div>
+    <div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--mango);letter-spacing:.1em;margin-bottom:16px;text-transform:uppercase;">// Potential CSR Partners</div>
+      <div class="clogos">
+        <div class="cch">🏭 Tata Group</div><div class="cch">⚡ Reliance Foundation</div><div class="cch">🏦 HDFC Bank</div><div class="cch">🌿 ITC Limited</div><div class="cch">💊 Sun Pharma</div><div class="cch">🚗 Mahindra</div><div class="cch">📱 Infosys Foundation</div><div class="cch">🛢️ ONGC</div>
+      </div>
+      <div class="csr-why">
+        ✓ Every tree GPS-verified via farmer WhatsApp photo<br>
+        ✓ Carbon offset calculated per IPCC standards automatically<br>
+        ✓ Farmer income tracked monthly, not estimated<br>
+        ✓ Full report in 1 click — no consultant, no delay<br>
+        ✓ Blockchain-timestamped audit trail for compliance
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final">
+  <div class="final-glow"></div>
+  <div class="stag" style="justify-content:center;display:flex;margin-bottom:20px;">// Built For The Mission</div>
+  <h2>5 Years. Zero Budget.<br><em>800,000 Trees.</em><br>Imagine What's Next.</h2>
+  <p>This platform gives the Gutli Mission the infrastructure it has always deserved — so Jasmeet can focus on trees, not spreadsheets.</p>
+  <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+    <button class="btn bm" style="font-size:14px;padding:14px 32px;">Partner With the Mission</button>
+    <button class="btn bg" style="font-size:14px;padding:14px 32px;" onclick="scrollTo('zone')">Find My Mango Zone</button>
+  </div>
+  <div class="contact-card">
+    <div class="cc-item"><div class="cc-label">Jasmeet Singh Arora</div><div class="cc-val">Gutliman of India 🥭</div></div>
+    <div class="cc-item"><div class="cc-label">WhatsApp / Call</div><div class="cc-val">09831459390</div></div>
+    <div class="cc-item"><div class="cc-label">Courier Seeds To</div><div class="cc-val">Kolkata — 700026</div></div>
+  </div>
+  <div class="built">Built by <span>Sifotech HQ</span> · Bradford, UK · For India's Mango Revolution 🥭</div>
+</section>
+
+<script>
+// CURSOR
+const cur=document.getElementById('cur');
+document.addEventListener('mousemove',e=>{cur.style.left=e.clientX+'px';cur.style.top=e.clientY+'px';});
+document.querySelectorAll('button,select,input,.chip2,.dp,.cch,.cs,.vc,.fact-card').forEach(el=>{el.addEventListener('mouseenter',()=>cur.classList.add('h'));el.addEventListener('mouseleave',()=>cur.classList.remove('h'));});
+
+function scrollTo(id){document.getElementById(id)?.scrollIntoView({behavior:'smooth'});}
+
+// HERO COUNTERS
+function animN(id,target,fmt,delay=0){const el=document.getElementById(id);setTimeout(()=>{const s=Date.now(),d=2000;const step=()=>{const p=Math.min((Date.now()-s)/d,1),e=1-Math.pow(1-p,3);el.textContent=fmt(Math.floor(e*target));if(p<1)requestAnimationFrame(step);};requestAnimationFrame(step);},delay);}
+animN('h1',812400,v=>v>=812400?'8.1L':v>=100000?(v/100000).toFixed(1)+'L':Math.floor(v/1000)+'K');
+animN('h2',5000,v=>v>=5000?'5,000+':v.toLocaleString('en-IN'),200);
+animN('h3',2100000,v=>v>=2100000?'2.1M':(v/1000000).toFixed(1)+'M',400);
+animN('h4',812,v=>v+'T',600);
+
+// REVEAL
+const ro=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in');}),{threshold:.06});
+document.querySelectorAll('.rev').forEach(r=>ro.observe(r));
+
+// NAV active
+const sections=['mission','how','zone','platform','tracker','csr'];
+const navBtns=document.querySelectorAll('.nl');
+window.addEventListener('scroll',()=>{
+  const pos=window.scrollY+120;
+  sections.forEach((id,i)=>{const el=document.getElementById(id);if(el&&pos>=el.offsetTop){navBtns.forEach(b=>b.classList.remove('on'));if(navBtns[i])navBtns[i].classList.add('on');}});
+});
+
+// TABS
+function swt(name,btn){document.querySelectorAll('.tp').forEach(p=>p.classList.remove('on'));document.querySelectorAll('.tb').forEach(b=>b.classList.remove('on'));document.getElementById('tp-'+name).classList.add('on');btn.classList.add('on');}
+
+// ===== ZONE DATABASE =====
+const ZDB={
+  'punjab-sub':{name:'Sub-montane Punjab',suit:'excellent',score:92,emoji:'🌟',sub:'Hoshiarpur · Gurdaspur · Roopnagar',ph_range:'6.5–7.2',climate:94,water:88,temp:'24–32',temp_score:90,ph_note:'Ideal for mango',cl_note:'Hot dry summers, cool winters = perfect flowering',wt_note:'Canal + borewell reliable',tp_note:'Perfect range',warn:false,
+    vars:[{n:'Amrapali',e:'🥭',r:'top',reg:'IARI Hybrid · Sub-montane Punjab',s:95,yr:3,yield:'80–120 kg/tree',price:'₹40–80/kg',exp:'Medium',note:'Dwarf, regular bearer, HDP system possible'},{n:'Dusheri',e:'🥭',r:'top',reg:'North India Classic',s:90,yr:3,yield:'100–150 kg/tree',price:'₹30–60/kg',exp:'Medium',note:'Most popular Punjab variety'},{n:'Langra',e:'🥭',r:'good',reg:'Varanasi origin — adapts well',s:82,yr:3,yield:'80–120 kg/tree',price:'₹35–70/kg',exp:'Low',note:'Excellent flavour, strong local market'},{n:'Chausa',e:'🥭',r:'good',reg:'Late season — market gap',s:78,yr:4,yield:'100–150 kg/tree',price:'₹40–80/kg',exp:'Low',note:'Late season earns premium'},{n:'Mallika',e:'🥭',r:'good',reg:'IARI Hybrid',s:75,yr:3,yield:'60–100 kg/tree',price:'₹45–90/kg',exp:'High',note:'Fibre-free, export quality'}],
+    fixes:[{i:'🧪',t:'Soil Test First',d:'Contact local KVK for pH and nutrient analysis before planting.',c:'₹200–500'},{i:'🌿',t:'Organic Matter',d:'Add 20kg FYM per planting pit — Punjab soils often low in organic carbon.',c:'₹50–80/pit'},{i:'💧',t:'Install Drip',d:'Drip irrigation essential for HDP system. Saves 40% water vs flood.',c:'₹25,000–35,000/acre'},{i:'🌱',t:'Gutli Mission Saplings',d:'Request local-variety-matched grafted sapling from Jasmeet\'s lab.',c:'Free via Mission'}],
+    tl:[{yr:'Plant',dot:'done',ico:'🌱',t:'Year 1',d:'Plant Amrapali HDP · 40 trees/acre',inc:'₹0'},{yr:'Grow',dot:'done',ico:'🌿',t:'Year 2',d:'Intercrop vegetables for income',inc:'₹15,000'},{yr:'First',dot:'active',ico:'🌸',t:'Year 3',d:'First mango fruit — small harvest',inc:'₹18,000'},{yr:'Expand',dot:'future',ico:'🥭',t:'Year 4',d:'Yield increasing each season',inc:'₹35,000'},{yr:'Peak',dot:'future',ico:'💰',t:'Year 5',d:'Full commercial harvest',inc:'₹56,000'},{yr:'Legacy',dot:'future',ico:'🏆',t:'Year 10+',d:'Peak production · 40-year asset',inc:'₹1.4L+'}],
+    crop_income:{cotton:12000,paddy:8000,wheat:10000,fallow:0}},
+
+  'punjab-central':{name:'Central Punjab Plains',suit:'good',score:68,emoji:'👍',sub:'Ludhiana · Patiala · Sangrur',ph_range:'7.0–7.8',climate:72,water:80,temp:'25–42',temp_score:70,ph_note:'Slightly alkaline — needs gypsum',cl_note:'Hot summers OK, winter frost risk manageable',wt_note:'Canal available',tp_note:'High summer heat — manageable',warn:true,warn_t:'⚠️ Slightly Alkaline Soil',warn_d:'Central Punjab pH 7.0–7.8 is marginal for mango. Apply gypsum @ 5 tonnes/acre 3 months before planting. Iron chelate spray ready for first signs of leaf yellowing. Focus on Dusheri — most tolerant variety here.',
+    vars:[{n:'Dusheri',e:'🥭',r:'top',reg:'Most tolerant for central Punjab',s:80,yr:4,yield:'80–120 kg/tree',price:'₹30–60/kg',exp:'Medium',note:'Best choice — handles slight alkalinity'},{n:'Amrapali',e:'🥭',r:'good',reg:'With gypsum treatment',s:70,yr:4,yield:'60–90 kg/tree',price:'₹40–80/kg',exp:'Medium',note:'Viable after pH correction'},{n:'Langra',e:'🥭',r:'good',reg:'Plains adapted',s:65,yr:4,yield:'70–100 kg/tree',price:'₹35–70/kg',exp:'Low',note:'Apply zinc foliar spray'},{n:'Totapuri',e:'🥭',r:'good',reg:'Pulp factory market',s:58,yr:4,yield:'80–120 kg/tree',price:'₹20–40/kg',exp:'Low',note:'Contract farming with pulp industry'}],
+    fixes:[{i:'⚗️',t:'Gypsum Treatment',d:'5 tonnes/acre gypsum 3 months before planting — essential step.',c:'₹3,500–5,000/acre'},{i:'🌿',t:'Heavy FYM',d:'25kg FYM per pit to buffer alkalinity and boost microbial activity.',c:'₹80–120/pit'},{i:'🔬',t:'Iron Chelate Ready',d:'Keep EDTA-Fe for foliar spray at first sign of leaf yellowing.',c:'₹400–600/litre'},{i:'💧',t:'Drip Only',d:'Flood irrigation worsens alkalinity. Drip is non-negotiable here.',c:'₹25,000–35,000/acre'}],
+    tl:[{yr:'Prep',dot:'done',ico:'⚗️',t:'Year 0',d:'Gypsum + organic treatment',inc:'₹0'},{yr:'Plant',dot:'done',ico:'🌱',t:'Year 1',d:'Plant Dusheri · 35 trees/acre',inc:'₹0'},{yr:'Grow',dot:'active',ico:'🌿',t:'Year 2–3',d:'Intercrop + pH monitoring',inc:'₹12,000'},{yr:'First',dot:'future',ico:'🌸',t:'Year 4',d:'First fruit — light yield',inc:'₹14,000'},{yr:'Comm',dot:'future',ico:'🥭',t:'Year 5',d:'Commercial harvest begins',inc:'₹40,000'},{yr:'Peak',dot:'future',ico:'🏆',t:'Year 10+',d:'Full production',inc:'₹90,000+'}],
+    crop_income:{cotton:12000,paddy:8000,wheat:10000,fallow:0}},
+
+  'ganganagar':{name:'Sri Ganganagar / Hanumangarh',suit:'unsuitable',score:8,emoji:'❌',sub:'Reh/Kallar saline soil — mango NOT viable',ph_range:'8.0–9.5',climate:55,water:25,temp:'28–48',temp_score:35,ph_note:'Highly alkaline — Reh/Kallar',cl_note:'Extreme heat, arid',wt_note:'Saline groundwater — harmful to mango',tp_note:'Too extreme in peak summer',warn:true,warn_t:'❌ Mango is NOT viable here — Science confirmed',warn_d:'Sri Ganganagar soil is classified Reh/Kallar — pH 8.0–9.5, high NaCl salinity. Mango has LOW salt tolerance and will die in these conditions. Groundwater is also saline. This is not a soil treatment problem — it is structural. DO NOT plant mango here. Plant pomegranate or ber instead.',
+    vars:[{n:'Mango (any variety)',e:'🥭',r:'warn-v',reg:'NOT recommended — will fail',s:5,yr:'—',yield:'Will die',price:'N/A',exp:'N/A',note:'Saline soil will kill the root system'},{n:'Pomegranate (Bhagwa)',e:'🍎',r:'top',reg:'Tolerant to EC up to 8 — ideal',s:92,yr:2,yield:'10–20 kg/tree',price:'₹60–120/kg',exp:'High',note:'✅ BEST CHOICE — NHM subsidy available'},{n:'Ber / Jujube (Umran)',e:'🍑',r:'top',reg:'Thrives in harsh conditions',s:90,yr:2,yield:'50–80 kg/tree',price:'₹15–30/kg',exp:'Low',note:'✅ Excellent — survives extreme alkalinity'},{n:'Amla (Chakaiya)',e:'🍋',r:'good',reg:'Ayurvedic demand, alkaline OK',s:80,yr:3,yield:'30–60 kg/tree',price:'₹20–60/kg',exp:'Medium',note:'✅ Growing demand, handles this soil'}],
+    fixes:[{i:'❌',t:'Do NOT Plant Mango',d:'No treatment makes this viable at scale. Save your money and effort.',c:'Save ₹30,000+'},{i:'🍎',t:'Plant Pomegranate',d:'Bhagwa tolerates pH to 8.5 and salinity. Government NHM subsidy ₹15,000/acre.',c:'₹15,000 subsidy'},{i:'🌴',t:'Consider Date Palm',d:'Extremely profitable in arid zones. ₹80–150/kg. 40+ year productive life.',c:'₹8,000–12,000/sapling'},{i:'🏛️',t:'Apply for NHM Grant',d:'National Horticulture Mission gives grants for saline-zone alternative fruit crops.',c:'Free application'}],
+    tl:[{yr:'Stop',dot:'done',ico:'🚫',t:'Stop Losses',d:'Exit cotton/paddy — stop bleeding money',inc:'₹0'},{yr:'Test',dot:'done',ico:'🧪',t:'Year 0',d:'Full soil + water test',inc:'₹0'},{yr:'Plant',dot:'active',ico:'🍎',t:'Year 1',d:'Plant pomegranate/ber',inc:'₹0'},{yr:'First',dot:'future',ico:'🌸',t:'Year 2',d:'First pomegranate fruit',inc:'₹30,000'},{yr:'Grow',dot:'future',ico:'💰',t:'Year 3',d:'Commercial harvest begins',inc:'₹65,000'},{yr:'Peak',dot:'future',ico:'🏆',t:'Year 5+',d:'₹2L+/acre — 25-yr life',inc:'₹2,00,000'}],
+    crop_income:{cotton:10000,paddy:6000,wheat:8000,fallow:0}},
+
+  'wb-south':{name:'West Bengal South',suit:'excellent',score:90,emoji:'🌟',sub:'Bankura · Purulia · Midnapore',ph_range:'5.8–6.8',climate:90,water:85,temp:'22–38',temp_score:88,ph_note:'Ideal laterite-alluvial mix',cl_note:'Humid monsoon — perfect for mango',wt_note:'Monsoon + rivers, well distributed',tp_note:'Ideal tropical range',warn:false,
+    vars:[{n:'Himsagar',e:'🥭',r:'top',reg:'Bengal Classic — GI Tagged',s:98,yr:3,yield:'80–130 kg/tree',price:'₹50–100/kg',exp:'High — Bangladesh/ME',note:'GI tagged Bengal variety — exceptional flavour'},{n:'Langra (Malda)',e:'🥭',r:'top',reg:'Malda district speciality',s:94,yr:3,yield:'80–120 kg/tree',price:'₹40–80/kg',exp:'Medium',note:'Most exported Bengal variety'},{n:'Amrapali',e:'🥭',r:'top',reg:'Thrives in Bengal climate',s:88,yr:3,yield:'80–120 kg/tree',price:'₹40–80/kg',exp:'Medium',note:'Regular bearer — ideal for Bankura/Purulia'},{n:'Fazli',e:'🥭',r:'good',reg:'Late season gap variety',s:82,yr:4,yield:'100–200 kg/tree',price:'₹25–50/kg',exp:'Low',note:'Huge fruit, catches late-season market'},{n:'Kishen Bhog',e:'🥭',r:'good',reg:'Premium local market',s:78,yr:3,yield:'60–100 kg/tree',price:'₹60–120/kg',exp:'Medium',note:'Premium price in Kolkata market'}],
+    fixes:[{i:'🌿',t:'Minimal Intervention',d:'Bengal south soils naturally excellent. Focus on organic management only.',c:'₹5,000–8,000/acre'},{i:'💧',t:'Monsoon Drainage',d:'Ensure field drainage during heavy monsoon — waterlogging damages mango roots.',c:'₹8,000–15,000/acre'},{i:'🌱',t:'Gutli Mission Saplings',d:'Request Himsagar/Langra grafted saplings from Jasmeet\'s Kolkata lab — zero cost.',c:'Free via Mission'},{i:'📦',t:'Export Linkage',d:'Connect to WBAPCOS or APEDA for Bangladesh/Middle East export chain.',c:'Government scheme'}],
+    tl:[{yr:'Plant',dot:'done',ico:'🌱',t:'Year 1',d:'Plant Himsagar + Amrapali',inc:'₹0'},{yr:'Grow',dot:'done',ico:'🌿',t:'Year 2',d:'Monsoon management',inc:'₹10,000'},{yr:'First',dot:'active',ico:'🌸',t:'Year 3',d:'First fruit — Amrapali leads',inc:'₹24,000'},{yr:'Grow',dot:'future',ico:'🥭',t:'Year 4',d:'Both varieties fruiting',inc:'₹55,000'},{yr:'Peak',dot:'future',ico:'💰',t:'Year 5',d:'Commercial export quality',inc:'₹90,000'},{yr:'Stable',dot:'future',ico:'🏆',t:'Year 10+',d:'GI registered export orchard',inc:'₹1,80,000+'}],
+    crop_income:{cotton:8000,paddy:10000,wheat:9000,fallow:0}},
+
+  'konkan':{name:'Konkan Coast',suit:'excellent',score:98,emoji:'🌟',sub:'Ratnagiri · Sindhudurg — Alphonso Country',ph_range:'5.5–6.5',climate:98,water:90,temp:'24–34',temp_score:95,ph_note:'Perfect laterite soil',cl_note:'Monsoon + dry spell = ideal mango cycle',wt_note:'Monsoon fed, excellent natural supply',tp_note:'Perfect tropical climate',warn:false,
+    vars:[{n:'Alphonso (Hapus)',e:'🥭',r:'top',reg:'GI-Tagged — ONLY grows here properly',s:100,yr:5,yield:'50–80 kg/tree',price:'₹200–600/kg',exp:'Japan · EU · UAE',note:'King of Mangoes — irreplaceable here'},{n:'Kesar (Devgad)',e:'🥭',r:'top',reg:'Devgad sub-variety premium',s:90,yr:4,yield:'60–100 kg/tree',price:'₹80–150/kg',exp:'High',note:'Second highest value — premium export'},{n:'Ratnagiri Hapus',e:'🥭',r:'top',reg:'Sub-variety of Alphonso',s:96,yr:5,yield:'40–70 kg/tree',price:'₹250–600/kg',exp:'Premium export only',note:'Highest value mango in India'},{n:'Amrapali',e:'🥭',r:'good',reg:'Commercial volume complement',s:75,yr:3,yield:'80–120 kg/tree',price:'₹40–80/kg',exp:'Medium',note:'Good for volume alongside Alphonso'}],
+    fixes:[{i:'🌿',t:'Maintain Laterite',d:'Konkan laterite is naturally ideal. Do not over-irrigate or over-fertilise.',c:'Minimal cost'},{i:'🌧️',t:'Rain Shield for Alphonso',d:'Install rain protection netting during flowering — prevents fungal attack.',c:'₹40,000–60,000/acre'},{i:'🐝',t:'Pollinator Management',d:'Maintain bee colonies near orchards — critical for Alphonso fruit set.',c:'₹2,000–4,000/colony'},{i:'📜',t:'GI Tag Registration',d:'Register for Alphonso GI certification to access EU/Japan premium markets.',c:'₹5,000–10,000'}],
+    tl:[{yr:'Plant',dot:'done',ico:'🌱',t:'Year 1',d:'Plant Alphonso · 20/acre',inc:'₹0'},{yr:'Grow',dot:'done',ico:'🌿',t:'Year 2–3',d:'Canopy development',inc:'₹0'},{yr:'Flower',dot:'active',ico:'🌸',t:'Year 4',d:'First flowering — protect from rain',inc:'₹20,000'},{yr:'First',dot:'future',ico:'🥭',t:'Year 5',d:'First premium Alphonso harvest',inc:'₹80,000'},{yr:'Comm',dot:'future',ico:'💰',t:'Year 7',d:'Commercial premium export',inc:'₹2,50,000'},{yr:'Peak',dot:'future',ico:'🏆',t:'Year 15+',d:'GI certified export orchard',inc:'₹5,00,000+'}],
+    crop_income:{cotton:0,paddy:12000,wheat:10000,fallow:0}},
+};
+
+function getZoneDefault(key){
+  const names={haryana:'Haryana',  'raj-east':'Rajasthan East', 'up-west':'UP West', 'up-east':'UP East', bihar:'Bihar', 'wb-north':'West Bengal North', jharkhand:'Jharkhand', vidarbha:'Vidarbha', gujarat:'Gujarat', andhra:'Andhra Pradesh', telangana:'Telangana', karnataka:'Karnataka', 'tamil-nadu':'Tamil Nadu'};
+  return {name:names[key]||key,suit:'good',score:65,emoji:'👍',sub:'Zone analysis — consult local KVK',ph_range:'6.5–7.5',climate:70,water:72,temp:'24–38',temp_score:70,ph_note:'Check locally',cl_note:'Generally suitable',wt_note:'Varies by season',tp_note:'Reasonable range',warn:false,
+    vars:[{n:'Amrapali',e:'🥭',r:'top',reg:'Widely adapted IARI hybrid',s:80,yr:3,yield:'80–120 kg/tree',price:'₹40–80/kg',exp:'Medium',note:'Most adaptable commercial variety'},{n:'Mallika',e:'🥭',r:'good',reg:'IARI hybrid — export quality',s:72,yr:3,yield:'60–100 kg/tree',price:'₹45–90/kg',exp:'High',note:'Fibre-free, excellent shelf life'},{n:'Totapuri',e:'🥭',r:'good',reg:'Pulp factory market',s:65,yr:4,yield:'80–150 kg/tree',price:'₹20–40/kg',exp:'Low',note:'Contract farming option available'}],
+    fixes:[{i:'🧪',t:'Soil Test First',d:'Contact local KVK for full soil analysis before committing.',c:'₹200–500'},{i:'🌿',t:'Organic Matter',d:'FYM + compost in every pit regardless of soil type.',c:'₹50–80/pit'},{i:'💧',t:'Plan Water',d:'Mango needs controlled water. Withhold before flowering.',c:'Assess local source'},{i:'🌱',t:'Contact Gutli Mission',d:'Jasmeet advises on right variety for your microclimate. Free consultation.',c:'Free · 09831459390'}],
+    tl:[{yr:'Prep',dot:'done',ico:'🧪',t:'Year 0',d:'Soil test + preparation',inc:'₹0'},{yr:'Plant',dot:'done',ico:'🌱',t:'Year 1',d:'Plant Amrapali · 40/acre',inc:'₹0'},{yr:'Grow',dot:'active',ico:'🌿',t:'Year 2',d:'Intercrop for income',inc:'₹12,000'},{yr:'First',dot:'future',ico:'🌸',t:'Year 3',d:'First fruit expected',inc:'₹18,000'},{yr:'Comm',dot:'future',ico:'🥭',t:'Year 5',d:'Commercial harvest',inc:'₹50,000'},{yr:'Peak',dot:'future',ico:'🏆',t:'Year 10+',d:'Mature orchard',inc:'₹1,00,000+'}],
+    crop_income:{cotton:10000,paddy:8000,wheat:9000,fallow:0}};
+}
+
+function runZone(){
+  const sk=document.getElementById('zstate').value;
+  if(!sk){alert('Please select your region.');return;}
+  const ph=document.getElementById('zph').value,water=document.getElementById('zwater').value,acres=parseFloat(document.getElementById('zacres').value)||2,crop=document.getElementById('zcrop').value;
+  const btn=document.getElementById('zbtn');btn.disabled=true;btn.textContent='⏳ Analysing...';
+  setTimeout(()=>{
+    const z=ZDB[sk]||getZoneDefault(sk);
+    renderZone(z,ph,water,acres,crop);
+    btn.disabled=false;btn.textContent='🔍 Analyse My Zone →';
+    document.getElementById('zresult').classList.add('show');
+    setTimeout(()=>document.getElementById('zresult').scrollIntoView({behavior:'smooth',block:'start'}),100);
+  },800);
+}
+
+function renderZone(z,ph,water,acres,crop){
+  // Warn
+  const wc=document.getElementById('zwarn');
+  if(z.warn){wc.classList.add('show');document.getElementById('zwarn-t').textContent=z.warn_t;document.getElementById('zwarn-d').textContent=z.warn_d;}
+  else wc.classList.remove('show');
+
+  // Banner
+  const bn=document.getElementById('zbanner');
+  bn.className='zone-banner zb-'+z.suit;
+  document.getElementById('zbemoji').textContent=z.emoji;
+  const zn=document.getElementById('zbname');zn.className='zb-name '+z.suit;
+  const labels={excellent:'Excellent Zone',good:'Good Zone',marginal:'Marginal Zone',unsuitable:'Not Suitable for Mango'};
+  zn.textContent=labels[z.suit];
+  document.getElementById('zbsub').textContent=z.name+' — '+z.sub;
+  const zp=document.getElementById('zbpct');zp.className='zb-pct '+z.suit;
+  let s=0;const si=setInterval(()=>{s+=2;zp.textContent=Math.min(s,z.score)+'%';if(s>=z.score)clearInterval(si);},18);
+
+  // pH adjustments
+  const phLabels={acidic:'5.5–6.5',ideal:'6.5–7.0',neutral:'7.0–7.5',alkaline:'7.5–8.0',high:'8.0+'};
+  const phBars={acidic:70,ideal:100,neutral:85,alkaline:55,high:15};
+  const phNotes={acidic:'Slightly acidic — OK with lime treatment',ideal:'Perfect range for mango',neutral:'Good — monitor for iron',alkaline:'Apply gypsum before planting',high:'Serious challenge — alternatives advised'};
+  const phCols={acidic:'mcf-y',ideal:'mcf-g',neutral:'mcf-g',alkaline:'mcf-y',high:'mcf-r'};
+  document.getElementById('mph').textContent=phLabels[ph];
+  const phb=document.getElementById('mphb');phb.style.width=phBars[ph]+'%';phb.className='mc-fill '+phCols[ph];
+  document.getElementById('mphn').textContent=phNotes[ph];
+
+  const wtAdj=water==='drip'?Math.min(100,z.water+8):water==='rain'?Math.max(20,z.water-15):z.water;
+  document.getElementById('mcl').innerHTML=z.climate+'<span class="mc-unit">%</span>';const clb=document.getElementById('mclb');clb.style.width=z.climate+'%';clb.className='mc-fill '+(z.climate>75?'mcf-g':z.climate>55?'mcf-y':'mcf-r');document.getElementById('mcln').textContent=z.cl_note;
+  document.getElementById('mwt').innerHTML=wtAdj+'<span class="mc-unit">%</span>';const wtb=document.getElementById('mwtb');wtb.style.width=wtAdj+'%';wtb.className='mc-fill '+(wtAdj>75?'mcf-g':wtAdj>55?'mcf-y':'mcf-r');document.getElementById('mwtn').textContent=z.wt_note;
+  document.getElementById('mtp').innerHTML=z.temp.split('–')[0]+'<span class="mc-unit">–'+z.temp.split('–')[1]+'°C</span>';const tpb=document.getElementById('mtpb');tpb.style.width=z.temp_score+'%';tpb.className='mc-fill '+(z.temp_score>75?'mcf-g':z.temp_score>55?'mcf-y':'mcf-r');document.getElementById('mtpn').textContent=z.tp_note;
+
+  // Varieties
+  document.getElementById('zvgrid').innerHTML=z.vars.slice(0,6).map(v=>{
+    const adj=ph==='high'?Math.max(5,v.s-28):v.s;
+    const col=adj>75?'var(--leaf2)':adj>50?'var(--gold)':'var(--red)';
+    return `<div class="vc ${v.r}"><div class="ve">${v.e}</div><div class="vn">${v.n}</div><div class="vr">${v.reg}</div><div class="vstats"><div class="vsr"><span class="vsk">First Fruit</span><span class="vsv g">Year ${v.yr}</span></div><div class="vsr"><span class="vsk">Yield</span><span class="vsv">${v.yield}</span></div><div class="vsr"><span class="vsk">Price</span><span class="vsv o">${v.price}</span></div><div class="vsr"><span class="vsk">Export</span><span class="vsv">${v.exp}</span></div></div><div class="suit-row"><div style="display:flex;justify-content:space-between;font-size:9px;margin-bottom:3px;"><span style="color:var(--dust);">Zone Suitability</span><span style="font-family:'JetBrains Mono',monospace;color:${col};">${adj}%</span></div><div class="suit-bar"><div class="suit-fill" style="width:${adj}%;background:${col}"></div></div><div style="font-size:9px;color:var(--dust);margin-top:5px;">${v.note}</div></div></div>`;
+  }).join('');
+
+  // Fixes
+  document.getElementById('zfixes').innerHTML=z.fixes.map(f=>`<div class="fix-c"><div class="fix-ico">${f.i}</div><div><div class="fix-t">${f.t}</div><div class="fix-d">${f.d}</div><div class="fix-cost">${f.c}</div></div></div>`).join('');
+
+  // Income
+  const trees=Math.floor(acres*(z.suit==='excellent'?40:z.suit==='good'?35:z.suit==='unsuitable'?0:25));
+  const yr5=trees*(z.suit==='excellent'?1400:z.suit==='good'?1100:400);
+  const yr10=trees*(z.suit==='excellent'?3500:2000);
+  const life=trees*(z.suit==='excellent'?35000:20000);
+  const cropInc=(z.crop_income||{})[crop]||10000;
+  document.getElementById('zinc').innerHTML=`
+    <div class="inc-item"><div class="inc-lbl">Trees on ${acres} acres</div><div class="inc-val">${trees}</div><div class="inc-sub">@ ${Math.floor(trees/acres)}/acre</div></div>
+    <div class="inc-item"><div class="inc-lbl">Year 5 Income</div><div class="inc-val">₹${yr5.toLocaleString('en-IN')}</div><div class="inc-sub">Annual estimate</div></div>
+    <div class="inc-item"><div class="inc-lbl">Year 10 Income</div><div class="inc-val">₹${yr10.toLocaleString('en-IN')}</div><div class="inc-sub">Annual at peak</div></div>
+    <div class="inc-item"><div class="inc-lbl">40-Year Value</div><div class="inc-val">₹${(life/100000).toFixed(0)}L</div><div class="inc-sub">Lifetime total</div></div>`;
+  const mult=cropInc>0?Math.round(yr5/acres/cropInc):0;
+  document.getElementById('zvs').innerHTML=`<div><div class="vs-lbl">Current ${crop} income/acre/yr</div><div style="font-family:'Fraunces',serif;font-size:18px;color:var(--dust);">₹${cropInc.toLocaleString('en-IN')}</div></div><div style="text-align:right;"><div class="vs-lbl">Mango by Year 5/acre</div><div class="vs-val2">₹${Math.floor(yr5/acres).toLocaleString('en-IN')} ${mult>1?'('+mult+'x more)':''}</div></div>`;
+
+  // Timeline
+  document.getElementById('ztl').innerHTML=z.tl.map(t=>`<div class="tls"><div class="tl-yr">${t.yr}</div><div class="tl-dot ${t.dot}">${t.ico}</div><div class="tl-t">${t.t}</div><div class="tl-d">${t.d}</div><div class="tl-inc">${t.inc}</div></div>`).join('');
+
+  // Table
+  document.getElementById('ztable').innerHTML=z.vars.map((v,i)=>{
+    const adj=ph==='high'?Math.max(5,v.s-28):v.s;
+    const chip=adj>85?'<span class="chip chip-e">Excellent</span>':adj>65?'<span class="chip chip-g">Good</span>':adj>45?'<span class="chip chip-m">Marginal</span>':'<span class="chip chip-n">Not Recommended</span>';
+    return `<tr class="${i===0?'best':''}""><td><strong>${v.n}</strong> ${v.e}</td><td>${chip}</td><td>Year ${v.yr}</td><td>${v.yield}</td><td>${v.price}</td><td>${v.exp}</td><td style="font-size:10px;color:var(--dust);">${v.note}</td></tr>`;
+  }).join('');
+}
+
+// DONATE
+const dpData={WB:{n:'Kolkata Central Hub',d:'0.8 km',a:'Eden House, Manhorpukur Rd, Kolkata 700026'},PB:{n:'Chandigarh Collection Point',d:'12 km',a:'Punjab Agri University Liaison, Chandigarh'},MH:{n:'Pune Green Hub',d:'4.2 km',a:'Deccan Gymkhana Society, Pune 411004'},UP:{n:'Lucknow Mango Depot',d:'6.1 km',a:'CISH Campus, Rehmankhera, Lucknow'},DL:{n:'Delhi NCR Pickup',d:'3.4 km',a:'Lodhi Garden Community, New Delhi'},KA:{n:'Bengaluru Green Point',d:'5.6 km',a:'Lalbagh Botanical Garden, Bengaluru'},TN:{n:'Chennai Coastal Hub',d:'8.3 km',a:'Anna University Agriculture, Chennai'},JH:{n:'Dhanbad Collection',d:'9 km',a:'Jharkhand Farmers Cooperative, Dhanbad'},BR:{n:'Patna Drop Point',d:'7.2 km',a:'Bihar Agriculture College Liaison, Patna'},GJ:{n:'Surat Bulk Point',d:'5.1 km',a:'Surat Textile Park Community, Surat'}};
+function showDonor(){const st=document.getElementById('dstate').value;const sc=parseInt(document.getElementById('dseed').value)||1;const dp=dpData[st]||dpData['WB'];document.getElementById('dname').textContent=dp.n;document.getElementById('ddist').textContent=dp.d;document.getElementById('daddr').textContent=dp.a;document.getElementById('dtrees').textContent=sc+' grafted tree'+(sc>1?'s':'');document.getElementById('dtid').textContent='GM-2025-'+Math.floor(Math.random()*90000+10000);document.getElementById('drc').classList.add('show');}
+
+// FARMER STEPS
+let cs=1;
+const fd={hoshiarpur:{z:'Sub-montane Punjab',v:'Amrapali',yr:3,inc:'₹300–400',ss:88,ws:90},gurdaspur:{z:'Sub-montane Punjab',v:'Dusheri',yr:3,inc:'₹250–350',ss:85,ws:88},patiala:{z:'Central Punjab',v:'Langra',yr:4,inc:'₹280–380',ss:72,ws:75},ludhiana:{z:'Central Punjab',v:'Mallika',yr:4,inc:'₹260–360',ss:68,ws:72},bankura:{z:'WB Plateau',v:'Himsagar',yr:3,inc:'₹300–420',ss:92,ws:88},purulia:{z:'Jharkhand Border',v:'Amrapali',yr:3,inc:'₹280–400',ss:89,ws:85},malda:{z:'WB North',v:'Langra (Malda)',yr:3,inc:'₹320–450',ss:94,ws:86},kolkata:{z:'Gangetic Delta',v:'Langra',yr:3,inc:'₹320–450',ss:91,ws:92},dhanbad:{z:'Jharkhand',v:'Amrapali',yr:3,inc:'₹260–380',ss:82,ws:78}};
+function gs(n){document.getElementById('sp'+cs).classList.remove('on');document.getElementById('rs'+cs).classList.remove('active');document.getElementById('rs'+cs).classList.add('done');cs=n;document.getElementById('sp'+cs).classList.add('on');document.getElementById('rs'+cs).classList.add('active');
+  if(n===3){const d=fd[document.getElementById('fdistrict').value]||fd['hoshiarpur'];const ac=parseFloat(document.getElementById('facres').value)||1;const ph=document.getElementById('fph').value;const pw=ph==='bad'?'<div style="background:rgba(200,64,64,.08);border:1px solid rgba(200,64,64,.22);border-radius:8px;padding:12px;margin-bottom:12px;font-size:11px;color:var(--red);">⚠️ High pH detected. Mango needs pH below 8.0. Recommend gypsum treatment or consider pomegranate instead.</div>':'';
+  document.getElementById('freg-out').innerHTML=`${pw}<div class="vc2"><div style="font-size:28px;">🥭</div><div><div class="vc2-name">${d.v}</div><div class="vc2-meta">${d.z} · Year ${d.yr} first fruit · ${d.inc}/tree/yr</div><div class="vc2-badge">RECOMMENDED FOR YOUR LAND</div></div></div>
+  <div style="margin-top:16px;"><div style="font-size:11px;color:var(--dust);margin-bottom:4px;">Soil Suitability</div><div class="smeter"><div class="smf g" style="width:${d.ss}%"></div></div><div style="font-size:9px;color:var(--dust);text-align:right;">${d.ss}%</div></div>
+  <div style="margin-top:10px;"><div style="font-size:11px;color:var(--dust);margin-bottom:4px;">Water Availability</div><div class="smeter"><div class="smf ${d.ws>75?'g':'y'}" style="width:${d.ws}%"></div></div><div style="font-size:9px;color:var(--dust);text-align:right;">${d.ws}%</div></div>
+  <div style="margin-top:14px;display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+    <div style="background:rgba(74,158,97,.08);border:1px solid rgba(74,158,97,.18);border-radius:8px;padding:12px;"><div style="font-family:'Fraunces',serif;font-size:20px;font-weight:700;color:var(--leaf2);">${Math.floor(ac*40)}</div><div style="font-size:9px;color:var(--dust);text-transform:uppercase;margin-top:2px;">Saplings for ${ac} acre</div></div>
+    <div style="background:rgba(245,166,35,.06);border:1px solid rgba(245,166,35,.15);border-radius:8px;padding:12px;"><div style="font-family:'Fraunces',serif;font-size:20px;font-weight:700;color:var(--mango);">₹${(Math.floor(ac*40)*350).toLocaleString('en-IN')}</div><div style="font-size:9px;color:var(--dust);text-transform:uppercase;margin-top:2px;">Annual income yr 5</div></div>
+  </div>
+  <div style="margin-top:12px;background:rgba(255,255,255,.03);border:1px solid var(--gb);border-radius:8px;padding:12px;font-size:11px;color:var(--dust);line-height:1.7;">✅ Registration sent to Jasmeet's lab. Grafted <strong style="color:var(--cream);">${d.v}</strong> sapling matched to ${d.z} will be prepared. Dispatch: 6–8 weeks. Farmer ID: F-${Math.floor(Math.random()*9000+1000)}</div>`;}
+}
+
+// WHATSAPP
+const WR={default:{b:"I didn't quite get that. Try: 1 (register), 2 (track), 3 (soil advice), 4 (donate seeds), 5 (ditch GMO cotton). 🥭"},'1':{b:"🌾 Register your land!\n\nWhich district are you in?"},'2':{b:"🌳 Tree Tracker\n\nSend your Farmer ID (e.g. F-2847) to check all your trees."},'3':{b:"🧪 Soil Advice\n\nTell me your district and I'll recommend the right mango variety for your exact soil."},'4':{b:"📦 Donate Seeds\n\nWhere are you? I'll find your nearest drop point. Or courier direct to Kolkata — 09831459390"},'5':{b:"🚫 GMO Cotton Alternative\n\nGood decision. Bt cotton is:\n✗ ₹4,500/acre seed cost\n✗ Whitefly attacks destroying crop\n✗ Soil fertility declining\n\nMango alternative:\n✅ Zero seed cost (we supply free)\n✅ ₹300–400/tree/year for 40 years\n✅ You OWN the tree forever\n\nWhich district are you in?"},'register my land':{b:"🌾 Which district are you in?\n\nI'll match you to the exact mango variety for your soil."},'yellow':{b:"⚠️ Yellow leaves — possible causes:\n\n1. Iron deficiency (pH too high)\n2. Water stress\n3. Early pest attack\n\nSend me a photo and I'll analyse it in 30 seconds. 📷"},'my tree has yellow leaves':{b:"⚠️ Send me a clear photo of the affected leaves right now.\n\nI'll analyse it and give you a treatment plan in 30 seconds — in your language. 📷"},'fruit':{b:"🥭 Grafted Amrapali timeline:\n\nYear 1–2: Growing — no fruit\nYear 3: First fruit (5–10 kg/tree)\nYear 5+: Full commercial yield\nYear 10+: Peak 150kg+/tree\n\nIncome: ₹300–400/tree/year by Year 5\nThat's 15x more than paddy. 💪"},'when will i get fruit?':{b:"🥭 Grafted Amrapali:\n\nYear 3 → First fruit\nYear 5 → Commercial harvest\nYear 10 → Peak production\n\n₹300–400/tree/year × 40 trees/acre = ₹56,000/acre by Year 5.\n\nPaddy gives ₹8,000/acre.\n\nThe maths don't lie. 📊"},'punjab':{b:"✅ Punjab sub-montane belt — perfect for mango!\n\nHoshiarpur ✅ Gurdaspur ✅ Roopnagar ✅\nBest variety: Amrapali (Year 3 fruiting)\nIncome by Year 5: ₹56,000/acre\n\nCentral Punjab (Ludhiana, Patiala) — possible but needs gypsum treatment first.\n\nSend your district to register."},'i am from hoshiarpur punjab':{b:"🎉 Hoshiarpur — sub-montane belt, pH 6.5–7.2. Excellent!\n\nRecommended: Amrapali 🥭\nTrees/acre: 40\nFirst fruit: Year 3\nIncome by Year 5: ₹56,000/acre\nIncome by Year 10: ₹1,40,000/acre\n\nReply YES to register. I'll connect you to Jasmeet's lab."},'yes':{b:"✅ Registered!\n\nFarmer ID: F-"+Math.floor(Math.random()*9000+1000)+"\n\nGrafted Amrapali sapling being prepared — matched to your zone.\nExpected dispatch: 6–8 weeks.\n\nWe'll WhatsApp you at every step. 🌱"},'soil advice for mango':{b:"🧪 Soil Advice for Mango\n\nKey requirements:\n✅ pH: 6.0–7.5 (ideal 6.5–7.0)\n✅ Drainage: Essential — no waterlogging\n✅ Depth: Min 4 feet, no hardpan\n✅ Organic matter: Add FYM 20kg/pit\n\n❌ Avoid: pH above 8.0, saline soil, waterlogged areas\n\nTell me your district for personalised advice."},'gmo cotton alternative':{b:"🚫 Ditch GMO Cotton — Smart Move\n\nBt cotton reality:\n✗ Seeds cost ₹4,500/hectare (native = ₹200)\n✗ Whitefly resistance — destroyed Punjab 2015\n✗ Soil fertility declining every year\n✗ Seed patent — you can't save seeds\n\nMango via Gutli Mission:\n✅ Zero seed cost\n✅ ₹56,000/acre by Year 5\n✅ You own the tree — no company control\n✅ 40-year income stream\n\nYour district?"},'mujhe punjabi mein batao':{b:"ਸਤਿ ਸ੍ਰੀ ਅਕਾਲ! 🙏\n\nਗੁਟਲੀ ਮਿਸ਼ਨ ਵਿੱਚ ਤੁਹਾਡਾ ਸੁਆਗਤ ਹੈ।\n\n1️⃣ ਜ਼ਮੀਨ ਰਜਿਸਟਰ\n2️⃣ ਰੁੱਖ ਟਰੈਕ ਕਰੋ\n3️⃣ ਮਿੱਟੀ ਸਲਾਹ\n4️⃣ ਬੀਜ ਦਾਨ\n5️⃣ GMO ਕਪਾਹ ਦਾ ਬਦਲ\n\nਕੀ ਕਰਨਾ ਚਾਹੁੰਦੇ ਹੋ?"},'donate seeds':{b:"📦 How to donate seeds:\n\n1. Eat a mango\n2. Clean the seed — remove all pulp\n3. Dry in SHADE (not sun) for 24 hours\n4. Pack in PAPER bag (not plastic — fungus risk)\n5. Label: 'Mango Seeds — Gutli Mission'\n6. Courier to:\n\nJasmeet Singh Arora\n17/1 Lansdowne Terrace\nKolkata 700026\n\nCall: 09831459390\n\nEvery seed gets a tracking ID! 🥭"},'how to donate seeds?':{b:"📦 Donate in 5 steps:\n\n1️⃣ Eat mango → clean seed thoroughly\n2️⃣ Dry in shade 24 hrs (never in sun)\n3️⃣ Pack in paper bag — NOT plastic\n4️⃣ Label 'Mango Seeds — Gutli Mission'\n5️⃣ Courier to Kolkata 700026\n\nOr find your nearest drop point — just tell me your city!\n\nPhone: 09831459390 📞"}};
+function gt(){const d=new Date();return d.getHours()+':'+String(d.getMinutes()).padStart(2,'0')+' '+(d.getHours()>=12?'PM':'AM');}
+function addB(type,txt){const ms=document.getElementById('wms');const b=document.createElement('div');b.className='wab '+type;b.innerHTML=txt.replace(/\n/g,'<br>')+`<div class="wts">${gt()}</div>`;ms.appendChild(b);ms.scrollTop=ms.scrollHeight;}
+function showTyp(){const ms=document.getElementById('wms');const b=document.createElement('div');b.className='wab bot';b.id='tyi';b.innerHTML='<div class="tyd"><span></span><span></span><span></span></div>';ms.appendChild(b);ms.scrollTop=ms.scrollHeight;}
+function sw(){const inp=document.getElementById('wai');const txt=inp.value.trim();if(!txt)return;addB('usr',txt);inp.value='';document.getElementById('wst').textContent='✍️ Typing...';showTyp();setTimeout(()=>{document.getElementById('tyi')?.remove();const key=txt.toLowerCase();let resp=WR.default;for(const k in WR){if(key.includes(k.toLowerCase())){resp=WR[k];break;}}addB('bot',resp.b);document.getElementById('wst').textContent='🟢 Online · AI Powered';},1100+Math.random()*600);}
+function sc(txt){document.getElementById('wai').value=txt;sw();}
+
+// TRACKER
+const JD={'GM-2024-48291':{donor:'Priya Sharma, Mumbai',steps:[{i:'🥭',t:'Seed Received',s:'Donated by Priya Sharma · Mumbai · Paper bag · 12 seeds',d:'14 Jul 2024',st:'done'},{i:'🧪',t:'Lab Processing',s:'Shade-dried 72h · Germination passed · Grade A quality',d:'21 Jul 2024',st:'done'},{i:'✂️',t:'Grafting Complete',s:'Scion: Amrapali · Rootstock healthy · Graft take: successful',d:'12 Sep 2024',st:'done'},{i:'🌱',t:'Dispatched to Farmer',s:'Farmer: Balwinder Singh · Hoshiarpur, Punjab · F-2847',d:'18 Oct 2024',st:'done'},{i:'📊',t:'Growing — Month 7',s:'Health score: 91% · Last photo: 8 Jun 2025 · On track Year 3 fruit',d:'Jun 2025',st:'active'},{i:'🥭',t:'First Fruit Expected',s:'Estimated: Jul–Aug 2027 · Projected: 8–12 kg',d:'2027',st:'pending'}]},'GM-2024-12847':{donor:'Rahul Mehta, Delhi',steps:[{i:'🥭',t:'Seed Received',s:'Donated by Rahul Mehta · Delhi · 6 seeds',d:'3 Mar 2024',st:'done'},{i:'🧪',t:'Lab Processing',s:'4/6 seeds viable · Grade B · Shade-dried',d:'10 Mar 2024',st:'done'},{i:'✂️',t:'Grafting',s:'Scion: Langra · Bankura ecosystem match confirmed',d:'28 Apr 2024',st:'done'},{i:'🌱',t:'Planted — Bankura',s:'Farmer: Sukumar Das · Bankura, WB · F-1923',d:'15 Jun 2024',st:'done'},{i:'⚠️',t:'Health Alert — Resolved',s:'Oct 2024: Leaf yellowing detected · Iron chelate treatment · Resolved Nov 2024',d:'Nov 2024',st:'done'},{i:'📊',t:'Growing — Month 15',s:'Health: 84% · Recovery strong · Flowering possible late 2025',d:'Jun 2025',st:'active'}]}};
+function trk(){const c=document.getElementById('tcode').value.trim().toUpperCase();const data=JD[c];const jEl=document.getElementById('jtl');if(!data){jEl.classList.add('show');jEl.style.display='block';document.getElementById('jhdr').textContent='// SEED ID: '+c+' — NOT FOUND. Try GM-2024-48291';document.getElementById('jsteps').innerHTML='<div style="padding:16px;color:var(--dust);font-size:12px;">No seed found. Use the demo buttons above.</div>';return;}document.getElementById('jhdr').textContent='// SEED: '+c+' · DONOR: '+data.donor;document.getElementById('jsteps').innerHTML=data.steps.map(s=>`<div class="js"><div class="ji ${s.st}">${s.i}</div><div><div class="jt">${s.t}<span class="jst ${s.st}">${s.st==='done'?'✓ Done':s.st==='active'?'● Live':'○ Pending'}</span></div><div class="jsub">${s.s}</div><div class="jd">${s.d}</div></div></div>`).join('');jEl.classList.add('show');jEl.style.display='block';}
+
+// PHOTO
+function ap(e){const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=ev=>{const img=document.createElement('img');img.src=ev.target.result;img.style.cssText='max-width:100%;max-height:120px;object-fit:cover;border-radius:6px;';document.getElementById('aimg').innerHTML='';document.getElementById('aimg').appendChild(img);document.getElementById('adate').textContent=new Date().toLocaleDateString('en-IN',{day:'numeric',month:'short',year:'numeric'});document.getElementById('aphoto-out').classList.add('show');setTimeout(()=>{const h=72+Math.floor(Math.random()*22),l=65+Math.floor(Math.random()*26),c=70+Math.floor(Math.random()*23);document.getElementById('hp').textContent=h+'%';document.getElementById('lp').textContent=l+'%';document.getElementById('cp').textContent=c+'%';document.getElementById('hb').style.width=h+'%';document.getElementById('lb').style.width=l+'%';document.getElementById('cb').style.width=c+'%';document.getElementById('verdict').innerHTML=h>80?'✅ <strong>Tree looks healthy.</strong> Canopy developing well. No visible pest damage. Continue current watering. Next check in 30 days.':h>65?'⚠️ <strong>Moderate health.</strong> Leaf discolouration detected — likely iron deficiency. Recommend foliar spray iron chelate 0.5% within 7 days.':'🔴 <strong>Attention needed.</strong> Significant stress visible. Pest infestation possible. Jasmeet notified. Call: 09831459390';},1400);};r.readAsDataURL(f);}
+const uz=document.getElementById('uz');uz.addEventListener('dragover',e=>{e.preventDefault();uz.classList.add('dv');});uz.addEventListener('dragleave',()=>uz.classList.remove('dv'));uz.addEventListener('drop',e=>{e.preventDefault();uz.classList.remove('dv');const f=e.dataTransfer.files[0];if(f){const dt=new DataTransfer();dt.items.add(f);document.getElementById('ufi').files=dt.files;ap({target:{files:[f]}});}});
+
+// ===== VISIT TRACKING =====
+const SUPA_URL = 'https://nibemnomfzflvpnlfgbh.supabase.co';
+const SUPA_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5pYmVtbm9tZnpmbHZwbmxmZ2JoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQyOTMzNzYsImV4cCI6MjA4OTg2OTM3Nn0.0gQPv67Bh5Fh1PocqENfPCm-dWQDe41886VfLUgQhuM';
+
+const visitData = {
+  page: 'gutli-mission-os',
+  referrer: document.referrer || 'direct',
+  user_agent: navigator.userAgent,
+  screen_width: window.screen.width,
+  timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+  language: navigator.language,
+  sections_viewed: [],
+  tabs_clicked: [],
+  time_on_page_seconds: 0
+};
+
+const pageStart = Date.now();
+
+// Track which sections visitor scrolls into
+const sectionTracker = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting && e.target.id) {
+      if (!visitData.sections_viewed.includes(e.target.id)) {
+        visitData.sections_viewed.push(e.target.id);
+      }
+    }
+  });
+}, { threshold: 0.3 });
+document.querySelectorAll('section[id]').forEach(s => sectionTracker.observe(s));
+
+// Track which tabs they click
+const origSwt = window.swt;
+window.swt = function(name, btn) {
+  if (!visitData.tabs_clicked.includes(name)) visitData.tabs_clicked.push(name);
+  if (origSwt) origSwt(name, btn);
+};
+
+// Send visit data to Supabase
+async function logVisit() {
+  visitData.time_on_page_seconds = Math.round((Date.now() - pageStart) / 1000);
+  try {
+    await fetch(`${SUPA_URL}/rest/v1/gutli_page_visits`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'apikey': SUPA_KEY,
+        'Authorization': `Bearer ${SUPA_KEY}`,
+        'Prefer': 'return=minimal'
+      },
+      body: JSON.stringify(visitData)
+    });
+  } catch(e) { /* silent fail — never break the page */ }
+}
+
+// Log on page load (open event) — gives instant notification
+window.addEventListener('load', () => setTimeout(logVisit, 2000));
+
+// Log again on exit with updated section/time data
+window.addEventListener('beforeunload', () => logVisit());
+
+// Log every 60s they stay (captures long sessions)
+setInterval(logVisit, 60000);
+</script>
+</body>
+</html>
