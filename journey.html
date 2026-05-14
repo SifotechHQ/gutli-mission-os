@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Full Journey — Gutli Mission OS</title>
+<meta name="description" content="One mango seed to one profitable farming family — fully automated, AI-powered, guided by Jasmeet. The Gutli Mission OS vision, fully built.">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,700;0,900;1,300;1,700&family=Instrument+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --night:#0F0A04;--soil:#1A0F06;--bark:#2C1A0A;
+  --mango:#F5A623;--mango2:#FDD06A;--mango3:#FFF3D0;
+  --leaf:#2D6A3F;--leaf2:#4A9E61;--leaf3:#B8F0C8;
+  --cream:#FDF8EE;--sand:#D4B896;--dust:#8C7355;
+  --white:#FFFEF9;--glass:rgba(255,255,255,.05);--gb:rgba(255,255,255,.08);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html,body{height:100%;}
+body{background:var(--night);color:var(--cream);font-family:'Instrument Sans',sans-serif;overflow:hidden;}
+body::after{content:'';position:fixed;inset:0;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='.04'/%3E%3C/svg%3E");pointer-events:none;z-index:50;opacity:.5;}
+
+/* TOP BAR */
+.bar{position:fixed;top:0;left:0;right:0;z-index:40;height:58px;display:flex;align-items:center;justify-content:space-between;padding:0 24px;background:rgba(15,10,4,.92);backdrop-filter:blur(24px);border-bottom:1px solid var(--gb);}
+.logo{font-family:'Fraunces',serif;font-size:17px;font-weight:700;display:flex;align-items:center;gap:8px;}
+.logo em{font-style:italic;color:var(--mango);}
+.logo a{color:inherit;text-decoration:none;}
+.bar-right{display:flex;align-items:center;gap:10px;}
+.tag{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--dust);letter-spacing:.12em;text-transform:uppercase;}
+.home-link{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--sand);text-decoration:none;border:1px solid var(--gb);padding:6px 12px;border-radius:6px;transition:.2s;}
+.home-link:hover{border-color:var(--mango);color:var(--mango);}
+
+/* PROGRESS RAIL */
+.rail{position:fixed;top:58px;left:0;right:0;z-index:39;display:flex;gap:5px;padding:14px 24px 0;background:linear-gradient(to bottom,var(--night),rgba(15,10,4,0));}
+.rdot{flex:1;height:3px;border-radius:2px;background:rgba(255,255,255,.08);cursor:pointer;overflow:hidden;position:relative;}
+.rdot span{position:absolute;inset:0;width:0;background:var(--mango);border-radius:2px;}
+.rdot.done span{width:100%;}
+.rdot.now span{width:0;}
+.rdot.now.auto span{animation:fill var(--dur,8s) linear forwards;}
+@keyframes fill{to{width:100%;}}
+
+/* STAGE */
+.stage{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:110px 24px 96px;}
+.scene{max-width:780px;width:100%;text-align:center;display:none;}
+.scene.on{display:block;animation:rise .6s cubic-bezier(.2,.7,.2,1) both;}
+@keyframes rise{from{opacity:0;transform:translateY(34px);}to{opacity:1;transform:translateY(0);}}
+
+.s-step{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--mango);letter-spacing:.18em;text-transform:uppercase;margin-bottom:24px;}
+.glyph{width:118px;height:118px;border-radius:50%;margin:0 auto 30px;display:flex;align-items:center;justify-content:center;font-size:48px;position:relative;background:rgba(245,166,35,.08);border:1.5px solid rgba(245,166,35,.28);}
+.glyph::before{content:'';position:absolute;inset:-14px;border-radius:50%;border:1px solid rgba(245,166,35,.12);animation:pulse 3s ease-in-out infinite;}
+.glyph.leaf{background:rgba(45,106,63,.12);border-color:rgba(74,158,97,.4);}
+.glyph.leaf::before{border-color:rgba(74,158,97,.18);}
+@keyframes pulse{0%,100%{transform:scale(1);opacity:.7;}50%{transform:scale(1.06);opacity:.3;}}
+
+.scene h2{font-family:'Fraunces',serif;font-size:clamp(34px,5.4vw,60px);font-weight:900;line-height:1.02;letter-spacing:-.025em;color:var(--white);}
+.scene h2 em{font-style:italic;color:var(--mango);}
+.scene p{font-size:clamp(15px,1.7vw,18px);line-height:1.78;color:var(--sand);font-weight:300;max-width:560px;margin:22px auto 0;}
+.scene p strong{color:var(--cream);font-weight:500;}
+
+.chips{display:flex;flex-wrap:wrap;gap:9px;justify-content:center;margin:30px auto 0;max-width:600px;}
+.chip{display:flex;align-items:center;gap:7px;background:var(--glass);border:1px solid var(--gb);border-radius:100px;padding:8px 15px;font-size:12px;color:var(--cream);}
+.chip b{font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:600;color:var(--mango);letter-spacing:.06em;}
+.chip.j b{color:var(--leaf2);}
+
+.metric{margin-top:30px;display:inline-flex;flex-direction:column;gap:2px;background:rgba(245,166,35,.06);border:1px solid rgba(245,166,35,.18);border-radius:14px;padding:18px 34px;}
+.metric .mn{font-family:'Fraunces',serif;font-size:36px;font-weight:900;color:var(--mango);line-height:1;}
+.metric .ml{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--dust);letter-spacing:.12em;text-transform:uppercase;}
+
+/* INTRO + OUTRO variants */
+.scene.cover h2{font-size:clamp(40px,7vw,82px);}
+.scene.cover .lede{font-size:clamp(16px,2vw,21px);color:var(--cream);font-weight:300;margin-top:26px;}
+.byline{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--dust);letter-spacing:.14em;text-transform:uppercase;margin-top:36px;}
+.byline b{color:var(--mango);}
+
+/* CONTROLS */
+.ctrl{position:fixed;bottom:0;left:0;right:0;z-index:40;height:84px;display:flex;align-items:center;justify-content:center;gap:14px;padding:0 24px;background:rgba(15,10,4,.92);backdrop-filter:blur(24px);border-top:1px solid var(--gb);}
+.nav-btn{background:var(--glass);border:1px solid var(--gb);color:var(--cream);width:46px;height:46px;border-radius:50%;font-size:18px;cursor:pointer;transition:.2s;display:flex;align-items:center;justify-content:center;}
+.nav-btn:hover:not(:disabled){border-color:var(--mango);color:var(--mango);transform:translateY(-2px);}
+.nav-btn:disabled{opacity:.3;cursor:default;}
+.play-btn{background:var(--mango);color:var(--night);border:none;height:46px;padding:0 24px;border-radius:100px;font-family:'Instrument Sans',sans-serif;font-size:13px;font-weight:600;cursor:pointer;transition:.2s;display:flex;align-items:center;gap:8px;}
+.play-btn:hover{background:var(--mango2);transform:translateY(-2px);}
+.counter{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--dust);min-width:48px;text-align:center;}
+.cta-btn{background:var(--leaf2);color:var(--night);}
+.cta-btn:hover{background:var(--leaf3);}
+
+/* hint */
+.hint{position:fixed;bottom:96px;left:50%;transform:translateX(-50%);z-index:38;font-family:'JetBrains Mono',monospace;font-size:9px;color:rgba(255,255,255,.22);letter-spacing:.1em;text-transform:uppercase;}
+
+@media(max-width:640px){
+  .stage{padding:104px 18px 92px;}
+  .glyph{width:96px;height:96px;font-size:40px;margin-bottom:24px;}
+  .s-step{margin-bottom:18px;}
+  .tag{display:none;}
+  .ctrl{gap:10px;}
+  .play-btn{padding:0 16px;font-size:12px;}
+  .metric{padding:14px 24px;}
+  .hint{display:none;}
+}
+</style>
+</head>
+<body>
+
+<div class="bar">
+  <div class="logo"><a href="index.html">🥭 Gutli <em>Mission OS</em></a></div>
+  <div class="bar-right">
+    <span class="tag">The Full Journey · Vision Demo</span>
+    <a href="index.html" class="home-link">← Platform</a>
+  </div>
+</div>
+
+<div class="rail" id="rail"></div>
+
+<div class="stage" id="stage"></div>
+
+<div class="hint">← → arrow keys to move · or press play</div>
+
+<div class="ctrl">
+  <button class="nav-btn" id="prev" aria-label="Previous">‹</button>
+  <span class="counter" id="counter">01 / 11</span>
+  <button class="nav-btn" id="next" aria-label="Next">›</button>
+  <button class="play-btn" id="play"><span id="play-ico">▶</span> <span id="play-txt">Play demo</span></button>
+</div>
+
+<script>
+const SCENES = [
+  {
+    cover:true, step:"The Vision · Fully Built",
+    h:'One <em>Gutli</em>.<br>One Family Lifted.',
+    lede:"This is what Gutli Mission OS looks like fully built — the complete journey a mango seed takes, from a stranger's hand to a farming family that is finally profitable. Every step automated. Every step powered by AI. Every step guided by Jasmeet.",
+    byline:'Built for <b>Jasmeet Singh Arora</b> · Gutliman of India'
+  },
+  {
+    step:"Stage 01 · The Seed", glyph:"🥭",
+    h:'It starts with a seed <em>someone almost threw away</em>.',
+    p:"Anyone — in India or abroad — finishes a mango and instead of binning the gutli, scans the QR on the pack or a collection point. The seed is donated in 30 seconds. <strong>AI logs the donor, the variety, the location</strong> — and a digital ID is born.",
+    chips:[["AI","Variety + freshness auto-detected"],["AI","Donor card + digital seed ID issued"]]
+  },
+  {
+    step:"Stage 02 · AI Selection", glyph:"🤖",
+    h:'AI picks the <em>strongest 100</em> from a thousand.',
+    p:"Seeds arrive in batches. An AI vision scan grades every single one for genetics, size and viability — <strong>the strongest are chosen, the rest compost back to the soil</strong>. No guesswork, no waste, no human bottleneck.",
+    chips:[["AI","Computer-vision quality grading"],["AI","Batch tracking from day one"]]
+  },
+  {
+    step:"Stage 03 · Jasmeet Grafts", glyph:"✂️", leaf:true,
+    h:'Jasmeet turns a seed into a <em>guaranteed tree</em>.',
+    p:"Six months in the nursery. A proven scion is grafted onto young rootstock — and AI matches the <strong>right local variety to the exact district</strong> it will be planted in. This is the human heart of the mission: Jasmeet's hands, AI's precision.",
+    chips:[["JASMEET","Master grafting, 6-month nursery"],["AI","Variety matched to destination district"]]
+  },
+  {
+    step:"Stage 04 · The Match", glyph:"🧭",
+    h:'AI finds the <em>right farmer</em> for the tree.',
+    p:"The Zone Advisor reads soil, climate, rainfall and water access for every waiting kisan. <strong>It matches each grafted tree to the land where it will thrive</strong> — and the farmer gets a call in their own language. The tree is theirs. Not a loan. Not charity.",
+    chips:[["AI","Soil + climate zone analysis"],["AI","Farmer–land–variety matchmaking"]]
+  },
+  {
+    step:"Stage 05 · Planting Day", glyph:"🌱", leaf:true,
+    h:'The kisan plants — with an <em>AI agronomist</em> in their pocket.',
+    p:"The sapling is delivered free and owned outright. The moment it goes in the ground, <strong>AI sends a step-by-step planting and care plan over WhatsApp</strong> — in Hindi, Punjabi or Bengali. No app to download. No literacy barrier.",
+    chips:[["AI","Personalised planting plan via WhatsApp"],["AI","Trilingual — Hindi · Punjabi · Bengali"]]
+  },
+  {
+    step:"Stage 06 · Growing Together", glyph:"📲",
+    h:'AI grows the tree <em>alongside the farmer</em>.',
+    p:"Every month the kisan sends one photo. <strong>AI scans canopy health, flags pests early, warns of bad weather, and reminds them when to irrigate</strong> — 24/7, free, in their language. When something is seriously wrong, Jasmeet is alerted personally.",
+    chips:[["AI","Monthly photo health diagnosis"],["AI","Pest + weather + irrigation alerts"],["JASMEET","Escalation when a tree is at risk"]]
+  },
+  {
+    step:"Stage 07 · First Harvest", glyph:"🌳", leaf:true,
+    h:'Year three. The first <em>real harvest</em>.',
+    p:"The tree fruits. <strong>AI predicts the yield before the season and grades the fruit quality from photos</strong> — so the farmer knows what they have, and what it's worth, before a single mango leaves the village.",
+    chips:[["AI","Pre-season yield forecasting"],["AI","Photo-based fruit quality grading"]]
+  },
+  {
+    step:"Stage 08 · Fair Market", glyph:"💰",
+    h:'AI sells it — <em>no middleman taking the cut</em>.',
+    p:"The platform connects the kisan directly to verified buyers and CSR-funded markets. <strong>AI suggests the fair price and the best buyer</strong>, the deal is logged, and the farmer keeps what the middleman used to take.",
+    chips:[["AI","Direct buyer matching + fair-price engine"],["AI","Every sale logged + verified"]]
+  },
+  {
+    step:"Stage 09 · A Profitable Kisan", glyph:"📈", leaf:true,
+    h:'The family is <em>finally profitable</em>.',
+    p:"Income is tracked season after season. <strong>Funders see verified impact — survival rate, CO₂, real rupees earned</strong> — with zero paperwork. And the kisan, now thriving, donates seeds back. The cycle begins again, bigger.",
+    chips:[["AI","Live impact + income dashboard for funders"],["AI","Closes the loop — kisan becomes donor"]]
+  },
+  {
+    cover:true, step:"The Whole Country, Replanted", glyph:"🥭",
+    h:'One seed.<br>Then a <em>million</em>.',
+    lede:"That is the full journey, fully automated — gutli to profitable kisan, with AI carrying the load and Jasmeet guiding the heart of it. Every donor, every tree, every rupee, tracked and verified. This is Gutli Mission OS, built to run at the scale of a nation.",
+    byline:'Gutli Mission OS · Built for <b>Jasmeet Singh Arora</b>',
+    cta:true
+  }
+];
+
+const stage = document.getElementById('stage');
+const rail = document.getElementById('rail');
+const counter = document.getElementById('counter');
+const prevBtn = document.getElementById('prev');
+const nextBtn = document.getElementById('next');
+const playBtn = document.getElementById('play');
+const playIco = document.getElementById('play-ico');
+const playTxt = document.getElementById('play-txt');
+
+let idx = 0;
+let auto = false;
+let timer = null;
+const DUR = 8500;
+
+// build scenes
+SCENES.forEach((s, i) => {
+  const el = document.createElement('div');
+  el.className = 'scene' + (s.cover ? ' cover' : '');
+  let html = `<div class="s-step">${s.step}</div>`;
+  if (s.glyph) html += `<div class="glyph${s.leaf ? ' leaf' : ''}">${s.glyph}</div>`;
+  html += `<h2>${s.h}</h2>`;
+  if (s.lede) html += `<p class="lede">${s.lede}</p>`;
+  if (s.p) html += `<p>${s.p}</p>`;
+  if (s.chips) {
+    html += `<div class="chips">` + s.chips.map(c =>
+      `<div class="chip${c[0]==='JASMEET'?' j':''}"><b>${c[0]}</b> ${c[1]}</div>`
+    ).join('') + `</div>`;
+  }
+  if (s.byline) html += `<div class="byline">${s.byline}</div>`;
+  el.innerHTML = html;
+  stage.appendChild(el);
+
+  const d = document.createElement('div');
+  d.className = 'rdot';
+  d.innerHTML = '<span></span>';
+  d.addEventListener('click', () => { stopAuto(); go(i); });
+  rail.appendChild(d);
+});
+
+const scenes = [...document.querySelectorAll('.scene')];
+const dots = [...document.querySelectorAll('.rdot')];
+
+function render() {
+  scenes.forEach((s, i) => s.classList.toggle('on', i === idx));
+  dots.forEach((d, i) => {
+    d.classList.toggle('done', i < idx);
+    d.classList.remove('now', 'auto');
+    if (i === idx) {
+      d.classList.add('now');
+      if (auto) {
+        d.style.setProperty('--dur', DUR + 'ms');
+        // restart animation
+        void d.offsetWidth;
+        d.classList.add('auto');
+      }
+    }
+  });
+  counter.textContent = String(idx + 1).padStart(2, '0') + ' / ' + String(SCENES.length).padStart(2, '0');
+  prevBtn.disabled = idx === 0;
+  nextBtn.disabled = idx === SCENES.length - 1;
+}
+
+function go(n) {
+  idx = Math.max(0, Math.min(SCENES.length - 1, n));
+  render();
+  if (auto) {
+    clearTimeout(timer);
+    if (idx === SCENES.length - 1) { stopAuto(); }
+    else { timer = setTimeout(() => go(idx + 1), DUR); }
+  }
+}
+
+function startAuto() {
+  auto = true;
+  playIco.textContent = '⏸';
+  playTxt.textContent = 'Pause';
+  if (idx === SCENES.length - 1) idx = 0;
+  go(idx);
+}
+function stopAuto() {
+  auto = false;
+  clearTimeout(timer);
+  playIco.textContent = '▶';
+  playTxt.textContent = 'Play demo';
+  dots.forEach(d => d.classList.remove('auto'));
+  render();
+}
+
+prevBtn.addEventListener('click', () => { stopAuto(); go(idx - 1); });
+nextBtn.addEventListener('click', () => { stopAuto(); go(idx + 1); });
+playBtn.addEventListener('click', () => auto ? stopAuto() : startAuto());
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'ArrowRight') { stopAuto(); go(idx + 1); }
+  if (e.key === 'ArrowLeft') { stopAuto(); go(idx - 1); }
+  if (e.key === ' ') { e.preventDefault(); auto ? stopAuto() : startAuto(); }
+});
+
+render();
+</script>
+</body>
+</html>
