@@ -1098,7 +1098,10 @@ const uz=document.getElementById('uz');uz.addEventListener('dragover',e=>{e.prev
 const SUPA_URL = 'https://nibemnomfzflvpnlfgbh.supabase.co';
 const SUPA_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5pYmVtbm9tZnpmbHZwbmxmZ2JoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQyOTMzNzYsImV4cCI6MjA4OTg2OTM3Nn0.0gQPv67Bh5Fh1PocqENfPCm-dWQDe41886VfLUgQhuM';
 
+const visitId = (window.crypto && crypto.randomUUID) ? crypto.randomUUID() : (Date.now() + '-' + Math.random().toString(36).slice(2));
+
 const visitData = {
+  visit_id: visitId,
   page: 'gutli-mission-os',
   referrer: document.referrer || 'direct',
   user_agent: navigator.userAgent,
@@ -1131,8 +1134,12 @@ window.swt = function(name, btn) {
   if (origSwt) origSwt(name, btn);
 };
 
-// Send visit data to Supabase
-async function logVisit() {
+// One row per visitor: insert once on open, then update that same row on exit.
+let visitInserted = false;
+
+async function insertVisit() {
+  if (visitInserted) return;
+  visitInserted = true;
   visitData.time_on_page_seconds = Math.round((Date.now() - pageStart) / 1000);
   try {
     await fetch(`${SUPA_URL}/rest/v1/gutli_page_visits`, {
@@ -1143,19 +1150,40 @@ async function logVisit() {
         'Authorization': `Bearer ${SUPA_KEY}`,
         'Prefer': 'return=minimal'
       },
-      body: JSON.stringify(visitData)
+      body: JSON.stringify(visitData),
+      keepalive: true
+    });
+  } catch(e) { visitInserted = false; }
+}
+
+async function updateVisit() {
+  if (!visitInserted) { insertVisit(); return; }
+  visitData.time_on_page_seconds = Math.round((Date.now() - pageStart) / 1000);
+  try {
+    await fetch(`${SUPA_URL}/rest/v1/gutli_page_visits?visit_id=eq.${visitId}`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+        'apikey': SUPA_KEY,
+        'Authorization': `Bearer ${SUPA_KEY}`,
+        'Prefer': 'return=minimal'
+      },
+      body: JSON.stringify({
+        sections_viewed: visitData.sections_viewed,
+        tabs_clicked: visitData.tabs_clicked,
+        time_on_page_seconds: visitData.time_on_page_seconds
+      }),
+      keepalive: true
     });
   } catch(e) { /* silent fail — never break the page */ }
 }
 
-// Log on page load (open event) — gives instant notification
-window.addEventListener('load', () => setTimeout(logVisit, 2000));
+// Insert one row a few seconds after open
+window.addEventListener('load', () => setTimeout(insertVisit, 3000));
 
-// Log again on exit with updated section/time data
-window.addEventListener('beforeunload', () => logVisit());
-
-// Log every 60s they stay (captures long sessions)
-setInterval(logVisit, 60000);
+// Update that same row on exit with final time + sections — never a new row
+window.addEventListener('beforeunload', updateVisit);
+window.addEventListener('pagehide', updateVisit);
 </script>
 </body>
 </html>
