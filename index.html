@@ -383,17 +383,30 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:0 52px;height:64px;
 <div class="cur" id="cur"></div>
 
 <!-- NAV -->
+<style>
+.lang-switch{display:flex;gap:3px;align-items:center;background:var(--glass);border:1px solid var(--gb);border-radius:999px;padding:3px;margin-right:8px}
+.lang-switch button{background:transparent;border:0;color:var(--dust);font-size:11px;font-weight:600;padding:5px 9px;border-radius:999px;cursor:pointer;font-family:inherit;line-height:1;white-space:nowrap;transition:.15s}
+.lang-switch button:hover{color:var(--cream)}
+.lang-switch button.lon{background:var(--mango);color:#1a1208}
+@media(max-width:720px){.lang-switch button{padding:4px 6px;font-size:10px}}
+</style>
 <nav>
   <div class="nlogo">🥭 Gutli <em>Mission OS</em></div>
   <div class="nav-links">
-    <button class="nl on" onclick="scrollTo('mission')">Mission</button>
-    <button class="nl" onclick="scrollTo('how')">How It Works</button>
-    <button class="nl" onclick="scrollTo('zone')">Zone Advisor</button>
-    <button class="nl" onclick="scrollTo('platform')">Platform</button>
-    <button class="nl" onclick="scrollTo('tracker')">Seed Tracker</button>
-    <button class="nl" onclick="scrollTo('csr')">CSR</button>
+    <button class="nl on" onclick="scrollTo('mission')" data-i18n="nav_mission">Mission</button>
+    <button class="nl" onclick="scrollTo('how')" data-i18n="nav_how">How It Works</button>
+    <button class="nl" onclick="scrollTo('zone')" data-i18n="nav_zone">Zone Advisor</button>
+    <button class="nl" onclick="scrollTo('platform')" data-i18n="nav_platform">Platform</button>
+    <button class="nl" onclick="scrollTo('tracker')" data-i18n="nav_tracker">Seed Tracker</button>
+    <button class="nl" onclick="scrollTo('csr')" data-i18n="nav_csr">CSR</button>
   </div>
-  <button class="npill" onclick="scrollTo('platform')">Try Demo →</button>
+  <div class="lang-switch" id="langSwitch">
+    <button data-lang="en" onclick="setLang('en')">EN</button>
+    <button data-lang="hi" onclick="setLang('hi')">हिंदी</button>
+    <button data-lang="pa" onclick="setLang('pa')">ਪੰਜਾਬੀ</button>
+    <button data-lang="bn" onclick="setLang('bn')">বাংলা</button>
+  </div>
+  <button class="npill" onclick="scrollTo('platform')" data-i18n="nav_demo">Try Demo →</button>
 </nav>
 
 <!-- HERO -->
@@ -403,82 +416,82 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:0 52px;height:64px;
   <div class="hero-ring"></div>
   <div class="hero-ring"></div>
 
-  <div class="live-badge"><span class="ldot"></span>Live — India's Mango Revolution</div>
-  <h1>One Seed.<br><em>800,000 Trees.</em><br>Zero Budget.</h1>
-  <p class="hero-sub">Jasmeet Singh Arora — Gutliman of India — built a movement that changed 5,000 farming families. This platform is the technology backbone his mission deserves.</p>
+  <div class="live-badge"><span class="ldot"></span><span data-i18n="hero_badge">Live — India's Mango Revolution</span></div>
+  <h1 data-i18n="hero_h1">One Seed.<br><em>800,000 Trees.</em><br>Zero Budget.</h1>
+  <p class="hero-sub" data-i18n="hero_sub">Jasmeet Singh Arora — Gutliman of India — built a movement that changed 5,000 farming families. This platform is the technology backbone his mission deserves.</p>
 
   <div class="hero-stats">
-    <div class="hstat"><div class="hstat-n" id="h1">0</div><div class="hstat-l">Trees Grafted</div></div>
-    <div class="hstat"><div class="hstat-n" id="h2">0</div><div class="hstat-l">Families Helped</div></div>
-    <div class="hstat"><div class="hstat-n" id="h3">0</div><div class="hstat-l">Seeds Collected</div></div>
-    <div class="hstat"><div class="hstat-n" id="h4">0</div><div class="hstat-l">Tons CO₂ Offset</div></div>
+    <div class="hstat"><div class="hstat-n" id="h1">0</div><div class="hstat-l" data-i18n="hero_stat1">Trees Grafted</div></div>
+    <div class="hstat"><div class="hstat-n" id="h2">0</div><div class="hstat-l" data-i18n="hero_stat2">Families Helped</div></div>
+    <div class="hstat"><div class="hstat-n" id="h3">0</div><div class="hstat-l" data-i18n="hero_stat3">Seeds Collected</div></div>
+    <div class="hstat"><div class="hstat-n" id="h4">0</div><div class="hstat-l" data-i18n="hero_stat4">Tons CO₂ Offset</div></div>
   </div>
 
   <div class="hero-cta">
-    <button class="btn bm" onclick="scrollTo('zone')">🗺️ Find My Mango Zone</button>
-    <button class="btn bg" onclick="scrollTo('platform')">Explore the Platform</button>
+    <button class="btn bm" onclick="scrollTo('zone')" data-i18n="hero_cta1">🗺️ Find My Mango Zone</button>
+    <button class="btn bg" onclick="scrollTo('platform')" data-i18n="hero_cta2">Explore the Platform</button>
   </div>
 
   <div class="scroll-hint">
-    <span>Scroll to explore</span>
+    <span data-i18n="hero_scroll">Scroll to explore</span>
     <div class="arrow"></div>
   </div>
 </section>
 
 <!-- MISSION STORY -->
 <section class="sec rev" id="mission">
-  <div class="stag">// The Story</div>
-  <h2 class="sh">Who is<br><em>Gutli Man?</em></h2>
+  <div class="stag" data-i18n="mis_tag">// The Story</div>
+  <h2 class="sh" data-i18n="mis_h">Who is<br><em>Gutli Man?</em></h2>
   <div class="sbar"></div>
   <div class="story-grid">
     <div class="story-text">
-      <p><strong>Jasmeet Singh Arora, 53, from Kolkata.</strong> Not a farmer. Not a botanist. Just a man who couldn't sleep after watching Bengal's ancient mango orchards disappear — and the farmers who depended on them earn ₹2,000 for an entire season's work.</p>
-      <p>In 2017, he had one idea: <strong>plant mango trees using discarded seeds.</strong> Mango trees don't just give fruit — they store one ton of CO₂ in a lifetime, shelter birds, restore ecosystems, and live for 100 years. One grafted tree earns a farmer ₹300–400 every year. That's 15x more than paddy. <strong>For 40 years.</strong></p>
-      <p>The breakthrough was <strong>grafting</strong> — taking a scion branch from a proven fruiting tree and joining it to a new seedling. What normally takes 15 years to fruit now takes 3. Of every 1,000 seeds collected, Jasmeet's lab nurtures 100 survivors, grafts them over 6 months, and hands each sapling to a farmer who <strong>owns it forever.</strong></p>
-      <p>In May 2023, he posted one video asking for one seed. It went viral. Since then: <strong>2.1 million seeds collected. 800,000 trees distributed. 5,000+ families in Sundarbans, Bankura, Purulia and Jharkhand with a new income stream</strong> — at zero government cost.</p>
+      <p data-i18n="mis_p1"><strong>Jasmeet Singh Arora, 53, from Kolkata.</strong> Not a farmer. Not a botanist. Just a man who couldn't sleep after watching Bengal's ancient mango orchards disappear — and the farmers who depended on them earn ₹2,000 for an entire season's work.</p>
+      <p data-i18n="mis_p2">In 2017, he had one idea: <strong>plant mango trees using discarded seeds.</strong> Mango trees don't just give fruit — they store one ton of CO₂ in a lifetime, shelter birds, restore ecosystems, and live for 100 years. One grafted tree earns a farmer ₹300–400 every year. That's 15x more than paddy. <strong>For 40 years.</strong></p>
+      <p data-i18n="mis_p3">The breakthrough was <strong>grafting</strong> — taking a scion branch from a proven fruiting tree and joining it to a new seedling. What normally takes 15 years to fruit now takes 3. Of every 1,000 seeds collected, Jasmeet's lab nurtures 100 survivors, grafts them over 6 months, and hands each sapling to a farmer who <strong>owns it forever.</strong></p>
+      <p data-i18n="mis_p4">In May 2023, he posted one video asking for one seed. It went viral. Since then: <strong>2.1 million seeds collected. 800,000 trees distributed. 5,000+ families in Sundarbans, Bankura, Purulia and Jharkhand with a new income stream</strong> — at zero government cost.</p>
       <div class="quote-card">
-        <div class="quote-text">"If every Indian gives just one mango pit, we can plant 200 million trees in a single season — more than the entire population of Australia."</div>
-        <div class="quote-attr">— Jasmeet Singh Arora · Gutliman of India</div>
+        <div class="quote-text" data-i18n="mis_quote">"If every Indian gives just one mango pit, we can plant 200 million trees in a single season — more than the entire population of Australia."</div>
+        <div class="quote-attr" data-i18n="mis_attr">— Jasmeet Singh Arora · Gutliman of India</div>
       </div>
     </div>
     <div class="fact-cards">
-      <div class="fact-card"><div class="fact-icon">🌳</div><div><div class="fact-val">1 Ton</div><div class="fact-label">CO₂ absorbed by one mango tree in its lifetime — equal to your car's yearly emissions</div></div></div>
-      <div class="fact-card"><div class="fact-icon">💰</div><div><div class="fact-val">15x</div><div class="fact-label">More income from one mango tree vs a whole paddy season (₹300–400/yr vs ₹2,000/season)</div></div></div>
-      <div class="fact-card"><div class="fact-icon">⏱️</div><div><div class="fact-val">3 Years</div><div class="fact-label">Grafting compresses 15 years into 3. First fruit in Year 3, commercial yield by Year 5</div></div></div>
-      <div class="fact-card"><div class="fact-icon">🌱</div><div><div class="fact-val">94%</div><div class="fact-label">Tree survival rate — because farmers OWN the tree. Ethiopia planted 600M trees with 50% death rate. Ownership changes everything.</div></div></div>
-      <div class="fact-card"><div class="fact-icon">🥭</div><div><div class="fact-val">₹0</div><div class="fact-label">Cost to the farmer. The seed is from your bin. The sapling is from the Mission. The future is theirs.</div></div></div>
+      <div class="fact-card"><div class="fact-icon">🌳</div><div><div class="fact-val" data-i18n="mis_fv1">1 Ton</div><div class="fact-label" data-i18n="mis_fl1">CO₂ absorbed by one mango tree in its lifetime — equal to your car's yearly emissions</div></div></div>
+      <div class="fact-card"><div class="fact-icon">💰</div><div><div class="fact-val" data-i18n="mis_fv2">15x</div><div class="fact-label" data-i18n="mis_fl2">More income from one mango tree vs a whole paddy season (₹300–400/yr vs ₹2,000/season)</div></div></div>
+      <div class="fact-card"><div class="fact-icon">⏱️</div><div><div class="fact-val" data-i18n="mis_fv3">3 Years</div><div class="fact-label" data-i18n="mis_fl3">Grafting compresses 15 years into 3. First fruit in Year 3, commercial yield by Year 5</div></div></div>
+      <div class="fact-card"><div class="fact-icon">🌱</div><div><div class="fact-val" data-i18n="mis_fv4">94%</div><div class="fact-label" data-i18n="mis_fl4">Tree survival rate — because farmers OWN the tree. Ethiopia planted 600M trees with 50% death rate. Ownership changes everything.</div></div></div>
+      <div class="fact-card"><div class="fact-icon">🥭</div><div><div class="fact-val" data-i18n="mis_fv5">₹0</div><div class="fact-label" data-i18n="mis_fl5">Cost to the farmer. The seed is from your bin. The sapling is from the Mission. The future is theirs.</div></div></div>
     </div>
   </div>
 </section>
 
 <!-- HOW IT WORKS -->
 <section class="sec alt rev" id="how">
-  <div class="stag">// The Chain</div>
-  <h2 class="sh">From Your Gutli<br>to a <em>Farmer's Future</em></h2>
+  <div class="stag" data-i18n="how_tag">// The Chain</div>
+  <h2 class="sh" data-i18n="how_h">From Your Gutli<br>to a <em>Farmer's Future</em></h2>
   <div class="sbar"></div>
   <div class="chain">
-    <div class="cs"><div class="cn">STEP 01</div><div class="ci a">🥭</div><div class="ct2">You Donate</div><div class="cd">Eat a mango, don't throw the seed. Drop it at a collection point, or courier to Kolkata. Takes 30 seconds.</div></div>
-    <div class="cs"><div class="cn">STEP 02</div><div class="ci b">🤖</div><div class="ct2">AI Selects Best</div><div class="cd">1,000 seeds arrive. AI quality scan identifies the strongest 100. The rest compost back to soil.</div></div>
-    <div class="cs"><div class="cn">STEP 03</div><div class="ci c">✂️</div><div class="ct2">Jasmeet Grafts</div><div class="cd">6-month nursery. Proven scion grafted to young rootstock. Local variety matched to the farmer's district.</div></div>
-    <div class="cs"><div class="cn">STEP 04</div><div class="ci a">🌱</div><div class="ct2">Farmer Owns It</div><div class="cd">The tree is the farmer's property — not a loan, not charity. No Monsanto. No licence. No expiry. Ever.</div></div>
-    <div class="cs"><div class="cn">STEP 05</div><div class="ci b">📊</div><div class="ct2">Platform Tracks</div><div class="cd">WhatsApp photo monthly. AI confirms health. Survival rate, CO₂, income — all verified for CSR funders.</div></div>
+    <div class="cs"><div class="cn">STEP 01</div><div class="ci a">🥭</div><div class="ct2" data-i18n="how_t1">You Donate</div><div class="cd" data-i18n="how_d1">Eat a mango, don't throw the seed. Drop it at a collection point, or courier to Kolkata. Takes 30 seconds.</div></div>
+    <div class="cs"><div class="cn">STEP 02</div><div class="ci b">🤖</div><div class="ct2" data-i18n="how_t2">AI Selects Best</div><div class="cd" data-i18n="how_d2">1,000 seeds arrive. AI quality scan identifies the strongest 100. The rest compost back to soil.</div></div>
+    <div class="cs"><div class="cn">STEP 03</div><div class="ci c">✂️</div><div class="ct2" data-i18n="how_t3">Jasmeet Grafts</div><div class="cd" data-i18n="how_d3">6-month nursery. Proven scion grafted to young rootstock. Local variety matched to the farmer's district.</div></div>
+    <div class="cs"><div class="cn">STEP 04</div><div class="ci a">🌱</div><div class="ct2" data-i18n="how_t4">Farmer Owns It</div><div class="cd" data-i18n="how_d4">The tree is the farmer's property — not a loan, not charity. No Monsanto. No licence. No expiry. Ever.</div></div>
+    <div class="cs"><div class="cn">STEP 05</div><div class="ci b">📊</div><div class="ct2" data-i18n="how_t5">Platform Tracks</div><div class="cd" data-i18n="how_d5">WhatsApp photo monthly. AI confirms health. Survival rate, CO₂, income — all verified for CSR funders.</div></div>
   </div>
 </section>
 
 <!-- ZONE ADVISOR -->
 <section class="sec rev" id="zone">
-  <div class="stag">// AI Soil + Climate Intelligence</div>
-  <h2 class="sh">Find the Right Mango<br>for <em>Your Land</em></h2>
+  <div class="stag" data-i18n="zone_tag">// AI Soil + Climate Intelligence</div>
+  <h2 class="sh" data-i18n="zone_h">Find the Right Mango<br>for <em>Your Land</em></h2>
   <div class="sbar"></div>
-  <p style="color:var(--dust);font-size:14px;margin-top:16px;max-width:520px;line-height:1.75;">Enter your district, soil, and water. Get a full scientific breakdown — which variety fits you, what to fix before planting, when you'll earn, and how much. Honest answers, even if the answer is "don't plant mango here."</p>
+  <p style="color:var(--dust);font-size:14px;margin-top:16px;max-width:520px;line-height:1.75;" data-i18n="zone_intro">Enter your district, soil, and water. Get a full scientific breakdown — which variety fits you, what to fix before planting, when you'll earn, and how much. Honest answers, even if the answer is "don't plant mango here."</p>
 
   <div class="advisor-wrap">
     <!-- FORM -->
     <div class="form-card">
-      <div class="fc-title">Analyse My Zone</div>
-      <div class="fc-sub">10 seconds · No sign-up · Honest result</div>
+      <div class="fc-title" data-i18n="zone_fc_title">Analyse My Zone</div>
+      <div class="fc-sub" data-i18n="zone_fc_sub">10 seconds · No sign-up · Honest result</div>
       <div class="fi">
-        <label>State / Region</label>
+        <label data-i18n="zone_l_state">State / Region</label>
         <select id="zstate">
           <option value="">Select state...</option>
           <optgroup label="— Punjab Belt —">
@@ -514,7 +527,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:0 52px;height:64px;
         </select>
       </div>
       <div class="fi-row">
-        <div class="fi"><label>Soil pH</label>
+        <div class="fi"><label data-i18n="zone_l_ph">Soil pH</label>
           <select id="zph">
             <option value="acidic">5.5–6.5 (acidic)</option>
             <option value="ideal" selected>6.5–7.0 (ideal)</option>
@@ -523,7 +536,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:0 52px;height:64px;
             <option value="high">8.0+ (high alkaline)</option>
           </select>
         </div>
-        <div class="fi"><label>Water Source</label>
+        <div class="fi"><label data-i18n="zone_l_water">Water Source</label>
           <select id="zwater">
             <option value="canal">Canal</option>
             <option value="borewell">Borewell</option>
@@ -533,8 +546,8 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:0 52px;height:64px;
         </div>
       </div>
       <div class="fi-row">
-        <div class="fi"><label>Land (acres)</label><input type="number" id="zacres" value="2" min="0.5" step="0.5"/></div>
-        <div class="fi"><label>Current Crop</label>
+        <div class="fi"><label data-i18n="zone_l_land">Land (acres)</label><input type="number" id="zacres" value="2" min="0.5" step="0.5"/></div>
+        <div class="fi"><label data-i18n="zone_l_crop">Current Crop</label>
           <select id="zcrop">
             <option value="cotton">Cotton (GMO)</option>
             <option value="paddy">Paddy / Rice</option>
@@ -543,7 +556,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:0 52px;height:64px;
           </select>
         </div>
       </div>
-      <button class="abtn" id="zbtn" onclick="runZone()">🔍 Analyse My Zone →</button>
+      <button class="abtn" id="zbtn" onclick="runZone()" data-i18n="zone_btn">🔍 Analyse My Zone →</button>
     </div>
 
     <!-- RESULT -->
@@ -578,50 +591,50 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:0 52px;height:64px;
 
 <!-- PLATFORM -->
 <section class="sec alt rev" id="platform">
-  <div class="stag">// Interactive Platform</div>
-  <h2 class="sh">Try It.<br><em>Right Now.</em></h2>
+  <div class="stag" data-i18n="plat_tag">// Interactive Platform</div>
+  <h2 class="sh" data-i18n="plat_h">Try It.<br><em>Right Now.</em></h2>
   <div class="sbar"></div>
   <div class="tabs-wrap">
     <div class="tab-bar">
-      <button class="tb on" onclick="swt('donate',this)">🥭 Donate Seed</button>
-      <button class="tb" onclick="swt('reg',this)">🌾 Farmer Register</button>
-      <button class="tb" onclick="swt('wa',this)">💬 WhatsApp Bot</button>
-      <button class="tb" onclick="swt('photo',this)">📷 Tree Health</button>
+      <button class="tb on" onclick="swt('donate',this)" data-i18n="plat_tab1">🥭 Donate Seed</button>
+      <button class="tb" onclick="swt('reg',this)" data-i18n="plat_tab2">🌾 Farmer Register</button>
+      <button class="tb" onclick="swt('wa',this)" data-i18n="plat_tab3">💬 WhatsApp Bot</button>
+      <button class="tb" onclick="swt('photo',this)" data-i18n="plat_tab4">📷 Tree Health</button>
     </div>
 
     <!-- DONATE -->
     <div class="tp on" id="tp-donate">
       <div class="two-col">
         <div class="fcard2">
-          <h3>Donate Your Gutli</h3>
-          <p>Tell us your state and seed count. We'll show the nearest drop point and how many trees your seeds will become.</p>
-          <div class="fi"><label>Your State</label>
+          <h3 data-i18n="don_h">Donate Your Gutli</h3>
+          <p data-i18n="don_p">Tell us your state and seed count. We'll show the nearest drop point and how many trees your seeds will become.</p>
+          <div class="fi"><label data-i18n="don_l_state">Your State</label>
             <select id="dstate">
               <option value="">Select state...</option>
               <option value="WB">West Bengal</option><option value="PB">Punjab</option><option value="MH">Maharashtra</option><option value="UP">Uttar Pradesh</option><option value="DL">Delhi / NCR</option><option value="KA">Karnataka</option><option value="TN">Tamil Nadu</option><option value="JH">Jharkhand</option><option value="BR">Bihar</option><option value="GJ">Gujarat</option>
             </select>
           </div>
-          <div class="fi"><label>Your City</label><input type="text" id="dcity" placeholder="e.g. Hoshiarpur"/></div>
-          <div class="fi"><label>Seed Count</label>
+          <div class="fi"><label data-i18n="don_l_city">Your City</label><input type="text" id="dcity" placeholder="e.g. Hoshiarpur" data-i18n-ph="don_ph_city"/></div>
+          <div class="fi"><label data-i18n="don_l_seed">Seed Count</label>
             <select id="dseed">
               <option value="1">1–5 seeds</option><option value="2">6–20 seeds</option><option value="8">21–50 seeds</option><option value="18">50+ seeds (bulk)</option>
             </select>
           </div>
-          <div class="fi"><label>Your Name (optional)</label><input type="text" placeholder="Shows on mission map"/></div>
-          <button class="sbtn2" onclick="showDonor()">Find Nearest Drop Point →</button>
+          <div class="fi"><label data-i18n="don_l_name">Your Name (optional)</label><input type="text" placeholder="Shows on mission map" data-i18n-ph="don_ph_name"/></div>
+          <button class="sbtn2" onclick="showDonor()" data-i18n="don_btn">Find Nearest Drop Point →</button>
           <div class="rc" id="drc">
-            <div style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--leaf2);letter-spacing:.1em;text-transform:uppercase;margin-bottom:10px;">✅ Drop Point Found</div>
+            <div style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--leaf2);letter-spacing:.1em;text-transform:uppercase;margin-bottom:10px;" data-i18n="don_found">✅ Drop Point Found</div>
             <div style="font-family:'Fraunces',serif;font-size:17px;color:var(--white);margin-bottom:12px;" id="dname">—</div>
-            <div class="rr"><span class="rk">Distance</span><span class="rv" id="ddist">—</span></div>
-            <div class="rr"><span class="rk">Address</span><span class="rv" id="daddr">—</span></div>
-            <div class="rr"><span class="rk">Open hours</span><span class="rv">Mon–Sat 9am–6pm</span></div>
-            <div class="rr"><span class="rk">Your seeds become</span><span class="rv" id="dtrees">—</span></div>
-            <div class="rr"><span class="rk">Tracking ID issued</span><span class="rv" id="dtid">—</span></div>
+            <div class="rr"><span class="rk" data-i18n="don_r_dist">Distance</span><span class="rv" id="ddist">—</span></div>
+            <div class="rr"><span class="rk" data-i18n="don_r_addr">Address</span><span class="rv" id="daddr">—</span></div>
+            <div class="rr"><span class="rk" data-i18n="don_r_hours">Open hours</span><span class="rv">Mon–Sat 9am–6pm</span></div>
+            <div class="rr"><span class="rk" data-i18n="don_r_become">Your seeds become</span><span class="rv" id="dtrees">—</span></div>
+            <div class="rr"><span class="rk" data-i18n="don_r_tid">Tracking ID issued</span><span class="rv" id="dtid">—</span></div>
           </div>
         </div>
         <div>
           <div class="dmap">
-            <div class="dmtag">// Live Drop Points — India</div>
+            <div class="dmtag" data-i18n="don_maptag">// Live Drop Points — India</div>
             <div class="dp" style="top:26%;left:52%;"><div class="dd active"></div><div class="dl">Kolkata HQ</div><div class="dtt">Eden House · Main Lab · All days</div></div>
             <div class="dp" style="top:50%;left:27%;"><div class="dd bulk"></div><div class="dl">Howrah Hub</div><div class="dtt">Station area · 5kg+ bulk</div></div>
             <div class="dp" style="top:16%;left:30%;"><div class="dd active"></div><div class="dl">Bankura</div><div class="dtt">KVK Bankura · Daily</div></div>
@@ -631,7 +644,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:0 52px;height:64px;
             <div class="dp" style="top:72%;left:40%;"><div class="dd bulk"></div><div class="dl">Mumbai</div><div class="dtt">Dadar · Bulk only</div></div>
             <div class="dp" style="top:20%;left:55%;"><div class="dd active"></div><div class="dl">Delhi NCR</div><div class="dtt">Lodhi Garden Community</div></div>
           </div>
-          <div class="courier-box">
+          <div class="courier-box" data-i18n="don_courier">
             📦 <strong style="color:var(--cream);">Courier Direct to Jasmeet</strong><br>
             Jasmeet Singh Arora · C/O Eden House<br>17/1 Lansdowne Terrace, Manhorpukur Road<br>Kolkata — 700026<br>
             📞 09831459390 / 08420890852<br>
@@ -651,10 +664,10 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:0 52px;height:64px;
             <div class="rsi" id="rs3"></div>
           </div>
           <div class="sp on" id="sp1">
-            <div class="sp-title">Your Land</div>
-            <div class="sp-sub">Step 1 of 3 — Location & basics</div>
-            <div class="fi"><label>Your Name</label><input type="text" id="fn" placeholder="Balwinder Singh"/></div>
-            <div class="fi"><label>District</label>
+            <div class="sp-title" data-i18n="reg_t1">Your Land</div>
+            <div class="sp-sub" data-i18n="reg_s1">Step 1 of 3 — Location & basics</div>
+            <div class="fi"><label data-i18n="reg_l_name">Your Name</label><input type="text" id="fn" placeholder="Balwinder Singh" data-i18n-ph="reg_ph_name"/></div>
+            <div class="fi"><label data-i18n="reg_l_district">District</label>
               <select id="fdistrict">
                 <option value="">Select district...</option>
                 <option value="hoshiarpur">Hoshiarpur, Punjab</option>
@@ -669,8 +682,8 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:0 52px;height:64px;
               </select>
             </div>
             <div class="fi-row">
-              <div class="fi"><label>Land (acres)</label><input type="number" id="facres" value="2" min="0.5" step="0.5"/></div>
-              <div class="fi"><label>Current Crop</label>
+              <div class="fi"><label data-i18n="reg_l_land">Land (acres)</label><input type="number" id="facres" value="2" min="0.5" step="0.5"/></div>
+              <div class="fi"><label data-i18n="reg_l_crop">Current Crop</label>
                 <select id="fcrop">
                   <option value="cotton">Cotton (GMO)</option>
                   <option value="paddy">Paddy</option>
@@ -679,17 +692,17 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:0 52px;height:64px;
                 </select>
               </div>
             </div>
-            <button class="sbtn2" onclick="gs(2)">Next →</button>
+            <button class="sbtn2" onclick="gs(2)" data-i18n="reg_btn_next">Next →</button>
           </div>
           <div class="sp" id="sp2">
-            <div class="sp-title">Soil & Water</div>
-            <div class="sp-sub">Step 2 of 3 — For variety matching</div>
-            <div class="fi"><label>Water Source</label>
+            <div class="sp-title" data-i18n="reg_t2">Soil & Water</div>
+            <div class="sp-sub" data-i18n="reg_s2">Step 2 of 3 — For variety matching</div>
+            <div class="fi"><label data-i18n="reg_l_water">Water Source</label>
               <select id="fwater">
                 <option value="canal">Canal</option><option value="borewell">Borewell</option><option value="drip">Drip</option><option value="rain">Rainfed</option>
               </select>
             </div>
-            <div class="fi"><label>Soil pH (approx)</label>
+            <div class="fi"><label data-i18n="reg_l_ph">Soil pH (approx)</label>
               <select id="fph">
                 <option value="ideal">6.0–7.0 — ideal</option>
                 <option value="ok">7.0–7.5 — acceptable</option>
@@ -698,7 +711,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:0 52px;height:64px;
                 <option value="unknown">I don't know</option>
               </select>
             </div>
-            <div class="fi"><label>Experience with trees?</label>
+            <div class="fi"><label data-i18n="reg_l_exp">Experience with trees?</label>
               <select id="fexp">
                 <option value="none">None — first time</option>
                 <option value="some">Some — grew other fruit</option>
@@ -706,22 +719,22 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:0 52px;height:64px;
               </select>
             </div>
             <div style="display:flex;gap:8px;">
-              <button class="back-btn" onclick="gs(1)">← Back</button>
-              <button class="sbtn2" onclick="gs(3)">Analyse My Land →</button>
+              <button class="back-btn" onclick="gs(1)" data-i18n="reg_btn_back">← Back</button>
+              <button class="sbtn2" onclick="gs(3)" data-i18n="reg_btn_analyse">Analyse My Land →</button>
             </div>
           </div>
           <div class="sp" id="sp3">
-            <div class="sp-title">Your AI Result</div>
-            <div class="sp-sub">Personalised for your land</div>
+            <div class="sp-title" data-i18n="reg_t3">Your AI Result</div>
+            <div class="sp-sub" data-i18n="reg_s3">Personalised for your land</div>
             <div id="freg-out"></div>
           </div>
         </div>
         <div class="reg-info-box">
-          <div class="rib-title">Why the ownership model works</div>
-          <div class="rib-item"><div class="rib-icon" style="background:rgba(245,166,35,.1);">🌍</div><div><div style="font-size:13px;font-weight:600;color:var(--white);margin-bottom:3px;">Ethiopia planted 600M trees</div><div style="font-size:11px;color:var(--dust);line-height:1.6;">Survival rate: 50%. Because nobody owned them. Nobody cared.</div></div></div>
-          <div class="rib-item"><div class="rib-icon" style="background:rgba(200,64,64,.1);">🇨🇳</div><div><div style="font-size:13px;font-weight:600;color:var(--white);margin-bottom:3px;">China's Great Green Wall</div><div style="font-size:11px;color:var(--dust);line-height:1.6;">Failure rate: 85%. State-planted trees with no local ecosystem match.</div></div></div>
-          <div class="rib-item"><div class="rib-icon" style="background:rgba(74,158,97,.1);">🥭</div><div><div style="font-size:13px;font-weight:600;color:var(--white);margin-bottom:3px;">Gutli Mission</div><div style="font-size:11px;color:var(--dust);line-height:1.6;">Survival rate: 94%. Farmer owns it. Local variety matched. No Monsanto. No licence.</div></div></div>
-          <div style="margin-top:20px;background:rgba(245,166,35,.06);border:1px solid rgba(245,166,35,.15);border-radius:10px;padding:14px;font-size:11px;color:var(--dust);line-height:1.8;">
+          <div class="rib-title" data-i18n="reg_ib_title">Why the ownership model works</div>
+          <div class="rib-item"><div class="rib-icon" style="background:rgba(245,166,35,.1);">🌍</div><div><div style="font-size:13px;font-weight:600;color:var(--white);margin-bottom:3px;" data-i18n="reg_ib1_h">Ethiopia planted 600M trees</div><div style="font-size:11px;color:var(--dust);line-height:1.6;" data-i18n="reg_ib1_d">Survival rate: 50%. Because nobody owned them. Nobody cared.</div></div></div>
+          <div class="rib-item"><div class="rib-icon" style="background:rgba(200,64,64,.1);">🇨🇳</div><div><div style="font-size:13px;font-weight:600;color:var(--white);margin-bottom:3px;" data-i18n="reg_ib2_h">China's Great Green Wall</div><div style="font-size:11px;color:var(--dust);line-height:1.6;" data-i18n="reg_ib2_d">Failure rate: 85%. State-planted trees with no local ecosystem match.</div></div></div>
+          <div class="rib-item"><div class="rib-icon" style="background:rgba(74,158,97,.1);">🥭</div><div><div style="font-size:13px;font-weight:600;color:var(--white);margin-bottom:3px;" data-i18n="reg_ib3_h">Gutli Mission</div><div style="font-size:11px;color:var(--dust);line-height:1.6;" data-i18n="reg_ib3_d">Survival rate: 94%. Farmer owns it. Local variety matched. No Monsanto. No licence.</div></div></div>
+          <div style="margin-top:20px;background:rgba(245,166,35,.06);border:1px solid rgba(245,166,35,.15);border-radius:10px;padding:14px;font-size:11px;color:var(--dust);line-height:1.8;" data-i18n="reg_ib_box">
             ✅ You keep the tree forever<br>
             ✅ No annual seed cost (unlike GMO cotton)<br>
             ✅ ₹300–400 income per tree per year for 40 years<br>
@@ -736,22 +749,22 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:0 52px;height:64px;
     <div class="tp" id="tp-wa">
       <div class="wa-wrap">
         <div>
-          <div class="stag" style="margin-bottom:10px;">// Farmer Interface</div>
-          <h3 style="font-family:'Fraunces',serif;font-size:28px;font-weight:900;color:var(--white);margin-bottom:10px;line-height:1;">Works on Any Phone.<br><em style="color:var(--mango);font-style:italic;">No App Needed.</em></h3>
-          <p style="font-size:13px;color:var(--dust);line-height:1.8;max-width:380px;margin-bottom:18px;">Farmers already have WhatsApp. The entire platform runs as an intelligent bot — register land, track trees, get soil advice, report problems. All in local language.</p>
+          <div class="stag" style="margin-bottom:10px;" data-i18n="wa_tag">// Farmer Interface</div>
+          <h3 style="font-family:'Fraunces',serif;font-size:28px;font-weight:900;color:var(--white);margin-bottom:10px;line-height:1;" data-i18n="wa_h">Works on Any Phone.<br><em style="color:var(--mango);font-style:italic;">No App Needed.</em></h3>
+          <p style="font-size:13px;color:var(--dust);line-height:1.8;max-width:380px;margin-bottom:18px;" data-i18n="wa_p">Farmers already have WhatsApp. The entire platform runs as an intelligent bot — register land, track trees, get soil advice, report problems. All in local language.</p>
           <div class="lang-pills">
             <div class="lp2">✓ Hindi</div><div class="lp2">✓ Punjabi</div><div class="lp2">✓ Bengali</div><div class="lp2">✓ Odia</div><div class="lp2">✓ Marathi</div>
           </div>
-          <div style="font-size:12px;color:var(--dust);margin-bottom:10px;">Try quick replies:</div>
+          <div style="font-size:12px;color:var(--dust);margin-bottom:10px;" data-i18n="wa_try">Try quick replies:</div>
           <div class="chips2">
-            <div class="chip2" onclick="sc('Register my land')">Register land 🌾</div>
-            <div class="chip2" onclick="sc('My tree has yellow leaves')">Yellow leaves 🍂</div>
-            <div class="chip2" onclick="sc('When will I get fruit?')">When fruit? 🥭</div>
-            <div class="chip2" onclick="sc('I am from Hoshiarpur Punjab')">From Punjab</div>
-            <div class="chip2" onclick="sc('Mujhe Punjabi mein batao')">ਪੰਜਾਬੀ ਵਿੱਚ 🙏</div>
-            <div class="chip2" onclick="sc('How to donate seeds?')">Donate seeds 📦</div>
-            <div class="chip2" onclick="sc('Soil advice for mango')">Soil advice 🌱</div>
-            <div class="chip2" onclick="sc('GMO cotton alternative')">Ditch GMO 🚫</div>
+            <div class="chip2" onclick="sc('Register my land')" data-i18n="wa_c1">Register land 🌾</div>
+            <div class="chip2" onclick="sc('My tree has yellow leaves')" data-i18n="wa_c2">Yellow leaves 🍂</div>
+            <div class="chip2" onclick="sc('When will I get fruit?')" data-i18n="wa_c3">When fruit? 🥭</div>
+            <div class="chip2" onclick="sc('I am from Hoshiarpur Punjab')" data-i18n="wa_c4">From Punjab</div>
+            <div class="chip2" onclick="sc('Mujhe Punjabi mein batao')" data-i18n="wa_c5">ਪੰਜਾਬੀ ਵਿੱਚ 🙏</div>
+            <div class="chip2" onclick="sc('How to donate seeds?')" data-i18n="wa_c6">Donate seeds 📦</div>
+            <div class="chip2" onclick="sc('Soil advice for mango')" data-i18n="wa_c7">Soil advice 🌱</div>
+            <div class="chip2" onclick="sc('GMO cotton alternative')" data-i18n="wa_c8">Ditch GMO 🚫</div>
           </div>
         </div>
         <div class="wad">
@@ -773,13 +786,13 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:0 52px;height:64px;
     <div class="tp" id="tp-photo">
       <div class="two-col">
         <div>
-          <h3 style="font-family:'Fraunces',serif;font-size:20px;font-weight:700;color:var(--white);margin-bottom:6px;">Tree Health Scanner</h3>
-          <p style="font-size:12px;color:var(--dust);margin-bottom:18px;line-height:1.65;">Farmer photos their tree monthly on WhatsApp. AI analyses leaf colour, canopy density, pest signs — replies in 30 seconds in local language.</p>
+          <h3 style="font-family:'Fraunces',serif;font-size:20px;font-weight:700;color:var(--white);margin-bottom:6px;" data-i18n="ph_h">Tree Health Scanner</h3>
+          <p style="font-size:12px;color:var(--dust);margin-bottom:18px;line-height:1.65;" data-i18n="ph_p">Farmer photos their tree monthly on WhatsApp. AI analyses leaf colour, canopy density, pest signs — replies in 30 seconds in local language.</p>
           <div class="uz" id="uz" onclick="document.getElementById('ufi').click()">
             <input type="file" id="ufi" accept="image/*" style="display:none" onchange="ap(event)"/>
             <div style="font-size:36px;margin-bottom:10px;">📷</div>
-            <div style="font-size:14px;font-weight:500;color:var(--white);margin-bottom:4px;">Upload Tree Photo</div>
-            <div style="font-size:11px;color:var(--dust);">Click or drag & drop · JPG / PNG</div>
+            <div style="font-size:14px;font-weight:500;color:var(--white);margin-bottom:4px;" data-i18n="ph_upload">Upload Tree Photo</div>
+            <div style="font-size:11px;color:var(--dust);" data-i18n="ph_drag">Click or drag & drop · JPG / PNG</div>
           </div>
           <div class="ar" id="aphoto-out">
             <div style="background:var(--glass);border:1px solid var(--gb);border-radius:12px;padding:20px;margin-top:16px;">
@@ -795,15 +808,15 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:0 52px;height:64px;
         <div style="display:flex;flex-direction:column;gap:14px;">
           <div style="background:var(--glass);border:1px solid var(--gb);border-radius:12px;padding:20px;">
             <div style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--mango);letter-spacing:.1em;margin-bottom:12px;text-transform:uppercase;">// Farmer #F-2847 · Monthly Report</div>
-            <div class="rr"><span class="rk">Trees Registered</span><span class="rv">12</span></div>
-            <div class="rr"><span class="rk">Photos This Month</span><span class="rv">11/12</span></div>
-            <div class="rr"><span class="rk">Avg Health Score</span><span class="rv">88%</span></div>
-            <div class="rr"><span class="rk">Trees Flagged</span><span class="rv" style="color:var(--red);">1 ⚠️</span></div>
-            <div class="rr"><span class="rk">Next Check Due</span><span class="rv">Jul 1, 2025</span></div>
+            <div class="rr"><span class="rk" data-i18n="ph_r1">Trees Registered</span><span class="rv">12</span></div>
+            <div class="rr"><span class="rk" data-i18n="ph_r2">Photos This Month</span><span class="rv">11/12</span></div>
+            <div class="rr"><span class="rk" data-i18n="ph_r3">Avg Health Score</span><span class="rv">88%</span></div>
+            <div class="rr"><span class="rk" data-i18n="ph_r4">Trees Flagged</span><span class="rv" style="color:var(--red);">1 ⚠️</span></div>
+            <div class="rr"><span class="rk" data-i18n="ph_r5">Next Check Due</span><span class="rv">Jul 1, 2025</span></div>
           </div>
           <div style="background:rgba(245,166,35,.04);border:1px solid rgba(245,166,35,.15);border-radius:12px;padding:20px;">
-            <div style="font-size:12px;font-weight:600;color:var(--white);margin-bottom:9px;">📲 How farmers use this</div>
-            <div style="font-size:11px;color:var(--dust);line-height:1.85;">
+            <div style="font-size:12px;font-weight:600;color:var(--white);margin-bottom:9px;" data-i18n="ph_use_h">📲 How farmers use this</div>
+            <div style="font-size:11px;color:var(--dust);line-height:1.85;" data-i18n="ph_use_d">
               1. Bot sends photo reminder on 1st each month<br>
               2. Farmer photos each tree, sends via WhatsApp<br>
               3. AI scans, replies with health score in 30 seconds<br>
@@ -819,17 +832,17 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:0 52px;height:64px;
 
 <!-- SEED TRACKER -->
 <section class="sec rev" id="tracker">
-  <div class="stag">// Seed Journey</div>
-  <h2 class="sh">Track Your Seed<br><em>Every Step.</em></h2>
+  <div class="stag" data-i18n="trk_tag">// Seed Journey</div>
+  <h2 class="sh" data-i18n="trk_h">Track Your Seed<br><em>Every Step.</em></h2>
   <div class="sbar"></div>
-  <p style="color:var(--dust);font-size:14px;margin-top:16px;margin-bottom:36px;max-width:500px;line-height:1.75;">Every donated seed gets a unique ID the moment it's registered. From your hand to a farmer's land — you can watch every step of the journey in real time.</p>
+  <p style="color:var(--dust);font-size:14px;margin-top:16px;margin-bottom:36px;max-width:500px;line-height:1.75;" data-i18n="trk_intro">Every donated seed gets a unique ID the moment it's registered. From your hand to a farmer's land — you can watch every step of the journey in real time.</p>
   <div class="tracker-wrap">
     <div>
-      <input class="trin" id="tcode" placeholder="Enter Seed ID — e.g. GM-2024-48291"/>
+      <input class="trin" id="tcode" placeholder="Enter Seed ID — e.g. GM-2024-48291" data-i18n-ph="trk_ph"/>
       <div style="display:flex;gap:10px;">
-        <button class="trb" onclick="trk()">Track →</button>
-        <button class="trb" style="background:rgba(255,255,255,.07);color:var(--cream);" onclick="document.getElementById('tcode').value='GM-2024-48291';trk()">Try Demo 1</button>
-        <button class="trb" style="background:rgba(255,255,255,.07);color:var(--cream);" onclick="document.getElementById('tcode').value='GM-2024-12847';trk()">Try Demo 2</button>
+        <button class="trb" onclick="trk()" data-i18n="trk_btn">Track →</button>
+        <button class="trb" style="background:rgba(255,255,255,.07);color:var(--cream);" onclick="document.getElementById('tcode').value='GM-2024-48291';trk()" data-i18n="trk_demo1">Try Demo 1</button>
+        <button class="trb" style="background:rgba(255,255,255,.07);color:var(--cream);" onclick="document.getElementById('tcode').value='GM-2024-12847';trk()" data-i18n="trk_demo2">Try Demo 2</button>
       </div>
       <div class="jtl" id="jtl">
         <div class="jhdr" id="jhdr"></div>
@@ -837,14 +850,14 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:0 52px;height:64px;
       </div>
     </div>
     <div style="background:var(--glass);border:1px solid var(--gb);border-radius:18px;padding:28px;">
-      <div style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--mango);letter-spacing:.1em;margin-bottom:18px;text-transform:uppercase;">// Every Seed ID Reveals</div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--mango);letter-spacing:.1em;margin-bottom:18px;text-transform:uppercase;" data-i18n="trk_rev_h">// Every Seed ID Reveals</div>
       <div style="display:flex;flex-direction:column;gap:12px;">
-        <div style="display:flex;gap:10px;"><div style="font-size:16px;">🥭</div><div style="font-size:12px;color:var(--dust);line-height:1.6;"><strong style="color:var(--cream);">Donor origin</strong> — who gave it, which city, date received</div></div>
-        <div style="display:flex;gap:10px;"><div style="font-size:16px;">🧪</div><div style="font-size:12px;color:var(--dust);line-height:1.6;"><strong style="color:var(--cream);">Lab processing</strong> — germination date, variety matched, graft date</div></div>
-        <div style="display:flex;gap:10px;"><div style="font-size:16px;">🌱</div><div style="font-size:12px;color:var(--dust);line-height:1.6;"><strong style="color:var(--cream);">Farmer details</strong> — name, district, land size, registration date</div></div>
-        <div style="display:flex;gap:10px;"><div style="font-size:16px;">📊</div><div style="font-size:12px;color:var(--dust);line-height:1.6;"><strong style="color:var(--cream);">Live tree health</strong> — monthly photo scores, current status, alerts</div></div>
-        <div style="display:flex;gap:10px;"><div style="font-size:16px;">💚</div><div style="font-size:12px;color:var(--dust);line-height:1.6;"><strong style="color:var(--cream);">Carbon tracking</strong> — CO₂ absorbed to date, 40-year lifetime projection</div></div>
-        <div style="display:flex;gap:10px;"><div style="font-size:16px;">💰</div><div style="font-size:12px;color:var(--dust);line-height:1.6;"><strong style="color:var(--cream);">Income generated</strong> — estimated farmer earnings from this tree</div></div>
+        <div style="display:flex;gap:10px;"><div style="font-size:16px;">🥭</div><div style="font-size:12px;color:var(--dust);line-height:1.6;" data-i18n="trk_rev1"><strong style="color:var(--cream);">Donor origin</strong> — who gave it, which city, date received</div></div>
+        <div style="display:flex;gap:10px;"><div style="font-size:16px;">🧪</div><div style="font-size:12px;color:var(--dust);line-height:1.6;" data-i18n="trk_rev2"><strong style="color:var(--cream);">Lab processing</strong> — germination date, variety matched, graft date</div></div>
+        <div style="display:flex;gap:10px;"><div style="font-size:16px;">🌱</div><div style="font-size:12px;color:var(--dust);line-height:1.6;" data-i18n="trk_rev3"><strong style="color:var(--cream);">Farmer details</strong> — name, district, land size, registration date</div></div>
+        <div style="display:flex;gap:10px;"><div style="font-size:16px;">📊</div><div style="font-size:12px;color:var(--dust);line-height:1.6;" data-i18n="trk_rev4"><strong style="color:var(--cream);">Live tree health</strong> — monthly photo scores, current status, alerts</div></div>
+        <div style="display:flex;gap:10px;"><div style="font-size:16px;">💚</div><div style="font-size:12px;color:var(--dust);line-height:1.6;" data-i18n="trk_rev5"><strong style="color:var(--cream);">Carbon tracking</strong> — CO₂ absorbed to date, 40-year lifetime projection</div></div>
+        <div style="display:flex;gap:10px;"><div style="font-size:16px;">💰</div><div style="font-size:12px;color:var(--dust);line-height:1.6;" data-i18n="trk_rev6"><strong style="color:var(--cream);">Income generated</strong> — estimated farmer earnings from this tree</div></div>
       </div>
     </div>
   </div>
@@ -852,33 +865,33 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:0 52px;height:64px;
 
 <!-- CSR -->
 <section class="sec alt rev" id="csr">
-  <div class="stag">// Corporate Funding Layer</div>
-  <h2 class="sh">Verified Impact.<br><em>Instant Funding.</em></h2>
+  <div class="stag" data-i18n="csr_tag">// Corporate Funding Layer</div>
+  <h2 class="sh" data-i18n="csr_h">Verified Impact.<br><em>Instant Funding.</em></h2>
   <div class="sbar"></div>
-  <p style="color:var(--dust);font-size:14px;margin-top:16px;max-width:520px;line-height:1.75;">India's CSR mandate requires ₹25,000 crore in annual corporate spending. Most goes unverified. We auto-generate real-time reports — trees, carbon, farmer income — no consultants, no delays.</p>
+  <p style="color:var(--dust);font-size:14px;margin-top:16px;max-width:520px;line-height:1.75;" data-i18n="csr_intro">India's CSR mandate requires ₹25,000 crore in annual corporate spending. Most goes unverified. We auto-generate real-time reports — trees, carbon, farmer income — no consultants, no delays.</p>
   <div class="csr-grid" style="margin-top:40px;">
     <div>
       <div class="rcard">
-        <div class="rh"><div class="rht">// Impact Report · Q4 2024</div><div class="rbg">VERIFIED ✓</div></div>
+        <div class="rh"><div class="rht" data-i18n="csr_rht">// Impact Report · Q4 2024</div><div class="rbg" data-i18n="csr_verified">VERIFIED ✓</div></div>
         <div class="rb">
-          <div class="rrw"><span class="rk2">Trees Planted (Verified)</span><span class="rv2">12,400</span></div>
-          <div class="rrw"><span class="rk2">CO₂ Offset (Tonnes)</span><span class="rv2">12.4T</span></div>
-          <div class="rrw"><span class="rk2">Farming Families Reached</span><span class="rv2">247</span></div>
-          <div class="rrw"><span class="rk2">Farmer Income Generated</span><span class="rv2">₹37.2L</span></div>
-          <div class="rrw"><span class="rk2">Tree Survival Rate</span><span class="rv2">94.3%</span></div>
-          <div class="rrw"><span class="rk2">Districts Covered</span><span class="rv2">14</span></div>
-          <div class="rrw"><span class="rk2">Photo Verification Rate</span><span class="rv2">91.8%</span></div>
-          <div class="rrw"><span class="rk2">Projected 10-yr Income</span><span class="rv2">₹14.8Cr</span></div>
+          <div class="rrw"><span class="rk2" data-i18n="csr_row1">Trees Planted (Verified)</span><span class="rv2">12,400</span></div>
+          <div class="rrw"><span class="rk2" data-i18n="csr_row2">CO₂ Offset (Tonnes)</span><span class="rv2">12.4T</span></div>
+          <div class="rrw"><span class="rk2" data-i18n="csr_row3">Farming Families Reached</span><span class="rv2">247</span></div>
+          <div class="rrw"><span class="rk2" data-i18n="csr_row4">Farmer Income Generated</span><span class="rv2">₹37.2L</span></div>
+          <div class="rrw"><span class="rk2" data-i18n="csr_row5">Tree Survival Rate</span><span class="rv2">94.3%</span></div>
+          <div class="rrw"><span class="rk2" data-i18n="csr_row6">Districts Covered</span><span class="rv2">14</span></div>
+          <div class="rrw"><span class="rk2" data-i18n="csr_row7">Photo Verification Rate</span><span class="rv2">91.8%</span></div>
+          <div class="rrw"><span class="rk2" data-i18n="csr_row8">Projected 10-yr Income</span><span class="rv2">₹14.8Cr</span></div>
         </div>
       </div>
-      <button class="dbt" onclick="alert('Live version: blockchain-timestamped PDF with GPS coordinates of each tree')">⬇ Download Verified PDF Report</button>
+      <button class="dbt" onclick="alert('Live version: blockchain-timestamped PDF with GPS coordinates of each tree')" data-i18n="csr_dl">⬇ Download Verified PDF Report</button>
     </div>
     <div>
-      <div style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--mango);letter-spacing:.1em;margin-bottom:16px;text-transform:uppercase;">// Potential CSR Partners</div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--mango);letter-spacing:.1em;margin-bottom:16px;text-transform:uppercase;" data-i18n="csr_partners_h">// Potential CSR Partners</div>
       <div class="clogos">
         <div class="cch">🏭 Tata Group</div><div class="cch">⚡ Reliance Foundation</div><div class="cch">🏦 HDFC Bank</div><div class="cch">🌿 ITC Limited</div><div class="cch">💊 Sun Pharma</div><div class="cch">🚗 Mahindra</div><div class="cch">📱 Infosys Foundation</div><div class="cch">🛢️ ONGC</div>
       </div>
-      <div class="csr-why">
+      <div class="csr-why" data-i18n="csr_why">
         ✓ Every tree GPS-verified via farmer WhatsApp photo<br>
         ✓ Carbon offset calculated per IPCC standards automatically<br>
         ✓ Farmer income tracked monthly, not estimated<br>
@@ -892,19 +905,19 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:0 52px;height:64px;
 <!-- FINAL CTA -->
 <section class="final">
   <div class="final-glow"></div>
-  <div class="stag" style="justify-content:center;display:flex;margin-bottom:20px;">// Built For The Mission</div>
-  <h2>5 Years. Zero Budget.<br><em>800,000 Trees.</em><br>Imagine What's Next.</h2>
-  <p>This platform gives the Gutli Mission the infrastructure it has always deserved — so Jasmeet can focus on trees, not spreadsheets.</p>
+  <div class="stag" style="justify-content:center;display:flex;margin-bottom:20px;" data-i18n="cta_tag">// Built For The Mission</div>
+  <h2 data-i18n="cta_h">5 Years. Zero Budget.<br><em>800,000 Trees.</em><br>Imagine What's Next.</h2>
+  <p data-i18n="cta_p">This platform gives the Gutli Mission the infrastructure it has always deserved — so Jasmeet can focus on trees, not spreadsheets.</p>
   <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
-    <button class="btn bm" style="font-size:14px;padding:14px 32px;">Partner With the Mission</button>
-    <button class="btn bg" style="font-size:14px;padding:14px 32px;" onclick="scrollTo('zone')">Find My Mango Zone</button>
+    <button class="btn bm" style="font-size:14px;padding:14px 32px;" data-i18n="cta_btn1">Partner With the Mission</button>
+    <button class="btn bg" style="font-size:14px;padding:14px 32px;" onclick="scrollTo('zone')" data-i18n="cta_btn2">Find My Mango Zone</button>
   </div>
   <div class="contact-card">
-    <div class="cc-item"><div class="cc-label">Jasmeet Singh Arora</div><div class="cc-val">Gutliman of India 🥭</div></div>
-    <div class="cc-item"><div class="cc-label">WhatsApp / Call</div><div class="cc-val">09831459390</div></div>
-    <div class="cc-item"><div class="cc-label">Courier Seeds To</div><div class="cc-val">Kolkata — 700026</div></div>
+    <div class="cc-item"><div class="cc-label" data-i18n="cta_cc1">Jasmeet Singh Arora</div><div class="cc-val" data-i18n="cta_ccv1">Gutliman of India 🥭</div></div>
+    <div class="cc-item"><div class="cc-label" data-i18n="cta_cc2">WhatsApp / Call</div><div class="cc-val">09831459390</div></div>
+    <div class="cc-item"><div class="cc-label" data-i18n="cta_cc3">Courier Seeds To</div><div class="cc-val">Kolkata — 700026</div></div>
   </div>
-  <div class="built">Built by <span>Sifotech HQ</span> · Bradford, UK · For India's Mango Revolution 🥭</div>
+  <div class="built" data-i18n="cta_built">Built by <span>Sifotech HQ</span> · Bradford, UK · For India's Mango Revolution 🥭</div>
 </section>
 
 <script>
@@ -1184,6 +1197,89 @@ window.addEventListener('load', () => setTimeout(insertVisit, 3000));
 // Update that same row on exit with final time + sections — never a new row
 window.addEventListener('beforeunload', updateVisit);
 window.addEventListener('pagehide', updateVisit);
+</script>
+
+<script>
+// === i18n: Hindi / Punjabi / Bengali switcher ===
+const translations = {
+hi: {
+nav_mission:`मिशन`,nav_how:`कैसे काम करता है`,nav_zone:`ज़ोन सलाहकार`,nav_platform:`प्लेटफ़ॉर्म`,nav_tracker:`बीज ट्रैकर`,nav_csr:`CSR`,nav_demo:`डेमो आज़माएँ →`,
+hero_badge:`लाइव — भारत की मैंगो क्रांति`,hero_h1:`एक बीज।<br><em>8 लाख पेड़।</em><br>शून्य बजट।`,hero_sub:`जसमीत सिंह अरोड़ा — भारत के गुटलीमैन — ने ऐसा आंदोलन खड़ा किया जिसने 5,000 किसान परिवारों की ज़िंदगी बदल दी। यह प्लेटफ़ॉर्म उसी मिशन की तकनीकी रीढ़ है।`,hero_stat1:`ग्राफ़्ट किए पेड़`,hero_stat2:`सहायता पाए परिवार`,hero_stat3:`एकत्रित बीज`,hero_stat4:`टन CO₂ कम`,hero_cta1:`🗺️ मेरा मैंगो ज़ोन खोजें`,hero_cta2:`प्लेटफ़ॉर्म देखें`,hero_scroll:`स्क्रॉल करें`,
+mis_tag:`// कहानी`,mis_h:`कौन हैं<br><em>गुटली मैन?</em>`,mis_p1:`<strong>जसमीत सिंह अरोड़ा, 53, कोलकाता से।</strong> न किसान। न वनस्पति वैज्ञानिक। बस एक ऐसा इंसान जिसकी नींद उड़ गई थी जब बंगाल के सदियों पुराने आम के बाग़ ख़त्म हो रहे थे — और उन पर निर्भर किसान पूरे सीज़न में सिर्फ़ ₹2,000 कमा रहे थे।`,mis_p2:`2017 में उनके पास एक विचार था: <strong>फेंके बीजों से आम के पेड़ लगाना।</strong> आम के पेड़ सिर्फ़ फल नहीं देते — वे जीवनभर में एक टन CO₂ सोखते हैं, पक्षियों को आश्रय देते हैं, इकोसिस्टम बहाल करते हैं और 100 साल जीते हैं। एक ग्राफ़्टेड पेड़ किसान को हर साल ₹300–400 कमाकर देता है। यह धान से 15 गुना ज़्यादा है। <strong>40 साल तक।</strong>`,mis_p3:`सबसे बड़ी खोज थी <strong>ग्राफ़्टिंग</strong> — किसी फलदार पेड़ की डाली काटकर नए पौधे से जोड़ देना। जो पेड़ सामान्यतः 15 साल में फल देता है, अब 3 साल में देता है। हर 1,000 बीजों में से जसमीत की लैब 100 मज़बूत चुनती है, 6 महीने ग्राफ़्ट करती है और हर पौधा एक किसान को सौंपती है — जो <strong>हमेशा के लिए उसका मालिक होता है।</strong>`,mis_p4:`मई 2023 में उन्होंने एक वीडियो डाला, एक बीज माँगते हुए। वो वायरल हो गया। तब से अब तक: <strong>21 लाख बीज एकत्रित। 8 लाख पेड़ बांटे गए। सुंदरबन, बांकुड़ा, पुरुलिया और झारखंड में 5,000+ परिवारों को नई आमदनी</strong> — सरकार पर ज़ीरो लागत।`,mis_quote:`"अगर हर भारतीय सिर्फ़ एक आम की गुठली दे, तो हम एक ही सीज़न में 20 करोड़ पेड़ लगा सकते हैं — ऑस्ट्रेलिया की पूरी आबादी से भी ज़्यादा।"`,mis_attr:`— जसमीत सिंह अरोड़ा · भारत के गुटलीमैन`,mis_fv1:`1 टन`,mis_fl1:`एक आम का पेड़ जीवनभर में इतना CO₂ सोखता है — आपकी कार के एक साल के उत्सर्जन के बराबर`,mis_fv2:`15x`,mis_fl2:`पूरे धान सीज़न से एक आम के पेड़ की आमदनी 15 गुना ज़्यादा (₹300–400/साल बनाम ₹2,000/सीज़न)`,mis_fv3:`3 साल`,mis_fl3:`ग्राफ़्टिंग 15 साल को 3 में बदल देती है। साल 3 में पहला फल, साल 5 तक व्यावसायिक उत्पादन`,mis_fv4:`94%`,mis_fl4:`पेड़ की उत्तरजीविता दर — क्योंकि पेड़ किसान का अपना है। इथियोपिया ने 60 करोड़ पेड़ लगाए, 50% मर गए। मालिकाना सब बदल देता है।`,mis_fv5:`₹0`,mis_fl5:`किसान पर शून्य लागत। बीज आपके कूड़े से। पौधा मिशन से। भविष्य उनका।`,
+how_tag:`// श्रृंखला`,how_h:`आपकी गुटली से<br>एक <em>किसान के भविष्य तक</em>`,how_t1:`आप दान करें`,how_d1:`आम खाएं, गुठली न फेंकें। नज़दीकी ड्रॉप पॉइंट पर डालें, या कोलकाता कुरियर करें। 30 सेकंड का काम।`,how_t2:`AI सबसे अच्छा चुनता है`,how_d2:`1,000 बीज आते हैं। AI स्कैन सबसे मज़बूत 100 चुनता है। बाकी मिट्टी में वापस।`,how_t3:`जसमीत ग्राफ़्ट करते हैं`,how_d3:`6 महीने की नर्सरी। फलदार पेड़ की डाली नए पौधे से जोड़ी जाती है। किसान के ज़िले के हिसाब से वैरायटी।`,how_t4:`किसान का अपना`,how_d4:`पेड़ किसान की संपत्ति है — न क़र्ज़, न दान। न Monsanto। न लाइसेंस। कभी ख़त्म नहीं होता।`,how_t5:`प्लेटफ़ॉर्म ट्रैक करता है`,how_d5:`हर महीने WhatsApp फ़ोटो। AI सेहत की पुष्टि करता है। उत्तरजीविता, CO₂, आमदनी — सब CSR फ़ंडर्स के लिए वेरिफ़ाइड।`,
+zone_tag:`// AI मिट्टी + जलवायु इंटेलिजेंस`,zone_h:`सही आम चुनें<br>अपनी <em>ज़मीन के लिए</em>`,zone_intro:`अपना ज़िला, मिट्टी और पानी डालें। पूरा वैज्ञानिक विश्लेषण पाएँ — कौन सी वैरायटी सही है, लगाने से पहले क्या ठीक करें, कब कमाई शुरू और कितनी। ईमानदार जवाब, चाहे जवाब "यहाँ आम मत लगाओ" ही क्यों न हो।`,zone_fc_title:`मेरे ज़ोन का विश्लेषण`,zone_fc_sub:`10 सेकंड · साइन-अप नहीं · ईमानदार नतीजा`,zone_l_state:`राज्य / क्षेत्र`,zone_l_ph:`मिट्टी का pH`,zone_l_water:`पानी का स्रोत`,zone_l_land:`ज़मीन (एकड़)`,zone_l_crop:`मौजूदा फ़सल`,zone_btn:`🔍 मेरे ज़ोन का विश्लेषण →`,
+plat_tag:`// इंटरैक्टिव प्लेटफ़ॉर्म`,plat_h:`इसे आज़माएँ।<br><em>अभी।</em>`,plat_tab1:`🥭 बीज दान करें`,plat_tab2:`🌾 किसान रजिस्टर`,plat_tab3:`💬 WhatsApp बॉट`,plat_tab4:`📷 पेड़ की सेहत`,
+don_h:`अपनी गुटली दान करें`,don_p:`अपना राज्य और बीजों की संख्या बताएँ। हम नज़दीकी ड्रॉप पॉइंट और बताएँगे कि आपके बीज कितने पेड़ बनेंगे।`,don_l_state:`आपका राज्य`,don_l_city:`आपका शहर`,don_ph_city:`जैसे होशियारपुर`,don_l_seed:`बीजों की संख्या`,don_l_name:`आपका नाम (वैकल्पिक)`,don_ph_name:`मिशन मैप पर दिखेगा`,don_btn:`नज़दीकी ड्रॉप पॉइंट खोजें →`,don_found:`✅ ड्रॉप पॉइंट मिला`,don_r_dist:`दूरी`,don_r_addr:`पता`,don_r_hours:`खुलने का समय`,don_r_become:`आपके बीज बनेंगे`,don_r_tid:`ट्रैकिंग ID जारी`,don_maptag:`// लाइव ड्रॉप पॉइंट — भारत`,don_courier:`📦 <strong style="color:var(--cream);">सीधे जसमीत को कुरियर करें</strong><br>Jasmeet Singh Arora · C/O Eden House<br>17/1 Lansdowne Terrace, Manhorpukur Road<br>Kolkata — 700026<br>📞 09831459390 / 08420890852<br><span style="font-size:10px;opacity:.5;margin-top:4px;display:block;">सिर्फ़ कागज़ का बैग · लेबल "Mango Seeds" · कोई भी कुरियर चलेगा</span>`,
+reg_t1:`आपकी ज़मीन`,reg_s1:`चरण 1 / 3 — स्थान और बेसिक्स`,reg_l_name:`आपका नाम`,reg_ph_name:`Balwinder Singh`,reg_l_district:`ज़िला`,reg_l_land:`ज़मीन (एकड़)`,reg_l_crop:`मौजूदा फ़सल`,reg_btn_next:`आगे →`,reg_t2:`मिट्टी और पानी`,reg_s2:`चरण 2 / 3 — वैरायटी मैचिंग के लिए`,reg_l_water:`पानी का स्रोत`,reg_l_ph:`मिट्टी का pH (लगभग)`,reg_l_exp:`पेड़ों का अनुभव?`,reg_btn_back:`← पीछे`,reg_btn_analyse:`मेरी ज़मीन का विश्लेषण →`,reg_t3:`आपका AI नतीजा`,reg_s3:`आपकी ज़मीन के लिए कस्टम`,reg_ib_title:`मालिकाना मॉडल क्यों काम करता है`,reg_ib1_h:`इथियोपिया ने 60 करोड़ पेड़ लगाए`,reg_ib1_d:`उत्तरजीविता दर: 50%। क्योंकि किसी का अपना नहीं था। किसी को परवाह नहीं थी।`,reg_ib2_h:`चीन की ग्रेट ग्रीन वॉल`,reg_ib2_d:`विफलता दर: 85%। राज्य ने लगाए, स्थानीय इकोसिस्टम से मेल नहीं खाया।`,reg_ib3_h:`गुटली मिशन`,reg_ib3_d:`उत्तरजीविता दर: 94%। किसान का अपना। स्थानीय वैरायटी। न Monsanto। न लाइसेंस।`,reg_ib_box:`✅ पेड़ हमेशा आपका<br>✅ कोई सालाना बीज खर्च नहीं (GMO कपास के विपरीत)<br>✅ हर पेड़ से ₹300–400 सालाना आमदनी, 40 साल तक<br>✅ 2026 से कार्बन क्रेडिट संभावना<br>✅ आपके बच्चों को फलदार बाग विरासत में मिलेगा`,
+wa_tag:`// किसान इंटरफ़ेस`,wa_h:`किसी भी फ़ोन पर चलता है।<br><em style="color:var(--mango);font-style:italic;">कोई ऐप नहीं चाहिए।</em>`,wa_p:`किसानों के पास WhatsApp पहले से है। पूरा प्लेटफ़ॉर्म एक स्मार्ट बॉट की तरह चलता है — ज़मीन रजिस्टर करें, पेड़ ट्रैक करें, मिट्टी की सलाह लें, समस्या रिपोर्ट करें। सब लोकल भाषा में।`,wa_try:`क्विक रिप्लाई आज़माएँ:`,wa_c1:`ज़मीन रजिस्टर 🌾`,wa_c2:`पीले पत्ते 🍂`,wa_c3:`फल कब? 🥭`,wa_c4:`पंजाब से हूँ`,wa_c5:`ਪੰਜਾਬੀ ਵਿੱਚ 🙏`,wa_c6:`बीज दान 📦`,wa_c7:`मिट्टी सलाह 🌱`,wa_c8:`GMO छोड़ें 🚫`,
+ph_h:`पेड़ सेहत स्कैनर`,ph_p:`किसान हर महीने WhatsApp पर अपने पेड़ की फ़ोटो भेजता है। AI पत्तियों का रंग, छतरी का घनत्व, कीट के निशान देखता है — 30 सेकंड में लोकल भाषा में जवाब।`,ph_upload:`पेड़ की फ़ोटो अपलोड करें`,ph_drag:`क्लिक करें या ड्रैग · JPG / PNG`,ph_r1:`रजिस्टर्ड पेड़`,ph_r2:`इस महीने की फ़ोटो`,ph_r3:`औसत सेहत स्कोर`,ph_r4:`फ़्लैग किए पेड़`,ph_r5:`अगली जाँच`,ph_use_h:`📲 किसान कैसे इस्तेमाल करते हैं`,ph_use_d:`1. हर महीने की 1 तारीख़ को बॉट फ़ोटो रिमाइंडर भेजता है<br>2. किसान हर पेड़ की फ़ोटो लेकर WhatsApp पर भेजता है<br>3. AI स्कैन करता है, 30 सेकंड में सेहत स्कोर देता है<br>4. अगर फ़्लैग — तो लोकल भाषा में इलाज की सलाह<br>5. सारा डेटा जसमीत के डैशबोर्ड + CSR रिपोर्ट में सिंक`,
+trk_tag:`// बीज की यात्रा`,trk_h:`अपने बीज को ट्रैक करें<br><em>हर क़दम पर।</em>`,trk_intro:`हर दान किए बीज को रजिस्टर होते ही एक यूनीक ID मिलती है। आपके हाथ से किसान की ज़मीन तक — आप यात्रा का हर क़दम रियल टाइम में देख सकते हैं।`,trk_ph:`बीज ID डालें — जैसे GM-2024-48291`,trk_btn:`ट्रैक →`,trk_demo1:`डेमो 1 आज़माएँ`,trk_demo2:`डेमो 2 आज़माएँ`,trk_rev_h:`// हर बीज ID क्या बताती है`,trk_rev1:`<strong style="color:var(--cream);">दानदाता मूल</strong> — किसने दिया, कौन सा शहर, किस तारीख़`,trk_rev2:`<strong style="color:var(--cream);">लैब प्रोसेसिंग</strong> — अंकुरण की तारीख़, वैरायटी, ग्राफ़्ट तारीख़`,trk_rev3:`<strong style="color:var(--cream);">किसान विवरण</strong> — नाम, ज़िला, ज़मीन का आकार, रजिस्ट्रेशन तारीख़`,trk_rev4:`<strong style="color:var(--cream);">पेड़ की लाइव सेहत</strong> — मासिक फ़ोटो स्कोर, मौजूदा स्थिति, अलर्ट`,trk_rev5:`<strong style="color:var(--cream);">कार्बन ट्रैकिंग</strong> — अब तक सोखी CO₂, 40 साल का अनुमान`,trk_rev6:`<strong style="color:var(--cream);">आमदनी</strong> — इस पेड़ से किसान की अनुमानित कमाई`,
+csr_tag:`// कॉर्पोरेट फ़ंडिंग लेयर`,csr_h:`वेरिफ़ाइड प्रभाव।<br><em>तुरंत फ़ंडिंग।</em>`,csr_intro:`भारत के CSR क़ानून के तहत सालाना ₹25,000 करोड़ कॉर्पोरेट खर्च ज़रूरी है। ज़्यादातर अनवेरिफ़ाइड रहता है। हम रियल-टाइम रिपोर्ट ऑटो-जनरेट करते हैं — पेड़, कार्बन, किसान आमदनी — न कंसल्टेंट, न देरी।`,csr_rht:`// प्रभाव रिपोर्ट · Q4 2024`,csr_verified:`वेरिफ़ाइड ✓`,csr_row1:`लगाए पेड़ (वेरिफ़ाइड)`,csr_row2:`CO₂ ऑफ़सेट (टन)`,csr_row3:`पहुँचे किसान परिवार`,csr_row4:`किसान को आमदनी`,csr_row5:`पेड़ उत्तरजीविता दर`,csr_row6:`कवर ज़िले`,csr_row7:`फ़ोटो वेरिफ़िकेशन दर`,csr_row8:`अनुमानित 10-साल आमदनी`,csr_dl:`⬇ वेरिफ़ाइड PDF रिपोर्ट डाउनलोड`,csr_partners_h:`// संभावित CSR पार्टनर`,csr_why:`✓ हर पेड़ किसान के WhatsApp फ़ोटो से GPS-वेरिफ़ाइड<br>✓ कार्बन ऑफ़सेट IPCC मानकों पर ऑटो<br>✓ किसान आमदनी हर महीने ट्रैक, अनुमानित नहीं<br>✓ 1 क्लिक में पूरी रिपोर्ट — न कंसल्टेंट, न देरी<br>✓ कम्प्लायंस के लिए ब्लॉकचेन-टाइमस्टैम्प्ड ऑडिट ट्रेल`,
+cta_tag:`// मिशन के लिए बना`,cta_h:`5 साल। ज़ीरो बजट।<br><em>8 लाख पेड़।</em><br>अब आगे क्या?`,cta_p:`यह प्लेटफ़ॉर्म गुटली मिशन को वो इन्फ़्रास्ट्रक्चर देता है जिसका वो हमेशा हक़दार रहा — ताकि जसमीत स्प्रेडशीट नहीं, पेड़ों पर ध्यान दें।`,cta_btn1:`मिशन के साथ साझेदारी`,cta_btn2:`मेरा मैंगो ज़ोन खोजें`,cta_cc1:`Jasmeet Singh Arora`,cta_ccv1:`भारत के गुटलीमैन 🥭`,cta_cc2:`WhatsApp / कॉल`,cta_cc3:`बीज भेजें`,cta_built:`बनाया <span>Sifotech HQ</span> ने · Bradford, UK · भारत की मैंगो क्रांति के लिए 🥭`
+},
+pa: {
+nav_mission:`ਮਿਸ਼ਨ`,nav_how:`ਕਿਵੇਂ ਕੰਮ ਕਰਦਾ ਹੈ`,nav_zone:`ਜ਼ੋਨ ਸਲਾਹਕਾਰ`,nav_platform:`ਪਲੇਟਫਾਰਮ`,nav_tracker:`ਬੀਜ ਟ੍ਰੈਕਰ`,nav_csr:`CSR`,nav_demo:`ਡੈਮੋ ਵੇਖੋ →`,
+hero_badge:`ਲਾਈਵ — ਭਾਰਤ ਦੀ ਅੰਬ ਕ੍ਰਾਂਤੀ`,hero_h1:`ਇੱਕ ਬੀਜ।<br><em>8 ਲੱਖ ਰੁੱਖ।</em><br>ਜ਼ੀਰੋ ਬਜਟ।`,hero_sub:`ਜਸਮੀਤ ਸਿੰਘ ਅਰੋੜਾ — ਭਾਰਤ ਦੇ ਗੁਟਲੀਮੈਨ — ਨੇ ਅਜਿਹੀ ਮੁਹਿੰਮ ਖੜੀ ਕੀਤੀ ਜਿਸ ਨੇ 5,000 ਕਿਸਾਨ ਪਰਿਵਾਰਾਂ ਦੀ ਜ਼ਿੰਦਗੀ ਬਦਲ ਦਿੱਤੀ। ਇਹ ਪਲੇਟਫਾਰਮ ਉਸੇ ਮਿਸ਼ਨ ਦੀ ਤਕਨੀਕੀ ਰੀੜ੍ਹ ਹੈ।`,hero_stat1:`ਗ੍ਰਾਫ਼ਟ ਕੀਤੇ ਰੁੱਖ`,hero_stat2:`ਮਦਦ ਪਾਏ ਪਰਿਵਾਰ`,hero_stat3:`ਇਕੱਠੇ ਬੀਜ`,hero_stat4:`ਟਨ CO₂ ਘੱਟ`,hero_cta1:`🗺️ ਮੇਰਾ ਅੰਬ ਜ਼ੋਨ ਲੱਭੋ`,hero_cta2:`ਪਲੇਟਫਾਰਮ ਵੇਖੋ`,hero_scroll:`ਸਕਰੋਲ ਕਰੋ`,
+mis_tag:`// ਕਹਾਣੀ`,mis_h:`ਕੌਣ ਹਨ<br><em>ਗੁਟਲੀ ਮੈਨ?</em>`,mis_p1:`<strong>ਜਸਮੀਤ ਸਿੰਘ ਅਰੋੜਾ, 53, ਕੋਲਕਾਤਾ ਤੋਂ।</strong> ਨਾ ਕਿਸਾਨ। ਨਾ ਬੋਟੈਨਿਸਟ। ਬਸ ਇੱਕ ਇਨਸਾਨ ਜਿਸ ਦੀ ਨੀਂਦ ਉੱਡ ਗਈ ਜਦ ਉਸ ਨੇ ਵੇਖਿਆ ਕਿ ਬੰਗਾਲ ਦੇ ਸਦੀਆਂ ਪੁਰਾਣੇ ਅੰਬਾਂ ਦੇ ਬਾਗ਼ ਖ਼ਤਮ ਹੋ ਰਹੇ ਹਨ — ਅਤੇ ਉਨ੍ਹਾਂ 'ਤੇ ਨਿਰਭਰ ਕਿਸਾਨ ਪੂਰੇ ਸੀਜ਼ਨ 'ਚ ਸਿਰਫ਼ ₹2,000 ਕਮਾ ਰਹੇ ਹਨ।`,mis_p2:`2017 'ਚ ਉਨ੍ਹਾਂ ਕੋਲ ਇੱਕ ਵਿਚਾਰ ਸੀ: <strong>ਸੁੱਟੇ ਬੀਜਾਂ ਨਾਲ ਅੰਬਾਂ ਦੇ ਰੁੱਖ ਲਾਉਣਾ।</strong> ਅੰਬ ਦੇ ਰੁੱਖ ਸਿਰਫ਼ ਫਲ ਨਹੀਂ ਦਿੰਦੇ — ਉਹ ਜੀਵਨ ਭਰ 'ਚ ਇੱਕ ਟਨ CO₂ ਸੋਖਦੇ ਹਨ, ਪੰਛੀਆਂ ਨੂੰ ਆਸਰਾ ਦਿੰਦੇ ਹਨ, ਈਕੋਸਿਸਟਮ ਬਹਾਲ ਕਰਦੇ ਹਨ ਅਤੇ 100 ਸਾਲ ਜਿਉਂਦੇ ਹਨ। ਇੱਕ ਗ੍ਰਾਫ਼ਟਡ ਰੁੱਖ ਕਿਸਾਨ ਨੂੰ ਹਰ ਸਾਲ ₹300–400 ਕਮਾ ਕੇ ਦਿੰਦਾ ਹੈ। ਇਹ ਝੋਨੇ ਤੋਂ 15 ਗੁਣਾ ਜ਼ਿਆਦਾ ਹੈ। <strong>40 ਸਾਲ ਲਈ।</strong>`,mis_p3:`ਸਭ ਤੋਂ ਵੱਡੀ ਖੋਜ ਸੀ <strong>ਗ੍ਰਾਫ਼ਟਿੰਗ</strong> — ਕਿਸੇ ਫਲਦਾਰ ਰੁੱਖ ਦੀ ਟਾਹਣੀ ਕੱਟ ਕੇ ਨਵੇਂ ਬੂਟੇ ਨਾਲ ਜੋੜ ਦੇਣਾ। ਜੋ ਰੁੱਖ ਆਮ ਤੌਰ 'ਤੇ 15 ਸਾਲ 'ਚ ਫਲ ਦਿੰਦਾ ਹੈ, ਹੁਣ 3 ਸਾਲ 'ਚ ਦਿੰਦਾ ਹੈ। ਹਰ 1,000 ਬੀਜਾਂ 'ਚੋਂ ਜਸਮੀਤ ਦੀ ਲੈਬ 100 ਮਜ਼ਬੂਤ ਚੁਣਦੀ ਹੈ, 6 ਮਹੀਨੇ ਗ੍ਰਾਫ਼ਟ ਕਰਦੀ ਹੈ ਅਤੇ ਹਰ ਬੂਟਾ ਉਸ ਕਿਸਾਨ ਨੂੰ ਸੌਂਪਦੀ ਹੈ ਜੋ <strong>ਉਸ ਦਾ ਹਮੇਸ਼ਾ ਮਾਲਕ ਹੁੰਦਾ ਹੈ।</strong>`,mis_p4:`ਮਈ 2023 'ਚ ਉਨ੍ਹਾਂ ਨੇ ਇੱਕ ਵੀਡੀਓ ਪਾਈ, ਇੱਕ ਬੀਜ ਮੰਗਦੇ ਹੋਏ। ਉਹ ਵਾਇਰਲ ਹੋ ਗਈ। ਉਦੋਂ ਤੋਂ ਹੁਣ ਤੱਕ: <strong>21 ਲੱਖ ਬੀਜ ਇਕੱਠੇ। 8 ਲੱਖ ਰੁੱਖ ਵੰਡੇ। ਸੁੰਦਰਬਨ, ਬਾਂਕੁੜਾ, ਪੁਰੁਲੀਆ ਅਤੇ ਝਾਰਖੰਡ 'ਚ 5,000+ ਪਰਿਵਾਰਾਂ ਨੂੰ ਨਵੀਂ ਆਮਦਨ</strong> — ਸਰਕਾਰ 'ਤੇ ਜ਼ੀਰੋ ਖ਼ਰਚਾ।`,mis_quote:`"ਜੇ ਹਰ ਭਾਰਤੀ ਸਿਰਫ਼ ਇੱਕ ਅੰਬ ਦੀ ਗੁਟਲੀ ਦੇਵੇ, ਅਸੀਂ ਇੱਕ ਹੀ ਸੀਜ਼ਨ 'ਚ 20 ਕਰੋੜ ਰੁੱਖ ਲਾ ਸਕਦੇ ਹਾਂ — ਆਸਟ੍ਰੇਲੀਆ ਦੀ ਪੂਰੀ ਆਬਾਦੀ ਤੋਂ ਵੀ ਵੱਧ।"`,mis_attr:`— ਜਸਮੀਤ ਸਿੰਘ ਅਰੋੜਾ · ਭਾਰਤ ਦੇ ਗੁਟਲੀਮੈਨ`,mis_fv1:`1 ਟਨ`,mis_fl1:`ਇੱਕ ਅੰਬ ਦਾ ਰੁੱਖ ਜੀਵਨ ਭਰ ਇੰਨੀ CO₂ ਸੋਖਦਾ ਹੈ — ਤੁਹਾਡੀ ਕਾਰ ਦੇ ਇੱਕ ਸਾਲ ਦੇ ਉਤਸਰਜਨ ਜਿੰਨੀ`,mis_fv2:`15x`,mis_fl2:`ਪੂਰੇ ਝੋਨੇ ਦੇ ਸੀਜ਼ਨ ਤੋਂ ਇੱਕ ਅੰਬ ਦੇ ਰੁੱਖ ਦੀ ਆਮਦਨ 15 ਗੁਣਾ ਵੱਧ (₹300–400/ਸਾਲ ਬਨਾਮ ₹2,000/ਸੀਜ਼ਨ)`,mis_fv3:`3 ਸਾਲ`,mis_fl3:`ਗ੍ਰਾਫ਼ਟਿੰਗ 15 ਸਾਲ ਨੂੰ 3 ਬਣਾ ਦਿੰਦੀ ਹੈ। ਸਾਲ 3 'ਚ ਪਹਿਲਾ ਫਲ, ਸਾਲ 5 ਤੱਕ ਵਪਾਰਕ ਉਤਪਾਦਨ`,mis_fv4:`94%`,mis_fl4:`ਰੁੱਖ ਦੀ ਉੱਤਰਜੀਵਿਤਾ ਦਰ — ਕਿਉਂਕਿ ਰੁੱਖ ਕਿਸਾਨ ਦਾ ਆਪਣਾ ਹੈ। ਇਥੋਪੀਆ ਨੇ 60 ਕਰੋੜ ਰੁੱਖ ਲਾਏ, 50% ਮਰ ਗਏ। ਮਾਲਕੀ ਸਭ ਬਦਲ ਦਿੰਦੀ ਹੈ।`,mis_fv5:`₹0`,mis_fl5:`ਕਿਸਾਨ 'ਤੇ ਜ਼ੀਰੋ ਖ਼ਰਚਾ। ਬੀਜ ਤੁਹਾਡੇ ਕੂੜੇ 'ਚੋਂ। ਬੂਟਾ ਮਿਸ਼ਨ ਤੋਂ। ਭਵਿੱਖ ਉਨ੍ਹਾਂ ਦਾ।`,
+how_tag:`// ਚੇਨ`,how_h:`ਤੁਹਾਡੀ ਗੁਟਲੀ ਤੋਂ<br>ਇੱਕ <em>ਕਿਸਾਨ ਦੇ ਭਵਿੱਖ ਤੱਕ</em>`,how_t1:`ਤੁਸੀਂ ਦਾਨ ਕਰੋ`,how_d1:`ਅੰਬ ਖਾਓ, ਗੁਟਲੀ ਨਾ ਸੁੱਟੋ। ਨੇੜਲੇ ਡਰਾਪ ਪੁਆਇੰਟ 'ਤੇ ਪਾਓ, ਜਾਂ ਕੋਲਕਾਤਾ ਕੁਰੀਅਰ ਕਰੋ। 30 ਸਕਿੰਟ ਦਾ ਕੰਮ।`,how_t2:`AI ਸਭ ਤੋਂ ਵਧੀਆ ਚੁਣਦਾ ਹੈ`,how_d2:`1,000 ਬੀਜ ਆਉਂਦੇ ਹਨ। AI ਸਕੈਨ ਸਭ ਤੋਂ ਮਜ਼ਬੂਤ 100 ਚੁਣਦਾ ਹੈ। ਬਾਕੀ ਮਿੱਟੀ 'ਚ ਵਾਪਸ।`,how_t3:`ਜਸਮੀਤ ਗ੍ਰਾਫ਼ਟ ਕਰਦੇ ਹਨ`,how_d3:`6 ਮਹੀਨੇ ਦੀ ਨਰਸਰੀ। ਫਲਦਾਰ ਰੁੱਖ ਦੀ ਟਾਹਣੀ ਨਵੇਂ ਬੂਟੇ ਨਾਲ ਜੋੜੀ ਜਾਂਦੀ ਹੈ। ਕਿਸਾਨ ਦੇ ਜ਼ਿਲ੍ਹੇ ਮੁਤਾਬਕ ਵੈਰਾਇਟੀ।`,how_t4:`ਕਿਸਾਨ ਦੀ ਆਪਣੀ`,how_d4:`ਰੁੱਖ ਕਿਸਾਨ ਦੀ ਜਾਇਦਾਦ ਹੈ — ਨਾ ਕਰਜ਼, ਨਾ ਦਾਨ। ਨਾ Monsanto। ਨਾ ਲਾਇਸੈਂਸ। ਕਦੇ ਖ਼ਤਮ ਨਹੀਂ ਹੁੰਦਾ।`,how_t5:`ਪਲੇਟਫਾਰਮ ਟ੍ਰੈਕ ਕਰਦਾ ਹੈ`,how_d5:`ਹਰ ਮਹੀਨੇ WhatsApp ਫ਼ੋਟੋ। AI ਸਿਹਤ ਪੁਸ਼ਟੀ ਕਰਦਾ ਹੈ। ਉੱਤਰਜੀਵਿਤਾ, CO₂, ਆਮਦਨ — ਸਭ CSR ਫ਼ੰਡਰਾਂ ਲਈ ਵੇਰੀਫ਼ਾਈਡ।`,
+zone_tag:`// AI ਮਿੱਟੀ + ਜਲਵਾਯੂ ਇੰਟੈਲੀਜੈਂਸ`,zone_h:`ਸਹੀ ਅੰਬ ਚੁਣੋ<br>ਆਪਣੀ <em>ਜ਼ਮੀਨ ਲਈ</em>`,zone_intro:`ਆਪਣਾ ਜ਼ਿਲ੍ਹਾ, ਮਿੱਟੀ ਅਤੇ ਪਾਣੀ ਪਾਓ। ਪੂਰੀ ਵਿਗਿਆਨਕ ਜਾਣਕਾਰੀ ਲਓ — ਕਿਹੜੀ ਵੈਰਾਇਟੀ ਠੀਕ, ਲਾਉਣ ਤੋਂ ਪਹਿਲਾਂ ਕੀ ਠੀਕ ਕਰੋ, ਕਮਾਈ ਕਦੋਂ ਅਤੇ ਕਿੰਨੀ। ਇਮਾਨਦਾਰ ਜਵਾਬ, ਭਾਵੇਂ ਜਵਾਬ "ਇਥੇ ਅੰਬ ਨਾ ਲਾਉ" ਹੀ ਕਿਉਂ ਨਾ ਹੋਵੇ।`,zone_fc_title:`ਮੇਰੇ ਜ਼ੋਨ ਦਾ ਵਿਸ਼ਲੇਸ਼ਣ`,zone_fc_sub:`10 ਸਕਿੰਟ · ਸਾਈਨ-ਅਪ ਨਹੀਂ · ਇਮਾਨਦਾਰ ਨਤੀਜਾ`,zone_l_state:`ਰਾਜ / ਖੇਤਰ`,zone_l_ph:`ਮਿੱਟੀ pH`,zone_l_water:`ਪਾਣੀ ਦਾ ਸਰੋਤ`,zone_l_land:`ਜ਼ਮੀਨ (ਏਕੜ)`,zone_l_crop:`ਮੌਜੂਦਾ ਫ਼ਸਲ`,zone_btn:`🔍 ਮੇਰੇ ਜ਼ੋਨ ਦਾ ਵਿਸ਼ਲੇਸ਼ਣ →`,
+plat_tag:`// ਇੰਟਰੈਕਟਿਵ ਪਲੇਟਫਾਰਮ`,plat_h:`ਅਜ਼ਮਾਓ।<br><em>ਹੁਣੇ।</em>`,plat_tab1:`🥭 ਬੀਜ ਦਾਨ`,plat_tab2:`🌾 ਕਿਸਾਨ ਰਜਿਸਟਰ`,plat_tab3:`💬 WhatsApp ਬੌਟ`,plat_tab4:`📷 ਰੁੱਖ ਦੀ ਸਿਹਤ`,
+don_h:`ਆਪਣੀ ਗੁਟਲੀ ਦਾਨ ਕਰੋ`,don_p:`ਸਾਨੂੰ ਆਪਣਾ ਰਾਜ ਅਤੇ ਬੀਜਾਂ ਦੀ ਗਿਣਤੀ ਦੱਸੋ। ਅਸੀਂ ਨੇੜਲਾ ਡਰਾਪ ਪੁਆਇੰਟ ਦੱਸਾਂਗੇ ਅਤੇ ਤੁਹਾਡੇ ਬੀਜ ਕਿੰਨੇ ਰੁੱਖ ਬਣਨਗੇ।`,don_l_state:`ਤੁਹਾਡਾ ਰਾਜ`,don_l_city:`ਤੁਹਾਡਾ ਸ਼ਹਿਰ`,don_ph_city:`ਜਿਵੇਂ ਹੁਸ਼ਿਆਰਪੁਰ`,don_l_seed:`ਬੀਜਾਂ ਦੀ ਗਿਣਤੀ`,don_l_name:`ਤੁਹਾਡਾ ਨਾਮ (ਚੋਣਵਾਂ)`,don_ph_name:`ਮਿਸ਼ਨ ਨਕਸ਼ੇ 'ਤੇ ਵਿਖੇਗਾ`,don_btn:`ਨੇੜਲਾ ਡਰਾਪ ਪੁਆਇੰਟ ਲੱਭੋ →`,don_found:`✅ ਡਰਾਪ ਪੁਆਇੰਟ ਮਿਲਿਆ`,don_r_dist:`ਦੂਰੀ`,don_r_addr:`ਪਤਾ`,don_r_hours:`ਖੁੱਲਣ ਦਾ ਸਮਾਂ`,don_r_become:`ਤੁਹਾਡੇ ਬੀਜ ਬਣਨਗੇ`,don_r_tid:`ਟ੍ਰੈਕਿੰਗ ID ਜਾਰੀ`,don_maptag:`// ਲਾਈਵ ਡਰਾਪ ਪੁਆਇੰਟ — ਭਾਰਤ`,don_courier:`📦 <strong style="color:var(--cream);">ਸਿੱਧਾ ਜਸਮੀਤ ਨੂੰ ਕੁਰੀਅਰ ਕਰੋ</strong><br>Jasmeet Singh Arora · C/O Eden House<br>17/1 Lansdowne Terrace, Manhorpukur Road<br>Kolkata — 700026<br>📞 09831459390 / 08420890852<br><span style="font-size:10px;opacity:.5;margin-top:4px;display:block;">ਸਿਰਫ਼ ਕਾਗਜ਼ ਦਾ ਥੈਲਾ · ਲੇਬਲ "Mango Seeds" · ਕੋਈ ਵੀ ਕੁਰੀਅਰ ਚੱਲੇਗਾ</span>`,
+reg_t1:`ਤੁਹਾਡੀ ਜ਼ਮੀਨ`,reg_s1:`ਪੜਾਅ 1 / 3 — ਟਿਕਾਣਾ ਅਤੇ ਬੇਸਿਕਸ`,reg_l_name:`ਤੁਹਾਡਾ ਨਾਮ`,reg_ph_name:`Balwinder Singh`,reg_l_district:`ਜ਼ਿਲ੍ਹਾ`,reg_l_land:`ਜ਼ਮੀਨ (ਏਕੜ)`,reg_l_crop:`ਮੌਜੂਦਾ ਫ਼ਸਲ`,reg_btn_next:`ਅੱਗੇ →`,reg_t2:`ਮਿੱਟੀ ਅਤੇ ਪਾਣੀ`,reg_s2:`ਪੜਾਅ 2 / 3 — ਵੈਰਾਇਟੀ ਮੈਚਿੰਗ ਲਈ`,reg_l_water:`ਪਾਣੀ ਦਾ ਸਰੋਤ`,reg_l_ph:`ਮਿੱਟੀ pH (ਲਗਭਗ)`,reg_l_exp:`ਰੁੱਖਾਂ ਦਾ ਤਜਰਬਾ?`,reg_btn_back:`← ਪਿੱਛੇ`,reg_btn_analyse:`ਮੇਰੀ ਜ਼ਮੀਨ ਦਾ ਵਿਸ਼ਲੇਸ਼ਣ →`,reg_t3:`ਤੁਹਾਡਾ AI ਨਤੀਜਾ`,reg_s3:`ਤੁਹਾਡੀ ਜ਼ਮੀਨ ਲਈ ਖ਼ਾਸ`,reg_ib_title:`ਮਾਲਕੀ ਮਾਡਲ ਕਿਉਂ ਕੰਮ ਕਰਦਾ ਹੈ`,reg_ib1_h:`ਇਥੋਪੀਆ ਨੇ 60 ਕਰੋੜ ਰੁੱਖ ਲਾਏ`,reg_ib1_d:`ਉੱਤਰਜੀਵਿਤਾ ਦਰ: 50%। ਕਿਉਂਕਿ ਕਿਸੇ ਦੇ ਆਪਣੇ ਨਹੀਂ ਸਨ। ਕਿਸੇ ਨੂੰ ਫ਼ਿਕਰ ਨਹੀਂ ਸੀ।`,reg_ib2_h:`ਚੀਨ ਦੀ ਗ੍ਰੇਟ ਗ੍ਰੀਨ ਵਾਲ`,reg_ib2_d:`ਅਸਫਲਤਾ ਦਰ: 85%। ਰਾਜ ਨੇ ਲਾਏ, ਸਥਾਨਕ ਈਕੋਸਿਸਟਮ ਨਾਲ ਮੇਲ ਨਹੀਂ ਖਾਧਾ।`,reg_ib3_h:`ਗੁਟਲੀ ਮਿਸ਼ਨ`,reg_ib3_d:`ਉੱਤਰਜੀਵਿਤਾ ਦਰ: 94%। ਕਿਸਾਨ ਦਾ ਆਪਣਾ। ਸਥਾਨਕ ਵੈਰਾਇਟੀ। ਨਾ Monsanto। ਨਾ ਲਾਇਸੈਂਸ।`,reg_ib_box:`✅ ਰੁੱਖ ਹਮੇਸ਼ਾ ਤੁਹਾਡਾ<br>✅ ਕੋਈ ਸਾਲਾਨਾ ਬੀਜ ਖ਼ਰਚਾ ਨਹੀਂ (GMO ਕਪਾਹ ਦੇ ਉਲਟ)<br>✅ ਹਰ ਰੁੱਖ ਤੋਂ ₹300–400 ਸਾਲਾਨਾ ਆਮਦਨ, 40 ਸਾਲ ਲਈ<br>✅ 2026 ਤੋਂ ਕਾਰਬਨ ਕ੍ਰੈਡਿਟ ਸੰਭਾਵਨਾ<br>✅ ਤੁਹਾਡੇ ਬੱਚਿਆਂ ਨੂੰ ਫਲਦਾਰ ਬਾਗ਼ ਵਿਰਾਸਤ 'ਚ ਮਿਲੇਗਾ`,
+wa_tag:`// ਕਿਸਾਨ ਇੰਟਰਫ਼ੇਸ`,wa_h:`ਕਿਸੇ ਵੀ ਫ਼ੋਨ 'ਤੇ ਚੱਲਦਾ ਹੈ।<br><em style="color:var(--mango);font-style:italic;">ਐਪ ਦੀ ਲੋੜ ਨਹੀਂ।</em>`,wa_p:`ਕਿਸਾਨਾਂ ਕੋਲ WhatsApp ਪਹਿਲਾਂ ਤੋਂ ਹੈ। ਪੂਰਾ ਪਲੇਟਫਾਰਮ ਇੱਕ ਸਮਾਰਟ ਬੌਟ ਵਾਂਗ ਚੱਲਦਾ ਹੈ — ਜ਼ਮੀਨ ਰਜਿਸਟਰ, ਰੁੱਖ ਟ੍ਰੈਕ, ਮਿੱਟੀ ਸਲਾਹ, ਸਮੱਸਿਆ ਰਿਪੋਰਟ। ਸਭ ਆਪਣੀ ਭਾਸ਼ਾ 'ਚ।`,wa_try:`ਕੁਇੱਕ ਜਵਾਬ ਅਜ਼ਮਾਓ:`,wa_c1:`ਜ਼ਮੀਨ ਰਜਿਸਟਰ 🌾`,wa_c2:`ਪੀਲੇ ਪੱਤੇ 🍂`,wa_c3:`ਫਲ ਕਦੋਂ? 🥭`,wa_c4:`ਪੰਜਾਬ ਤੋਂ ਹਾਂ`,wa_c5:`ਪੰਜਾਬੀ ਵਿੱਚ 🙏`,wa_c6:`ਬੀਜ ਦਾਨ 📦`,wa_c7:`ਮਿੱਟੀ ਸਲਾਹ 🌱`,wa_c8:`GMO ਛੱਡੋ 🚫`,
+ph_h:`ਰੁੱਖ ਸਿਹਤ ਸਕੈਨਰ`,ph_p:`ਕਿਸਾਨ ਹਰ ਮਹੀਨੇ WhatsApp 'ਤੇ ਆਪਣੇ ਰੁੱਖ ਦੀ ਫ਼ੋਟੋ ਭੇਜਦਾ ਹੈ। AI ਪੱਤਿਆਂ ਦਾ ਰੰਗ, ਛਤਰੀ ਘਣਤਾ, ਕੀੜਿਆਂ ਦੇ ਨਿਸ਼ਾਨ ਜਾਂਚਦਾ ਹੈ — 30 ਸਕਿੰਟ 'ਚ ਆਪਣੀ ਭਾਸ਼ਾ 'ਚ ਜਵਾਬ।`,ph_upload:`ਰੁੱਖ ਦੀ ਫ਼ੋਟੋ ਅਪਲੋਡ ਕਰੋ`,ph_drag:`ਕਲਿੱਕ ਜਾਂ ਡਰੈਗ · JPG / PNG`,ph_r1:`ਰਜਿਸਟਰ ਰੁੱਖ`,ph_r2:`ਇਸ ਮਹੀਨੇ ਦੀਆਂ ਫ਼ੋਟੋਆਂ`,ph_r3:`ਔਸਤ ਸਿਹਤ ਸਕੋਰ`,ph_r4:`ਫ਼ਲੈਗ ਕੀਤੇ ਰੁੱਖ`,ph_r5:`ਅਗਲੀ ਜਾਂਚ`,ph_use_h:`📲 ਕਿਸਾਨ ਕਿਵੇਂ ਵਰਤਦੇ ਹਨ`,ph_use_d:`1. ਹਰ ਮਹੀਨੇ ਦੀ 1 ਤਾਰੀਖ਼ ਨੂੰ ਬੌਟ ਫ਼ੋਟੋ ਯਾਦ ਦੁਆਉਂਦਾ ਹੈ<br>2. ਕਿਸਾਨ ਹਰ ਰੁੱਖ ਦੀ ਫ਼ੋਟੋ ਖਿੱਚ ਕੇ WhatsApp 'ਤੇ ਭੇਜਦਾ ਹੈ<br>3. AI ਸਕੈਨ ਕਰਦਾ ਹੈ, 30 ਸਕਿੰਟ 'ਚ ਸਿਹਤ ਸਕੋਰ<br>4. ਜੇ ਫ਼ਲੈਗ — ਤਾਂ ਆਪਣੀ ਭਾਸ਼ਾ 'ਚ ਇਲਾਜ ਸਲਾਹ<br>5. ਸਾਰਾ ਡਾਟਾ ਜਸਮੀਤ ਦੇ ਡੈਸ਼ਬੋਰਡ + CSR ਰਿਪੋਰਟ 'ਚ`,
+trk_tag:`// ਬੀਜ ਦਾ ਸਫ਼ਰ`,trk_h:`ਆਪਣਾ ਬੀਜ ਟ੍ਰੈਕ ਕਰੋ<br><em>ਹਰ ਕਦਮ 'ਤੇ।</em>`,trk_intro:`ਹਰ ਦਾਨ ਕੀਤੇ ਬੀਜ ਨੂੰ ਰਜਿਸਟਰ ਹੁੰਦੇ ਹੀ ਇੱਕ ਯੂਨੀਕ ID ਮਿਲਦੀ ਹੈ। ਤੁਹਾਡੇ ਹੱਥ ਤੋਂ ਕਿਸਾਨ ਦੀ ਜ਼ਮੀਨ ਤੱਕ — ਤੁਸੀਂ ਹਰ ਕਦਮ ਰੀਅਲ ਟਾਈਮ 'ਚ ਵੇਖ ਸਕਦੇ ਹੋ।`,trk_ph:`ਬੀਜ ID ਪਾਓ — ਜਿਵੇਂ GM-2024-48291`,trk_btn:`ਟ੍ਰੈਕ →`,trk_demo1:`ਡੈਮੋ 1 ਅਜ਼ਮਾਓ`,trk_demo2:`ਡੈਮੋ 2 ਅਜ਼ਮਾਓ`,trk_rev_h:`// ਹਰ ਬੀਜ ID ਕੀ ਦੱਸਦੀ ਹੈ`,trk_rev1:`<strong style="color:var(--cream);">ਦਾਨੀ ਮੂਲ</strong> — ਕਿਸਨੇ ਦਿੱਤਾ, ਕਿਹੜਾ ਸ਼ਹਿਰ, ਕਿਸ ਤਾਰੀਖ਼`,trk_rev2:`<strong style="color:var(--cream);">ਲੈਬ ਪ੍ਰੋਸੈਸਿੰਗ</strong> — ਉੱਗਣ ਦੀ ਤਾਰੀਖ਼, ਵੈਰਾਇਟੀ, ਗ੍ਰਾਫ਼ਟ ਤਾਰੀਖ਼`,trk_rev3:`<strong style="color:var(--cream);">ਕਿਸਾਨ ਵੇਰਵੇ</strong> — ਨਾਮ, ਜ਼ਿਲ੍ਹਾ, ਜ਼ਮੀਨ ਦਾ ਆਕਾਰ, ਰਜਿਸਟ੍ਰੇਸ਼ਨ ਤਾਰੀਖ਼`,trk_rev4:`<strong style="color:var(--cream);">ਰੁੱਖ ਦੀ ਲਾਈਵ ਸਿਹਤ</strong> — ਮਾਸਿਕ ਫ਼ੋਟੋ ਸਕੋਰ, ਮੌਜੂਦਾ ਸਥਿਤੀ, ਅਲਰਟ`,trk_rev5:`<strong style="color:var(--cream);">ਕਾਰਬਨ ਟ੍ਰੈਕਿੰਗ</strong> — ਹੁਣ ਤੱਕ ਸੋਖੀ CO₂, 40 ਸਾਲ ਦਾ ਅਨੁਮਾਨ`,trk_rev6:`<strong style="color:var(--cream);">ਆਮਦਨ</strong> — ਇਸ ਰੁੱਖ ਤੋਂ ਕਿਸਾਨ ਦੀ ਅਨੁਮਾਨਿਤ ਕਮਾਈ`,
+csr_tag:`// ਕਾਰਪੋਰੇਟ ਫ਼ੰਡਿੰਗ ਲੇਅਰ`,csr_h:`ਵੇਰੀਫ਼ਾਈਡ ਪ੍ਰਭਾਵ।<br><em>ਤੁਰੰਤ ਫ਼ੰਡਿੰਗ।</em>`,csr_intro:`ਭਾਰਤ ਦੇ CSR ਕਾਨੂੰਨ ਮੁਤਾਬਕ ਸਾਲਾਨਾ ₹25,000 ਕਰੋੜ ਕਾਰਪੋਰੇਟ ਖ਼ਰਚਾ ਜ਼ਰੂਰੀ ਹੈ। ਜ਼ਿਆਦਾਤਰ ਅਣਵੇਰੀਫ਼ਾਈਡ ਰਹਿੰਦਾ ਹੈ। ਅਸੀਂ ਰੀਅਲ-ਟਾਈਮ ਰਿਪੋਰਟਾਂ ਆਪਣੇ-ਆਪ ਬਣਾਉਂਦੇ ਹਾਂ — ਰੁੱਖ, ਕਾਰਬਨ, ਕਿਸਾਨ ਆਮਦਨ — ਨਾ ਕੰਸਲਟੈਂਟ, ਨਾ ਦੇਰੀ।`,csr_rht:`// ਪ੍ਰਭਾਵ ਰਿਪੋਰਟ · Q4 2024`,csr_verified:`ਵੇਰੀਫ਼ਾਈਡ ✓`,csr_row1:`ਲਾਏ ਰੁੱਖ (ਵੇਰੀਫ਼ਾਈਡ)`,csr_row2:`CO₂ ਘਟਾਉ (ਟਨ)`,csr_row3:`ਪਹੁੰਚੇ ਕਿਸਾਨ ਪਰਿਵਾਰ`,csr_row4:`ਕਿਸਾਨ ਨੂੰ ਆਮਦਨ`,csr_row5:`ਰੁੱਖ ਉੱਤਰਜੀਵਿਤਾ ਦਰ`,csr_row6:`ਕਵਰ ਜ਼ਿਲ੍ਹੇ`,csr_row7:`ਫ਼ੋਟੋ ਵੈਰੀਫ਼ਿਕੇਸ਼ਨ ਦਰ`,csr_row8:`ਅਨੁਮਾਨਿਤ 10-ਸਾਲ ਆਮਦਨ`,csr_dl:`⬇ ਵੇਰੀਫ਼ਾਈਡ PDF ਰਿਪੋਰਟ ਡਾਊਨਲੋਡ`,csr_partners_h:`// ਸੰਭਾਵੀ CSR ਪਾਰਟਨਰ`,csr_why:`✓ ਹਰ ਰੁੱਖ ਕਿਸਾਨ ਦੀ WhatsApp ਫ਼ੋਟੋ ਨਾਲ GPS-ਵੇਰੀਫ਼ਾਈਡ<br>✓ ਕਾਰਬਨ ਘਟਾਉ IPCC ਮਾਪਦੰਡਾਂ 'ਤੇ ਆਪਣੇ-ਆਪ<br>✓ ਕਿਸਾਨ ਆਮਦਨ ਹਰ ਮਹੀਨੇ ਟ੍ਰੈਕ, ਅਨੁਮਾਨਿਤ ਨਹੀਂ<br>✓ 1 ਕਲਿੱਕ 'ਚ ਪੂਰੀ ਰਿਪੋਰਟ — ਨਾ ਕੰਸਲਟੈਂਟ, ਨਾ ਦੇਰੀ<br>✓ ਕੰਪਲਾਇੰਸ ਲਈ ਬਲਾਕਚੇਨ-ਟਾਈਮਸਟੈਂਪਡ ਆਡਿਟ ਟ੍ਰੇਲ`,
+cta_tag:`// ਮਿਸ਼ਨ ਲਈ ਬਣਾਇਆ`,cta_h:`5 ਸਾਲ। ਜ਼ੀਰੋ ਬਜਟ।<br><em>8 ਲੱਖ ਰੁੱਖ।</em><br>ਹੁਣ ਅੱਗੇ ਕੀ?`,cta_p:`ਇਹ ਪਲੇਟਫਾਰਮ ਗੁਟਲੀ ਮਿਸ਼ਨ ਨੂੰ ਉਹ ਇਨਫ਼ਰਾਸਟ੍ਰਕਚਰ ਦਿੰਦਾ ਹੈ ਜਿਸ ਦਾ ਉਹ ਹਮੇਸ਼ਾ ਹੱਕਦਾਰ ਰਿਹਾ — ਤਾਂ ਜੋ ਜਸਮੀਤ ਸਪ੍ਰੈਡਸ਼ੀਟਾਂ ਨਹੀਂ, ਰੁੱਖਾਂ 'ਤੇ ਧਿਆਨ ਦੇਣ।`,cta_btn1:`ਮਿਸ਼ਨ ਨਾਲ ਪਾਰਟਨਰਸ਼ਿਪ`,cta_btn2:`ਮੇਰਾ ਅੰਬ ਜ਼ੋਨ ਲੱਭੋ`,cta_cc1:`Jasmeet Singh Arora`,cta_ccv1:`ਭਾਰਤ ਦੇ ਗੁਟਲੀਮੈਨ 🥭`,cta_cc2:`WhatsApp / ਕਾਲ`,cta_cc3:`ਬੀਜ ਭੇਜੋ`,cta_built:`ਬਣਾਇਆ <span>Sifotech HQ</span> ਨੇ · Bradford, UK · ਭਾਰਤ ਦੀ ਅੰਬ ਕ੍ਰਾਂਤੀ ਲਈ 🥭`
+},
+bn: {
+nav_mission:`মিশন`,nav_how:`কীভাবে কাজ করে`,nav_zone:`জোন উপদেষ্টা`,nav_platform:`প্ল্যাটফর্ম`,nav_tracker:`বীজ ট্র্যাকার`,nav_csr:`CSR`,nav_demo:`ডেমো দেখুন →`,
+hero_badge:`লাইভ — ভারতের আম বিপ্লব`,hero_h1:`একটি বীজ।<br><em>৮ লক্ষ গাছ।</em><br>শূন্য বাজেট।`,hero_sub:`জসমিত সিং আরোরা — ভারতের গুটলিম্যান — এমন একটি আন্দোলন গড়ে তুলেছেন যা ৫,০০০ কৃষক পরিবারকে বদলে দিয়েছে। এই প্ল্যাটফর্ম সেই মিশনের প্রযুক্তিগত মেরুদণ্ড।`,hero_stat1:`গ্রাফট করা গাছ`,hero_stat2:`সাহায্যপ্রাপ্ত পরিবার`,hero_stat3:`সংগৃহীত বীজ`,hero_stat4:`টন CO₂ কম`,hero_cta1:`🗺️ আমার আম জোন খুঁজুন`,hero_cta2:`প্ল্যাটফর্ম দেখুন`,hero_scroll:`স্ক্রল করুন`,
+mis_tag:`// গল্প`,mis_h:`কে এই<br><em>গুটলি ম্যান?</em>`,mis_p1:`<strong>জসমিত সিং আরোরা, ৫৩, কলকাতা থেকে।</strong> কৃষক নন। উদ্ভিদবিদও নন। শুধু এমন একজন মানুষ যার ঘুম উড়ে গিয়েছিল যখন বাংলার শতাব্দীপ্রাচীন আম বাগান শেষ হয়ে যাচ্ছিল — আর সেগুলোর উপর নির্ভরশীল কৃষকরা গোটা মরশুমে মাত্র ₹2,000 আয় করত।`,mis_p2:`২০১৭ সালে তার একটি ভাবনা ছিল: <strong>ফেলে দেওয়া বীজ দিয়ে আম গাছ লাগানো।</strong> আম গাছ শুধু ফল দেয় না — তারা সারা জীবনে এক টন CO₂ শোষণ করে, পাখিদের আশ্রয় দেয়, ইকোসিস্টেম পুনরুদ্ধার করে এবং ১০০ বছর বাঁচে। একটি গ্রাফট গাছ কৃষককে প্রতি বছর ₹300–400 এনে দেয়। এটা ধানের চেয়ে ১৫ গুণ বেশি। <strong>৪০ বছর ধরে।</strong>`,mis_p3:`বড় আবিষ্কার ছিল <strong>গ্রাফটিং</strong> — কোনো ফলদ গাছের ডাল কেটে নতুন চারার সঙ্গে জোড়া। যে গাছ সাধারণত ১৫ বছরে ফল দেয়, এখন ৩ বছরে দেয়। প্রতি ১,০০০ বীজ থেকে জসমিতের ল্যাব ১০০টি সবল চারা বেছে নেয়, ৬ মাস ধরে গ্রাফট করে, এবং প্রতিটি চারা একজন কৃষককে দেয় — যিনি <strong>চিরকাল তার মালিক।</strong>`,mis_p4:`মে ২০২৩-এ তিনি একটি ভিডিও পোস্ট করেন, একটি বীজ চেয়ে। এটি ভাইরাল হয়। তারপর থেকে: <strong>২১ লক্ষ বীজ সংগৃহীত। ৮ লক্ষ গাছ বিতরণ। সুন্দরবন, বাঁকুড়া, পুরুলিয়া ও ঝাড়খণ্ডের ৫,০০০+ পরিবারের নতুন আয়ের উৎস</strong> — সরকারি শূন্য খরচে।`,mis_quote:`"প্রতিটি ভারতীয় যদি শুধু একটি আমের আঁটি দেয়, তাহলে আমরা এক মরশুমেই ২০ কোটি গাছ লাগাতে পারি — অস্ট্রেলিয়ার পুরো জনসংখ্যার চেয়েও বেশি।"`,mis_attr:`— জসমিত সিং আরোরা · ভারতের গুটলিম্যান`,mis_fv1:`১ টন`,mis_fl1:`একটি আম গাছ সারা জীবনে এত CO₂ শোষণ করে — আপনার গাড়ির বছরে নিঃসরণের সমান`,mis_fv2:`১৫x`,mis_fl2:`পুরো ধান মরশুমের তুলনায় একটি আম গাছের আয় ১৫ গুণ বেশি (₹300–400/বছর বনাম ₹2,000/মরশুম)`,mis_fv3:`৩ বছর`,mis_fl3:`গ্রাফটিং ১৫ বছরকে ৩ করে। বছর ৩-এ প্রথম ফল, বছর ৫-এ বাণিজ্যিক ফলন`,mis_fv4:`৯৪%`,mis_fl4:`গাছের বেঁচে থাকার হার — কারণ গাছ কৃষকের নিজের। ইথিওপিয়া ৬০ কোটি গাছ লাগিয়েছিল, ৫০% মারা গেছে। মালিকানা সব বদলে দেয়।`,mis_fv5:`₹০`,mis_fl5:`কৃষকের জন্য শূন্য খরচ। বীজ আপনার আবর্জনা থেকে। চারা মিশন থেকে। ভবিষ্যৎ তাদের।`,
+how_tag:`// শৃঙ্খল`,how_h:`আপনার গুটলি থেকে<br>একজন <em>কৃষকের ভবিষ্যৎ পর্যন্ত</em>`,how_t1:`আপনি দান করুন`,how_d1:`আম খান, আঁটি ফেলবেন না। কাছের ড্রপ পয়েন্টে দিন, বা কলকাতায় কুরিয়ার করুন। ৩০ সেকেন্ডের কাজ।`,how_t2:`AI সেরা বাছে`,how_d2:`১,০০০ বীজ আসে। AI স্ক্যান সবচেয়ে শক্তিশালী ১০০টি বাছে। বাকিগুলো মাটিতে ফেরে।`,how_t3:`জসমিত গ্রাফট করেন`,how_d3:`৬ মাসের নার্সারি। ফলদ গাছের ডাল নতুন চারার সাথে জোড়া। কৃষকের জেলা অনুযায়ী জাত।`,how_t4:`কৃষকের নিজের`,how_d4:`গাছ কৃষকের সম্পত্তি — ঋণ নয়, দান নয়। Monsanto নয়। লাইসেন্স নয়। কখনো শেষ হয় না।`,how_t5:`প্ল্যাটফর্ম ট্র্যাক করে`,how_d5:`প্রতি মাসে WhatsApp ছবি। AI স্বাস্থ্য নিশ্চিত করে। বেঁচে থাকা, CO₂, আয় — সবই CSR ফান্ডারদের জন্য যাচাইকৃত।`,
+zone_tag:`// AI মাটি + জলবায়ু বুদ্ধিমত্তা`,zone_h:`সঠিক আম বাছুন<br>আপনার <em>জমির জন্য</em>`,zone_intro:`আপনার জেলা, মাটি ও জল লিখুন। সম্পূর্ণ বৈজ্ঞানিক বিশ্লেষণ পান — কোন জাত আপনার জন্য ঠিক, রোপণের আগে কী ঠিক করবেন, কখন আয় শুরু এবং কত। সৎ উত্তর, এমনকি উত্তর "এখানে আম লাগাবেন না" হলেও।`,zone_fc_title:`আমার জোন বিশ্লেষণ`,zone_fc_sub:`১০ সেকেন্ড · সাইন-আপ নয় · সৎ ফলাফল`,zone_l_state:`রাজ্য / অঞ্চল`,zone_l_ph:`মাটির pH`,zone_l_water:`জলের উৎস`,zone_l_land:`জমি (একর)`,zone_l_crop:`বর্তমান ফসল`,zone_btn:`🔍 আমার জোন বিশ্লেষণ →`,
+plat_tag:`// ইন্টারঅ্যাকটিভ প্ল্যাটফর্ম`,plat_h:`চেষ্টা করুন।<br><em>এখনই।</em>`,plat_tab1:`🥭 বীজ দান`,plat_tab2:`🌾 কৃষক নিবন্ধন`,plat_tab3:`💬 WhatsApp বট`,plat_tab4:`📷 গাছের স্বাস্থ্য`,
+don_h:`আপনার গুটলি দান করুন`,don_p:`আপনার রাজ্য ও বীজের সংখ্যা বলুন। আমরা নিকটতম ড্রপ পয়েন্ট দেখাব এবং আপনার বীজ কত গাছ হবে।`,don_l_state:`আপনার রাজ্য`,don_l_city:`আপনার শহর`,don_ph_city:`যেমন হোসিয়ারপুর`,don_l_seed:`বীজের সংখ্যা`,don_l_name:`আপনার নাম (ঐচ্ছিক)`,don_ph_name:`মিশন মানচিত্রে দেখাবে`,don_btn:`নিকটতম ড্রপ পয়েন্ট খুঁজুন →`,don_found:`✅ ড্রপ পয়েন্ট পাওয়া গেছে`,don_r_dist:`দূরত্ব`,don_r_addr:`ঠিকানা`,don_r_hours:`খোলার সময়`,don_r_become:`আপনার বীজ হবে`,don_r_tid:`ট্র্যাকিং ID জারি`,don_maptag:`// লাইভ ড্রপ পয়েন্ট — ভারত`,don_courier:`📦 <strong style="color:var(--cream);">সরাসরি জসমিতকে কুরিয়ার করুন</strong><br>Jasmeet Singh Arora · C/O Eden House<br>17/1 Lansdowne Terrace, Manhorpukur Road<br>Kolkata — 700026<br>📞 09831459390 / 08420890852<br><span style="font-size:10px;opacity:.5;margin-top:4px;display:block;">শুধু কাগজের ব্যাগ · লেবেল "Mango Seeds" · যেকোনো কুরিয়ার চলবে</span>`,
+reg_t1:`আপনার জমি`,reg_s1:`ধাপ ১ / ৩ — অবস্থান ও মৌলিক`,reg_l_name:`আপনার নাম`,reg_ph_name:`Balwinder Singh`,reg_l_district:`জেলা`,reg_l_land:`জমি (একর)`,reg_l_crop:`বর্তমান ফসল`,reg_btn_next:`পরবর্তী →`,reg_t2:`মাটি ও জল`,reg_s2:`ধাপ ২ / ৩ — জাত মিলানোর জন্য`,reg_l_water:`জলের উৎস`,reg_l_ph:`মাটির pH (আনুমানিক)`,reg_l_exp:`গাছের অভিজ্ঞতা?`,reg_btn_back:`← পেছনে`,reg_btn_analyse:`আমার জমি বিশ্লেষণ →`,reg_t3:`আপনার AI ফলাফল`,reg_s3:`আপনার জমির জন্য কাস্টম`,reg_ib_title:`মালিকানা মডেল কেন কাজ করে`,reg_ib1_h:`ইথিওপিয়া ৬০ কোটি গাছ লাগিয়েছে`,reg_ib1_d:`বেঁচে থাকার হার: ৫০%। কারণ কারো নিজের ছিল না। কেউ চিন্তা করেনি।`,reg_ib2_h:`চীনের গ্রেট গ্রিন ওয়াল`,reg_ib2_d:`ব্যর্থতার হার: ৮৫%। রাষ্ট্র লাগিয়েছে, স্থানীয় ইকোসিস্টেমের সাথে মিল নেই।`,reg_ib3_h:`গুটলি মিশন`,reg_ib3_d:`বেঁচে থাকার হার: ৯৪%। কৃষকের নিজের। স্থানীয় জাত। Monsanto নয়। লাইসেন্স নয়।`,reg_ib_box:`✅ গাছ চিরকাল আপনার<br>✅ বার্ষিক বীজ খরচ নেই (GMO তুলোর বিপরীতে)<br>✅ প্রতি গাছ থেকে ₹300–400 বার্ষিক আয়, ৪০ বছর<br>✅ ২০২৬ থেকে কার্বন ক্রেডিট সম্ভাবনা<br>✅ আপনার সন্তানরা ফলদ বাগান উত্তরাধিকার পাবে`,
+wa_tag:`// কৃষক ইন্টারফেস`,wa_h:`যেকোনো ফোনে চলে।<br><em style="color:var(--mango);font-style:italic;">অ্যাপ লাগে না।</em>`,wa_p:`কৃষকদের কাছে WhatsApp আগে থেকেই আছে। পুরো প্ল্যাটফর্ম একটি বুদ্ধিমান বট হিসেবে চলে — জমি নিবন্ধন, গাছ ট্র্যাক, মাটি পরামর্শ, সমস্যা রিপোর্ট। সব নিজের ভাষায়।`,wa_try:`কুইক রিপ্লাই চেষ্টা করুন:`,wa_c1:`জমি নিবন্ধন 🌾`,wa_c2:`হলুদ পাতা 🍂`,wa_c3:`ফল কখন? 🥭`,wa_c4:`পাঞ্জাব থেকে`,wa_c5:`ਪੰਜਾਬੀ ਵਿੱਚ 🙏`,wa_c6:`বীজ দান 📦`,wa_c7:`মাটি পরামর্শ 🌱`,wa_c8:`GMO ছাড়ুন 🚫`,
+ph_h:`গাছ স্বাস্থ্য স্ক্যানার`,ph_p:`কৃষক প্রতি মাসে WhatsApp-এ তার গাছের ছবি পাঠায়। AI পাতার রঙ, ছাউনির ঘনত্ব, পোকার চিহ্ন বিশ্লেষণ করে — ৩০ সেকেন্ডে নিজের ভাষায় উত্তর।`,ph_upload:`গাছের ছবি আপলোড করুন`,ph_drag:`ক্লিক বা ড্র্যাগ · JPG / PNG`,ph_r1:`নিবন্ধিত গাছ`,ph_r2:`এই মাসের ছবি`,ph_r3:`গড় স্বাস্থ্য স্কোর`,ph_r4:`ফ্ল্যাগ করা গাছ`,ph_r5:`পরবর্তী পরীক্ষা`,ph_use_h:`📲 কৃষকরা কীভাবে ব্যবহার করেন`,ph_use_d:`১. প্রতি মাসের ১ তারিখে বট ছবি অনুস্মারক পাঠায়<br>২. কৃষক প্রতি গাছের ছবি তুলে WhatsApp-এ পাঠায়<br>৩. AI স্ক্যান করে, ৩০ সেকেন্ডে স্বাস্থ্য স্কোর<br>৪. ফ্ল্যাগ হলে — নিজের ভাষায় চিকিৎসা পরামর্শ<br>৫. সব ডেটা জসমিতের ড্যাশবোর্ড + CSR রিপোর্টে যায়`,
+trk_tag:`// বীজের যাত্রা`,trk_h:`আপনার বীজ ট্র্যাক করুন<br><em>প্রতিটি ধাপ।</em>`,trk_intro:`প্রতি দান করা বীজ নিবন্ধনের মুহূর্তেই একটি ইউনিক ID পায়। আপনার হাত থেকে কৃষকের জমি পর্যন্ত — প্রতিটি ধাপ রিয়েল টাইমে দেখতে পারেন।`,trk_ph:`বীজ ID লিখুন — যেমন GM-2024-48291`,trk_btn:`ট্র্যাক →`,trk_demo1:`ডেমো ১ চেষ্টা`,trk_demo2:`ডেমো ২ চেষ্টা`,trk_rev_h:`// প্রতি বীজ ID যা প্রকাশ করে`,trk_rev1:`<strong style="color:var(--cream);">দাতার উৎস</strong> — কে দিয়েছে, কোন শহর, প্রাপ্তির তারিখ`,trk_rev2:`<strong style="color:var(--cream);">ল্যাব প্রসেসিং</strong> — অঙ্কুরণ তারিখ, জাত মিল, গ্রাফট তারিখ`,trk_rev3:`<strong style="color:var(--cream);">কৃষক বিবরণ</strong> — নাম, জেলা, জমির আকার, নিবন্ধন তারিখ`,trk_rev4:`<strong style="color:var(--cream);">গাছের লাইভ স্বাস্থ্য</strong> — মাসিক ছবি স্কোর, বর্তমান অবস্থা, সতর্কতা`,trk_rev5:`<strong style="color:var(--cream);">কার্বন ট্র্যাকিং</strong> — এ পর্যন্ত শোষিত CO₂, ৪০ বছরের অনুমান`,trk_rev6:`<strong style="color:var(--cream);">আয় উৎপন্ন</strong> — এই গাছ থেকে কৃষকের আনুমানিক আয়`,
+csr_tag:`// কর্পোরেট ফান্ডিং স্তর`,csr_h:`যাচাইকৃত প্রভাব।<br><em>তাৎক্ষণিক ফান্ডিং।</em>`,csr_intro:`ভারতের CSR আইন অনুযায়ী বার্ষিক ₹25,000 কোটি কর্পোরেট খরচ আবশ্যক। বেশিরভাগ অযাচাইকৃত থাকে। আমরা রিয়েল-টাইম রিপোর্ট স্বয়ংক্রিয়ভাবে তৈরি করি — গাছ, কার্বন, কৃষক আয় — কনসালট্যান্ট নয়, দেরি নয়।`,csr_rht:`// প্রভাব রিপোর্ট · Q4 2024`,csr_verified:`যাচাইকৃত ✓`,csr_row1:`লাগানো গাছ (যাচাইকৃত)`,csr_row2:`CO₂ ঘাটতি (টন)`,csr_row3:`পৌঁছানো কৃষক পরিবার`,csr_row4:`কৃষকের আয়`,csr_row5:`গাছ বেঁচে থাকার হার`,csr_row6:`কভার করা জেলা`,csr_row7:`ছবি যাচাইয়ের হার`,csr_row8:`অনুমিত ১০-বছরের আয়`,csr_dl:`⬇ যাচাইকৃত PDF রিপোর্ট ডাউনলোড`,csr_partners_h:`// সম্ভাব্য CSR পার্টনার`,csr_why:`✓ প্রতিটি গাছ কৃষকের WhatsApp ছবিতে GPS-যাচাইকৃত<br>✓ কার্বন ঘাটতি IPCC মান অনুযায়ী স্বয়ংক্রিয়<br>✓ কৃষক আয় প্রতি মাসে ট্র্যাক, অনুমিত নয়<br>✓ ১ ক্লিকে পূর্ণ রিপোর্ট — কনসালট্যান্ট নয়, দেরি নয়<br>✓ কমপ্লায়েন্সের জন্য ব্লকচেইন-টাইমস্ট্যাম্পড অডিট ট্রেইল`,
+cta_tag:`// মিশনের জন্য তৈরি`,cta_h:`৫ বছর। শূন্য বাজেট।<br><em>৮ লক্ষ গাছ।</em><br>এবার কী?`,cta_p:`এই প্ল্যাটফর্ম গুটলি মিশনকে সেই অবকাঠামো দেয় যা তার সর্বদা প্রাপ্য ছিল — যাতে জসমিত স্প্রেডশীট নয়, গাছের উপর মনোনিবেশ করতে পারেন।`,cta_btn1:`মিশনের সাথে অংশীদারিত্ব`,cta_btn2:`আমার আম জোন খুঁজুন`,cta_cc1:`Jasmeet Singh Arora`,cta_ccv1:`ভারতের গুটলিম্যান 🥭`,cta_cc2:`WhatsApp / কল`,cta_cc3:`বীজ পাঠান`,cta_built:`তৈরি <span>Sifotech HQ</span> · Bradford, UK · ভারতের আম বিপ্লবের জন্য 🥭`
+}
+};
+
+const origText = {};
+document.querySelectorAll('[data-i18n]').forEach(el => { origText[el.getAttribute('data-i18n')] = el.innerHTML; });
+document.querySelectorAll('[data-i18n-ph]').forEach(el => { origText['_ph_' + el.getAttribute('data-i18n-ph')] = el.placeholder; });
+
+function setLang(lang) {
+  const isEn = (lang === 'en');
+  if (!isEn && (!translations[lang] || Object.keys(translations[lang]).length === 0)) lang = 'en';
+  const isEn2 = (lang === 'en');
+  const t = isEn2 ? null : translations[lang];
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const k = el.getAttribute('data-i18n');
+    if (isEn2) el.innerHTML = origText[k] || '';
+    else if (t[k] !== undefined) el.innerHTML = t[k];
+  });
+  document.querySelectorAll('[data-i18n-ph]').forEach(el => {
+    const k = el.getAttribute('data-i18n-ph');
+    if (isEn2) el.placeholder = origText['_ph_' + k] || '';
+    else if (t[k] !== undefined) el.placeholder = t[k];
+  });
+  document.querySelectorAll('#langSwitch button').forEach(b => {
+    b.classList.toggle('lon', b.getAttribute('data-lang') === lang);
+  });
+  document.documentElement.lang = lang;
+  try { localStorage.setItem('gutli_lang', lang); } catch(e) {}
+}
+
+(function init() {
+  let saved = 'en';
+  try { saved = localStorage.getItem('gutli_lang') || 'en'; } catch(e) {}
+  setLang(saved);
+})();
 </script>
 </body>
 </html>
