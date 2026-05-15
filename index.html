@@ -389,6 +389,125 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:0 52px;height:64px;
 .lang-switch button:hover{color:var(--cream)}
 .lang-switch button.lon{background:var(--mango);color:#1a1208}
 @media(max-width:720px){.lang-switch button{padding:4px 6px;font-size:10px}}
+
+/* ===== MOBILE RESPONSIVE ===== */
+@media (max-width:720px){
+  body{cursor:auto;}
+  .cur{display:none;}
+  *{cursor:auto!important;}
+
+  /* Nav */
+  nav{padding:0 12px;height:56px;gap:6px;}
+  .nlogo{font-size:14px;gap:5px;}
+  .nav-links{display:none;}
+  .lang-switch{margin-right:0;padding:2px;}
+  .npill{padding:6px 12px;font-size:11px;white-space:nowrap;}
+
+  /* Hero */
+  .hero{padding:78px 18px 60px;min-height:auto;}
+  .hero-ring:nth-child(2),.hero-ring:nth-child(3),.hero-ring:nth-child(4){display:none;}
+  .hero h1{font-size:40px!important;line-height:1;}
+  .hero-sub{font-size:14px;margin-top:18px;padding:0 4px;}
+  .hero-stats{flex-direction:column;margin-top:32px;width:100%;}
+  .hstat{padding:14px;border-right:none;border-bottom:1px solid var(--gb);}
+  .hstat:last-child{border-bottom:none;}
+  .hstat-n{font-size:28px;}
+  .hero-cta{flex-direction:column;gap:10px;width:100%;margin-top:24px;}
+  .btn{width:100%;padding:14px 20px;font-size:13px;}
+  .scroll-hint{bottom:14px;}
+
+  /* Section */
+  .sec{padding:56px 18px;}
+  .sh{font-size:32px!important;}
+
+  /* Mission story */
+  .story-grid{grid-template-columns:1fr;gap:28px;margin-top:28px;}
+  .story-text p{font-size:14px;line-height:1.75;}
+  .quote-card{padding:16px 18px;}
+  .quote-text{font-size:16px;}
+  .fact-card{padding:14px;gap:12px;}
+  .fact-icon{font-size:22px;}
+  .fact-val{font-size:22px;}
+  .fact-label{font-size:11px;}
+
+  /* How it works — stack vertically */
+  .chain{grid-template-columns:1fr;gap:18px;margin-top:28px;}
+  .chain::before{display:none;}
+  .cs{padding:0;flex-direction:row;text-align:left;gap:14px;align-items:flex-start;}
+  .ci{width:50px;height:50px;font-size:20px;margin-bottom:0;flex-shrink:0;}
+  .cn{margin-bottom:2px;}
+  .ct2{font-size:15px;margin-bottom:4px;}
+
+  /* Zone advisor */
+  .advisor-wrap{grid-template-columns:1fr;gap:24px;margin-top:28px;}
+  .form-card{padding:20px;position:static;}
+  .fc-title{font-size:18px;}
+  .fi-row{grid-template-columns:1fr;gap:10px;}
+  .metrics4{grid-template-columns:1fr 1fr;gap:8px;margin-bottom:20px;}
+  .mc{padding:12px;}
+  .mc-val{font-size:18px;}
+  .vgrid{grid-template-columns:1fr;gap:10px;}
+  .fix-grid{grid-template-columns:1fr;}
+  .inc-grid{grid-template-columns:1fr 1fr;gap:14px;}
+  .inc-val{font-size:20px;}
+  .vs-row-calc{flex-direction:column;align-items:flex-start;gap:6px;}
+  .tl{grid-template-columns:repeat(3,1fr);gap:14px 6px;}
+  .tl::before{display:none;}
+  .tl-dot{width:38px;height:38px;font-size:14px;}
+  .zone-banner{padding:14px 16px;flex-direction:column;gap:12px;align-items:flex-start;}
+  .zb-pct{font-size:34px;}
+  .ctable{display:block;overflow-x:auto;white-space:nowrap;font-size:10px;}
+  .ctable th,.ctable td{padding:8px;}
+
+  /* Platform tabs */
+  .tabs-wrap{margin-top:28px;}
+  .tab-bar{width:100%;overflow-x:auto;flex-wrap:nowrap;-webkit-overflow-scrolling:touch;}
+  .tab-bar::-webkit-scrollbar{display:none;}
+  .tb{padding:8px 14px;font-size:11px;white-space:nowrap;flex-shrink:0;}
+
+  /* Donate / Farmer / Photo tabs */
+  .two-col{grid-template-columns:1fr;gap:22px;}
+  .fcard2{padding:20px;}
+  .fcard2 h3{font-size:17px;}
+  .dmap{min-height:200px;padding:14px;}
+  .dl{font-size:8px;}
+
+  /* Farmer registration */
+  .sp-title{font-size:18px;}
+  .reg-info-box{padding:18px;}
+
+  /* WhatsApp */
+  .wa-wrap{grid-template-columns:1fr;gap:26px;}
+  .wad{max-width:260px;}
+  .wams{height:280px;}
+
+  /* Tracker */
+  .tracker-wrap{grid-template-columns:1fr;gap:24px;}
+
+  /* CSR */
+  .csr-grid{grid-template-columns:1fr;gap:24px;}
+  .clogos{gap:6px;}
+  .cch{padding:8px 12px;font-size:10px;}
+  .rh{padding:12px 18px;}
+  .rb{padding:18px;}
+
+  /* Final */
+  .final{padding:70px 18px;}
+  .final h2{font-size:34px!important;}
+  .final p{font-size:15px;padding:0 4px;}
+  .contact-card{flex-direction:column;gap:16px;padding:20px 24px;align-items:stretch;}
+  .cc-val{font-size:13px;}
+}
+
+@media (max-width:380px){
+  .hero h1{font-size:34px!important;}
+  .sh{font-size:26px!important;}
+  .final h2{font-size:28px!important;}
+  .hstat-n{font-size:24px;}
+  .metrics4{grid-template-columns:1fr;}
+  .inc-grid{grid-template-columns:1fr;}
+  .tl{grid-template-columns:repeat(2,1fr);}
+}
 </style>
 <nav>
   <div class="nlogo">🥭 Gutli <em>Mission OS</em></div>
